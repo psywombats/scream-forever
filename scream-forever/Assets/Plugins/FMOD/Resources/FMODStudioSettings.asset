@@ -426,7 +426,7 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../fmod/scream-2024.fspro
+  sourceProjectPath: ../fmod/scream-forever.fspro
   sourceBankPath: ../fmod/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
@@ -451,8 +451,8 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
-  - Main
-  - Music
+  - LateSFX
+  - Map
   - Title
   BanksToLoad: []
   LiveUpdatePort: 9264

@@ -1,8 +1,6 @@
 using DG.Tweening;
-using FMODUnity;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,19 +8,22 @@ public class PlayerController : MonoBehaviour, IInputListener
 {
     [SerializeField] public new Camera camera;
     [Space]
-    [SerializeField] [Range(0f, 9f)] float mouseRotateSensitivity = 2f;
-    [SerializeField] Vector2 RotationYBounds = new Vector2(-70, 70);
-    [Space]
-    [SerializeField] private RenderTexture lapTex;
-    [SerializeField] private RenderTexture transTex;
+    [SerializeField] [Range(0f, 9f)] private float mouseRotateSensitivity = .1f;
+    [SerializeField] private Vector2 rotationXBounds = new Vector2(-70, 70);
+    [SerializeField] private Vector2 rotationYBounds = new Vector2(-70, 70);
+    [SerializeField] [Range(0f, 10f)] private float stickyStrength;
+    [SerializeField] [Range(0f, 180)] private int stickyAllowance;
     
     private int pauseCount;
     private bool selfPaused;
     public bool IsPaused => pauseCount > 0;
 
+    private Quaternion targetLook;
+
     private void Start()
     {
         Global.Instance.Maps.Avatar = this;
+        targetLook = camera.transform.rotation;
     }
 
     private void Update()
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour, IInputListener
         {
             HandleFPC();
         }
+
+        HandleStickyCam();
     }
 
     public void OnEnable()
@@ -88,17 +91,6 @@ public class PlayerController : MonoBehaviour, IInputListener
         return CoUtils.RunTween(rotater.transform.DORotate(lookAngles, .5f));
     }
 
-    public void Screenshot()
-    {
-        camera.enabled = false;
-        camera.targetTexture = lapTex;
-        camera.Render();
-        camera.targetTexture = transTex;
-        camera.Render();
-        camera.targetTexture = null;
-        camera.enabled = true;
-    }
-
     public bool OnCommand(InputManager.Command command, InputManager.Event eventType)
     {
         /*
@@ -133,23 +125,44 @@ public class PlayerController : MonoBehaviour, IInputListener
         var mouse = Mouse.current.delta;
         var inX = mouse.x.ReadValue();
         var inY = mouse.y.ReadValue();
+        Debug.Log(inX + ", " + inY);
 
         var trans = camera.transform;
 
         var sense = mouseRotateSensitivity;
         if (Application.platform == RuntimePlatform.WebGLPlayer) sense *= 10;
-        trans.rotation *= Quaternion.AngleAxis(inY * mouseRotateSensitivity, Vector3.left);
+        trans.rotation = trans.rotation * Quaternion.AngleAxis(inX * mouseRotateSensitivity, Vector3.up)
+                                        * Quaternion.AngleAxis(inY * mouseRotateSensitivity, Vector3.left);
 
-        var ang = trans.eulerAngles.x;
-        while (ang > 180) ang -= 360;
-        while (ang < -180) ang += 360;
-
-        var xcom = inX * mouseRotateSensitivity;
+        var angX = trans.eulerAngles.x;
+        while (angX > 180) angX -= 360;
+        while (angX < -180) angX += 360;
+        
+        var angY = trans.eulerAngles.y;
+        while (angY > 180) angY -= 360;
+        while (angY < -180) angY += 360;
 
         trans.rotation = Quaternion.Euler(
-            Mathf.Clamp(ang, RotationYBounds.x, RotationYBounds.y),
-            trans.eulerAngles.y + xcom,
+            Mathf.Clamp(angX, rotationYBounds.x, rotationYBounds.y),
+            Mathf.Clamp(angY, rotationXBounds.x, rotationXBounds.y),
             0
         );
+    }
+
+    private void HandleStickyCam()
+    {
+        if (stickyStrength == 0)
+        {
+            return;
+        }
+
+        var strength = Quaternion.Angle(camera.transform.rotation, targetLook);
+        strength = (strength - stickyAllowance) / 180f;
+        if (strength <= 0)
+        {
+            return;
+        }
+        strength *= stickyStrength;
+        camera.transform.rotation = Quaternion.Slerp(camera.transform.rotation, targetLook, strength);
     }
 }
