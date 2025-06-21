@@ -118,7 +118,6 @@ public class PlayerController : MonoBehaviour, IInputListener
         var mouse = Mouse.current.delta;
         var inX = mouse.x.ReadValue();
         var inY = mouse.y.ReadValue();
-        Debug.Log(inX + ", " + inY);
 
         var trans = camera.transform;
 

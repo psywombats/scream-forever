@@ -30,4 +30,15 @@ public class GameMap : MonoBehaviour
     {
 
     }
+    
+    public void Regenerate(Vector3Int radius, bool usePlayer = false)
+    {
+        DestroyChunks();
+        terrain.EnsureChunks(radius, usePlayer: usePlayer);
+    }
+
+    public void DestroyChunks()
+    {
+        terrain.CullAll();
+    }
 }

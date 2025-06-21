@@ -29,24 +29,6 @@ public abstract class Chunk : MonoBehaviour
         UpdateMesh();
     }
 
-    public void AdjustWeights(Vector3 hit, float r, float mult)
-    {
-        for (var x = 0; x < GridMetrics.PointsPerChunk - 1; x += 1)
-        {
-            for (var y = 0; y < GridMetrics.PointsPerChunk - 1; y += 1)
-            {
-                for (var z = 0; z < GridMetrics.PointsPerChunk - 1; z += 1)
-                {
-                    var id = new Vector3Int(x, y, z);
-                    if (Vector3.SqrMagnitude(id - hit) <= r * r)
-                    {
-                        weights[id.x + GridMetrics.PointsPerChunk * (id.y + GridMetrics.PointsPerChunk * id.z)] += mult;
-                    }
-                }
-            }
-        }
-    }
-
     private void OnDestroy()
     {
         if (filter.sharedMesh != null)
@@ -79,7 +61,7 @@ public abstract class Chunk : MonoBehaviour
 
                 Triangle tri1;
                 tri1.a = id + new Vector3(0, squareValues[0], 0);
-                tri1.b = id + new Vector3(1, squareValues[2], 1);
+                tri1.b = id + new Vector3(1, squareValues[3], 1);
                 tri1.c = id + new Vector3(1, squareValues[1], 0);
                 AddTri(tri1);
                 
