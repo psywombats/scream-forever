@@ -13,8 +13,6 @@ public class InputManager : SingletonBehavior
     {
         Primary,
         Secondary,
-        Tertiary,
-        Quaternary,
         Left,
         Right,
         Up,
@@ -123,7 +121,6 @@ public class InputManager : SingletonBehavior
 
     public void PushListener(string id, Func<Command, Event, bool> responder)
     {
-        //Debug.Log("PUSHING LISTENER: " + id);
         IInputListener listener = new AnonymousListener(responder);
         anonymousListeners.Add(id, listener);
         PushListener(listener);
@@ -135,7 +132,6 @@ public class InputManager : SingletonBehavior
 
     public void RemoveListener(string id)
     {
-        //Debug.Log("REMOVING LISTENER: " + id);
         listeners.Remove(anonymousListeners[id]);
         anonymousListeners.Remove(id);
     }
@@ -200,23 +196,12 @@ public class InputManager : SingletonBehavior
                 action.AddBinding(Mouse.current.rightButton);
                 action.AddBinding("<Gamepad>/buttonEast");
                 break;
-            case Command.Tertiary:
-                action.AddBinding(Keyboard.current.cKey);
-                action.AddBinding(Keyboard.current.qKey);
-                action.AddBinding(Keyboard.current.ctrlKey);
-                action.AddBinding("<Gamepad>/buttonNorth");
-                break;
-            case Command.Quaternary:
-                action.AddBinding(Keyboard.current.eKey);
-                action.AddBinding(Keyboard.current.vKey);
-                action.AddBinding(Keyboard.current.tabKey);
-                action.AddBinding("<Gamepad>/buttonWest");
-                break;
             case Command.Menu:
                 action.AddBinding(Keyboard.current.escapeKey);
                 action.AddBinding(Keyboard.current.bKey);
                 action.AddBinding(Keyboard.current.backspaceKey);
                 action.AddBinding("<Gamepad>/startButton");
+                action.AddBinding("<Gamepad>/buttonWest");
                 break;
             case Command.Debug:
                 action.AddBinding(Keyboard.current.f12Key);

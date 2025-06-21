@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class WebNoiseSource : NoiseSource
+public class NoiseSource : MonoBehaviour
 {
     [SerializeField] private RenderTexture renderTex;
     [SerializeField] private Material referenceMat;
@@ -20,19 +20,19 @@ public class WebNoiseSource : NoiseSource
         }
     }
 
-    public override void SetFloat(string name, float value) => Mat.SetFloat(name, value);
-    public override void SetInt(string name, int value) => Mat.SetInteger(name, value);
+    public void SetFloat(string name, float value) => Mat.SetFloat(name, value);
+    public void SetInt(string name, int value) => Mat.SetInteger(name, value);
 
-    public override void GenerateNoise(float[] weights)
+    public void GenerateNoise(float[] weights)
     {
         if (bufferTex == null)
         {
-            bufferTex = new Texture2D(24, 576, TextureFormat.RFloat, false);
+            bufferTex = new Texture2D(24, 24, TextureFormat.RFloat, false);
         }
 
         Graphics.Blit(dummyTex, renderTex, Mat, 0);
         RenderTexture.active = renderTex;
-        bufferTex.ReadPixels(new Rect(0, 0, 24, 576), 0, 0);
+        bufferTex.ReadPixels(new Rect(0, 0, 24, 24), 0, 0);
         RenderTexture.active = null;
 
         var nativeArr = bufferTex.GetPixelData<float>(0);

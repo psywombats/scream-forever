@@ -13,10 +13,16 @@ public class PlayerController : MonoBehaviour, IInputListener
     [SerializeField] private Vector2 rotationYBounds = new Vector2(-70, 70);
     [SerializeField] [Range(0f, 10f)] private float stickyStrength;
     [SerializeField] [Range(0f, 180)] private int stickyAllowance;
+    [Space] 
+    [SerializeField] private Transform wheelTransform;
+    [SerializeField] private Transform speedTransform;
+    [SerializeField] private Transform rpmTransform;
     
     private int pauseCount;
     private bool selfPaused;
     public bool IsPaused => pauseCount > 0;
+
+    private float wheelRotation;
 
     private Quaternion targetLook;
 
@@ -43,7 +49,10 @@ public class PlayerController : MonoBehaviour, IInputListener
 
     public void OnDisable()
     {
-        InputManager.Instance?.RemoveListener(this);
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.RemoveListener(this);
+        }
     }
 
     public void PauseInput()
@@ -93,22 +102,6 @@ public class PlayerController : MonoBehaviour, IInputListener
 
     public bool OnCommand(InputManager.Command command, InputManager.Event eventType)
     {
-        /*
-        if (command == InputManager.Command.Menu && eventType == InputManager.Event.Up)
-        {
-            if (selfPaused)
-            {
-                UnpauseInput();
-                selfPaused = false;
-            }
-            else
-            {
-                PauseInput();
-                selfPaused = true;
-            }
-        }
-        */
-        
         if (IsPaused)
         {
             return true;

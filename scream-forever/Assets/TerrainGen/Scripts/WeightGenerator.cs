@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class NoiseGenerator : MonoBehaviour
+public class WeightGenerator : MonoBehaviour
 {
-    [SerializeField] private ChunkHolder chunker;
+    [SerializeField] private NoiseSource source;
     [Space]
     [SerializeField, Range(.1f, 10f)] private float noiseScale = 1f;
     [SerializeField, Range(1f, 10f)] private float amplitude = 5f;
@@ -13,7 +13,7 @@ public class NoiseGenerator : MonoBehaviour
     [SerializeField] public NoiseType noiseType = NoiseType.NOISE_OPENSIMPLEX2;
     [SerializeField] public FractalType fractalType = FractalType.FRACTAL_RIDGED;
 
-    protected NoiseSource Source => chunker.NoiseSource;
+    protected NoiseSource Source => source;
 
     public enum NoiseType
     {
@@ -54,12 +54,8 @@ public class NoiseGenerator : MonoBehaviour
         Source.SetInt("_NoiseTypeIn", (int)noiseType);
         Source.SetInt("_FractalTypeIn", (int)fractalType);
 
-        SetSpecificNoiseVars();
-
-        var noise = new float[GridMetrics.PointsPerChunk * GridMetrics.PointsPerChunk * GridMetrics.PointsPerChunk];
+        var noise = new float[GridMetrics.PointsPerChunk * GridMetrics.PointsPerChunk];
         Source.GenerateNoise(noise);
         return noise;
     }
-
-    protected virtual void SetSpecificNoiseVars() { }
 }

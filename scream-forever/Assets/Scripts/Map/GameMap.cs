@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GameMap : MonoBehaviour
+public class GameMap : MonoBehaviour
 {
     public const string ResourcePath = "Maps/";
     
@@ -9,8 +8,6 @@ public abstract class GameMap : MonoBehaviour
     [Space]
     [Header("References")]
     [SerializeField] public MarchingTerrain terrain;
-    [SerializeField] public NoiseGenerator noise;
-    [SerializeField] public ChunkHolder chunker;
 
     public virtual void Start()
     {
@@ -23,8 +20,6 @@ public abstract class GameMap : MonoBehaviour
             }
         }
     }
-    
-    public GameObject GetChunkPrefab() => chunker.GetChunk();
 
     public virtual void OnTeleportTo(GameMap from)
     {

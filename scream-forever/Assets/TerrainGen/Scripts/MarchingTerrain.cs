@@ -1,21 +1,21 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MarchingTerrain : MonoBehaviour
 {
-    [SerializeField] private GameMap map;
+    [SerializeField] public WeightGenerator weight;
+    [SerializeField] public Chunk chunkPrefab;
     [Space]
-    [SerializeField] private int spawnRadius = 1;
+    [SerializeField] private Vector3Int spawnRadius = Vector3Int.one;
     [SerializeField] private int cullDist = 2;
     [Space]
     [SerializeField] private GameObject toFollow;
     [SerializeField] private Vector3Int bias;
 
-    private Dictionary<Vector3Int, Chunk> chunks = new();
-    private Dictionary<int, GameObject> layers = new();
+    private readonly Dictionary<Vector3Int, Chunk> chunks = new();
+    private readonly Dictionary<int, GameObject> layers = new();
 
-    public NoiseGenerator Noise => map.noise;
+    public WeightGenerator Weight => weight;
 
     public GameObject Target => toFollow != null ? toFollow : (Global.Instance.Avatar == null ? null : Global.Instance.Avatar.gameObject);
 
@@ -28,45 +28,21 @@ public class MarchingTerrain : MonoBehaviour
         }
     }
 
-    public void AdjustWeights(Chunk chunk, Vector3 hit, float r, float mult)
-    {
-        var index = chunk.Index;
-        for (var x = index.x - 1; x <= index.x + 1; x += 1)
-        {
-            for (var y = index.y - 1; y <= index.y + 1; y += 1)
-            {
-                for (var z = index.z - 1; z <= index.z + 1; z += 1)
-                {
-                    var checkIndex = new Vector3Int(x, y, z);
-                    if (chunks.ContainsKey(checkIndex))
-                    {
-                        chunks[checkIndex].AdjustWeights(hit, r, mult);
-                    }
-                    // TODO: we should always have that chunk
-                }
-            }
-        }
-    }
-
     /// <returns>True if everything was already built</returns>
-    public bool EnsureChunks(int radius, bool usePlayer = false, bool allowInterrupts = false)
+    public bool EnsureChunks(Vector3Int radius, bool usePlayer = false, bool allowInterrupts = false)
     {
         var index = usePlayer ? GetPlayerIndex() : Vector3Int.zero;
-        if (radius == 0)
+        if (radius == Vector3Int.zero)
         {
             //radius = spawnRadius;
         }
-        for (var x = index.x - radius; x <= index.x + radius; x += 1)
+        for (var x = index.x - radius.x; x <= index.x + radius.x; x += 1)
         {
-            for (var y = index.y - radius; y <= index.y + radius; y += 1)
+            for (var y = index.y - radius.y; y <= index.y + radius.y; y += 1)
             {
-                for (var z = index.z - radius; z <= index.z + radius; z += 1)
+                for (var z = index.z - radius.z; z <= index.z + radius.z; z += 1)
                 {
                     var checkIndex = new Vector3Int(x, y, z);
-                    if (Vector3.Distance(checkIndex, index) > radius + 1.5f)
-                    {
-                        continue;
-                    }
                     if (EnsureChunk(checkIndex) && !allowInterrupts)
                     {
                         return false;
@@ -152,15 +128,15 @@ public class MarchingTerrain : MonoBehaviour
         var off = GridMetrics.PointsPerChunk / 2f;
         var adjPos = pos - new Vector3(off, off, off);
         var atPos = new Vector3Int(
-            Mathf.RoundToInt(adjPos.x / GridMetrics.ChunkSize),
-            Mathf.RoundToInt(adjPos.y / GridMetrics.ChunkSize),
-            Mathf.RoundToInt(adjPos.z / GridMetrics.ChunkSize));
+            Mathf.CeilToInt(adjPos.x / GridMetrics.ChunkSize),
+            Mathf.CeilToInt(adjPos.y / GridMetrics.ChunkSize),
+            Mathf.CeilToInt(adjPos.z / GridMetrics.ChunkSize));
         return atPos;
     }
 
     private Chunk MakeChunk(Vector3Int chunkIndex)
     {
-        var chunk = Instantiate(map.GetChunkPrefab()).GetComponent<Chunk>();
+        var chunk = Instantiate(chunkPrefab).GetComponent<Chunk>();
         var pos = (Vector3)(chunkIndex * GridMetrics.ChunkSize);
         var off = GridMetrics.ChunkSize / 2f;
         chunk.Init(this, chunkIndex, pos);
