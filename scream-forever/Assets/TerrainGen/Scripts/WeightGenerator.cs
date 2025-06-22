@@ -2,7 +2,7 @@
 
 public class WeightGenerator : MonoBehaviour
 {
-    [SerializeField] private NoiseSource source;
+    [SerializeField] public NoiseSource source;
     [Space]
     [SerializeField, Range(.1f, 10f)] private float noiseScale = 1f;
     [SerializeField, Range(1f, 10f)] private float amplitude = 5f;

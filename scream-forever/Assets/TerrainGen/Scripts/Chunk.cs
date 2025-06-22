@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public abstract class Chunk : MonoBehaviour
@@ -27,6 +28,27 @@ public abstract class Chunk : MonoBehaviour
     {
         weights = Terrain.Weight.GenerateNoise(pos);
         UpdateMesh();
+    }
+
+    public float GetWeightAt(Vector3 globalPoint)
+    {
+        var localPoint = globalPoint - pos;
+        localPoint = new Vector3(
+            Mathf.Clamp(localPoint.x, 0, GridMetrics.PointsPerChunk),
+            0,
+            Mathf.Clamp(localPoint.z, 0, GridMetrics.PointsPerChunk));
+        var x1 = Mathf.FloorToInt(localPoint.x);
+        var x2 = Mathf.CeilToInt(localPoint.x);
+        var z1 = Mathf.FloorToInt(localPoint.z);
+        var z2 = Mathf.CeilToInt(localPoint.z);
+        var weightX1 = weights[x1 + z1 * GridMetrics.PointsPerChunk];
+        var weightX2 = weights[x2 + z1 * GridMetrics.PointsPerChunk];
+        var weightX = Mathf.Lerp(weightX1, weightX2, localPoint.x % 1);
+        var weightZ1 = weights[x1 + z2 * GridMetrics.PointsPerChunk];
+        var weightZ2 = weights[x2 + z2 * GridMetrics.PointsPerChunk];
+        var weightZ = Mathf.Lerp(weightZ1, weightZ2, localPoint.x % 1);
+
+        return Mathf.Lerp(weightX, weightZ, localPoint.z % 1);
     }
 
     private void OnDestroy()

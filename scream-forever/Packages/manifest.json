@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.cqf.urpvolumetricfog": "https://github.com/CristianQiu/Unity-URP-Volumetric-Light.git",
     "com.unity.ide.rider": "3.0.36",
     "com.unity.inputsystem": "1.11.2",
     "com.unity.render-pipelines.universal": "14.0.11",

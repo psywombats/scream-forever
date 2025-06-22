@@ -67,6 +67,13 @@ public class MarchingTerrain : MonoBehaviour
         layers.Clear();
     }
 
+    public float GetHeightAt(Vector3 point)
+    {
+        var index = GetIndexForPos(point);
+        EnsureChunk(index);
+        return chunks[index].GetWeightAt(point);
+    }
+
     private void EnsureLayer(int layerIndex)
     {
         if (!layers.ContainsKey(layerIndex))
