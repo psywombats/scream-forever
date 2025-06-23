@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7d20424549e4d02882c90a6614c0da, type: 3}
   m_Name: Windy Mist
   m_EditorClassIdentifier: 
-  baseAltitude: 64
-  useXYZDistance: 1
-  densityLinear: 0.00015
-  densityExponential: 0.5
+  baseAltitude: 0
+  useXYZDistance: 0
+  densityLinear: 0.23
+  densityExponential: 0.75
   maxHeight: 10000
   distanceMax: 100000
-  tintColor: {r: 0, g: 0, b: 0, a: 0.85882354}
+  tintColor: {r: 0, g: 0, b: 0, a: 1}
   useVerticalGradient: 0
   verticalGradient:
     serializedVersion: 2
@@ -52,19 +52,19 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   boxProjection: 0
   depthClip: 0
-  noiseColorBlend: 0.1
+  noiseColorBlend: 0.528
   noiseColor: {r: 0.070354216, g: 0.36376703, b: 0.4811321, a: 1}
   scale: 1
-  shift: 0
+  shift: 0.02
   noiseDistanceAtten: 1
-  turbulence: 1.52
-  speed: 0.73
-  direction: {x: 0.1, y: 0, z: 0.1}
-  lightDiffusionPower: 64
-  lightDiffusionIntensity: 0.292
-  brightness: 0.05
+  turbulence: 10
+  speed: 0.1
+  direction: {x: 0.5, y: 0, z: 0.1}
+  lightDiffusionPower: 0.1
+  lightDiffusionIntensity: 0
+  brightness: 0
   useSunColor: 0
-  dithering: 1
+  dithering: 0
   renderQueue: 3100
   sortingLayerID: 0
   sortingOrder: 0

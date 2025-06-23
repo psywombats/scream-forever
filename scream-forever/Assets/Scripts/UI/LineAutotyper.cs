@@ -113,7 +113,7 @@ public class LineAutotyper : TextAutotyper
             yield return TypeRoutine(fullMessage.ToString(), false);
         }
 
-       Global.Instance.Input.RemoveListener(this);
+        Global.Instance.Input.RemoveListener(this);
     }
 
     public bool ExceedsLineWidth(string line)

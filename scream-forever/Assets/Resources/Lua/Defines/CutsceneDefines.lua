@@ -30,14 +30,24 @@ function fade(fadeType, dur)
     await()
 end
 
-function enterNVL(arg)
-    cs_enterNVL(arg)
+function enterNVL()
+    cs_enterNVL()
     await()
 end
 
 function exitNVL()
     cs_exitNVL()
     await()
+end
+
+function enter(speaker, expression)
+	cs_enter(speaker, expression)
+	await()
+end
+
+function exit(arg)
+	cs_exit(arg)
+	await()
 end
 
 function expr(speaker, expression)

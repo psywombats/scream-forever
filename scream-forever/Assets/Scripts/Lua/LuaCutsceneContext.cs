@@ -13,12 +13,12 @@ public class LuaCutsceneContext : LuaContext
     {
         if (canBlock && Global.Instance.Avatar != null)
         {
-            Global.Instance.Avatar.PauseInput();
+            //Global.Instance.Avatar.PauseInput();
         }
         yield return base.RunRoutine(script, canBlock);
         if (canBlock && Global.Instance.Avatar != null)
         {
-            Global.Instance.Avatar.UnpauseInput();
+            //Global.Instance.Avatar.UnpauseInput();
         }
     }
 
@@ -26,11 +26,6 @@ public class LuaCutsceneContext : LuaContext
     {
         base.Initialize();
         LoadDefines(DefinesPath);
-    }
-
-    public override void RunRoutineFromLua(IEnumerator routine)
-    {
-        base.RunRoutineFromLua(routine);
     }
 
     public void RunTextboxRoutineFromLua(IEnumerator routine)
@@ -62,6 +57,8 @@ public class LuaCutsceneContext : LuaContext
         Lua.Globals["cs_exitNVL"] = (Action)ExitNVL;
         Lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
         Lua.Globals["cs_expr"] = (Action<DynValue, DynValue>)Express;
+        Lua.Globals["cs_enter"] = (Action<DynValue, DynValue>)Enter;
+        Lua.Globals["cs_exit"] = (Action<DynValue>)Exit;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -142,5 +139,17 @@ public class LuaCutsceneContext : LuaContext
     private IEnumerator SpeakRoutine(SpeakerData speaker, string message)
     {
         yield return MapOverlayUI.Instance.nvl.SpeakRoutine(speaker, message);
+    }
+
+    private void Enter(DynValue speakerTag, DynValue expression)
+    {
+        var speakerData = IndexDatabase.Instance.Speakers.GetData(speakerTag.String);
+        RunRoutineFromLua(MapOverlayUI.Instance.nvl.EnterRoutine(speakerData, expression.String));
+    }
+    
+    private void Exit(DynValue speakerTag)
+    {
+        var speakerData = IndexDatabase.Instance.Speakers.GetData(speakerTag.String);
+        RunRoutineFromLua(MapOverlayUI.Instance.nvl.ExitRoutine(speakerData));
     }
 }

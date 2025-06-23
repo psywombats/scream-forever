@@ -14,16 +14,15 @@ public class NVLComponent : MonoBehaviour
     public PortraitComponent slotB;
     public PortraitComponent slotC;
     public PortraitComponent slotD;
-    public PortraitComponent slotE;
 
     public GameObject backerArea;
     public ExpanderComponent backer;
-    //public LineAutotyper text;
     public TextAutotyper text;
     public Text nameText;
     public CanvasGroup fader;
     public CanvasGroup background;
     public StudioEventEmitter eventEmitter;
+    public SlowFlashImageBehavior advanceIcon;
 
     public bool IsShown { get; private set; }
 
@@ -38,16 +37,13 @@ public class NVLComponent : MonoBehaviour
     public IEnumerator ShowRoutine(bool hideBackers = false)
     {
         IsShown = true;
-        eventEmitter.Play();
+        if (eventEmitter != null)
+        {
+            eventEmitter.Play();
+        }
         backer.Hide();
         fader.alpha = 0.0f;
         background.alpha = 0f;
-        foreach (var portrait in GetPortraits())
-        {
-            portrait.Clear();
-        }
-
-        Global.Instance.Audio.PlaySFX("in_game/popups", null, AudioManager.Bank.UI);
 
         if (!hideBackers)
         {
@@ -65,15 +61,12 @@ public class NVLComponent : MonoBehaviour
 
     public IEnumerator HideRoutine()
     {
-        eventEmitter.Stop();
-        var routines = new List<IEnumerator>();
-        foreach (var portrait in GetPortraits())
+        if (eventEmitter != null)
         {
-            if (portrait.Speaker != null)
-            {
-                routines.Add(portrait.ExitRoutine());
-            }
+            eventEmitter.Stop();
         }
+        var routines = new List<IEnumerator>();
+
         yield return CoUtils.RunParallel(routines.ToArray(), this);
         routines.Clear();
         routines.Add(backer.HideRoutine());
@@ -84,21 +77,16 @@ public class NVLComponent : MonoBehaviour
         IsShown = false;
     }
 
-    public IEnumerator EnterRoutine(SpeakerData speaker, string slot, string expr = null)
+    public IEnumerator EnterRoutine(SpeakerData speaker, string expr = null)
     {
-        var portrait = GetPortrait(slot);
-        yield return portrait.EnterRoutine(speaker, expr);
+        var portrait = GetPortrait(speaker);
+        yield return portrait.EnterRoutine(expr);
     }
 
     public IEnumerator ExitRoutine(SpeakerData speaker)
     {
-        foreach (var portrait in GetPortraits())
-        {
-            if (portrait.Speaker == speaker)
-            {
-                yield return portrait.ExitRoutine();
-            }
-        }
+        var portrait = GetPortrait(speaker);
+        yield return portrait.ExitRoutine();
     }
 
     public IEnumerator SpeakRoutine(SpeakerData speaker, string message)
@@ -120,16 +108,18 @@ public class NVLComponent : MonoBehaviour
         nameText.text = name;
         //yield return text.WriteLineRoutine(toType);
         yield return text.TypeRoutine(toType, waitForConfirm: false);
+        advanceIcon.TurnOn();
         yield return null;
-        yield return InputManager.Instance.ConfirmRoutine();
-        Global.Instance.Audio.PlaySFX("in_game/popups", null, AudioManager.Bank.UI);
+        yield return InputManager.Instance.ConfirmRoutine(eatsOthers: false);
+        advanceIcon.TurnOff();
+        //Global.Instance.Audio.PlaySFX("in_game/popups", null, AudioManager.Bank.UI);
     }
 
     public IEnumerator SetHighlightRoutine(SpeakerData speaker)
     {
         var portrait = GetPortrait(speaker);
         var routines = new List<IEnumerator>();
-        if (portrait != null && !portrait.IsHighlighted)
+        if (portrait != null)
         {
             routines.Add(portrait.HighlightRoutine());
         }
@@ -157,7 +147,6 @@ public class NVLComponent : MonoBehaviour
             case "b": portrait = slotB; break;
             case "c": portrait = slotC; break;
             case "d": portrait = slotD; break;
-            case "e": portrait = slotE; break;
         }
         return portrait;
     }
@@ -168,7 +157,6 @@ public class NVLComponent : MonoBehaviour
         if (slotB.Speaker == speaker) return slotB;
         if (slotC.Speaker == speaker) return slotC;
         if (slotD.Speaker == speaker) return slotD;
-        if (slotE.Speaker == speaker) return slotE;
         return null;
     }
 
@@ -179,7 +167,6 @@ public class NVLComponent : MonoBehaviour
             slotB,
             slotC,
             slotD,
-            slotE,
         };
     }
 }

@@ -57,7 +57,6 @@ public class InputManager : SingletonBehavior
 
         foreach (Command command in Enum.GetValues(typeof(Command)))
         {
-
             var up = false;
             var down = false;
             var held = false;
@@ -78,36 +77,34 @@ public class InputManager : SingletonBehavior
                 held = true;
             }
 
-            var listener = PeekListener();
-            if (listener == null)
+            foreach (var listener in listeners)
             {
-                break;
-            }
-            endProcessing = false;
+                endProcessing = false;
 
-            if (down)
-            {
-                endProcessing = listener.OnCommand(command, Event.Down);
-                if (endProcessing)
+                if (down)
                 {
-                    break;
+                    endProcessing = listener.OnCommand(command, Event.Down);
+                    if (endProcessing)
+                    {
+                        break;
+                    }
                 }
-            }
-            if (up)
-            {
-                endProcessing = listener.OnCommand(command, Event.Up);
-                if (endProcessing)
+                if (up)
                 {
-                    break;
+                    endProcessing = listener.OnCommand(command, Event.Up);
+                    if (endProcessing)
+                    {
+                        break;
+                    }
                 }
-            }
-            if (held && holdStartTimes.ContainsKey(command))
-            {
-                endProcessing = listener.OnCommand(command, Event.Hold);
-                if (Time.time - holdStartTimes[command] > KeyRepeatSeconds)
+                if (held && holdStartTimes.ContainsKey(command))
                 {
-                    endProcessing |= listener.OnCommand(command, Event.Down);
-                    holdStartTimes[command] = Time.time - KeyRepeatSeconds / 2f;
+                    endProcessing = listener.OnCommand(command, Event.Hold);
+                    if (Time.time - holdStartTimes[command] > KeyRepeatSeconds)
+                    {
+                        endProcessing |= listener.OnCommand(command, Event.Down);
+                        holdStartTimes[command] = Time.time - KeyRepeatSeconds / 2f;
+                    }
                 }
             }
         }
@@ -225,7 +222,6 @@ public class InputManager : SingletonBehavior
     {
         var id = "confirm" + UnityEngine.Random.Range(0, 100000);
         var done = false;
-        var started = false;
         PushListener(id, (command, type) =>
         {
             if (type == Event.Down && (command == Command.Primary || command == Command.Click))

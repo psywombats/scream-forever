@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour, IInputListener
 {
     [SerializeField] public new Camera camera;
-    [SerializeField] public new Rigidbody body;
+    [SerializeField] public Rigidbody body;
     [Space]
     [SerializeField] [Range(0f, 9f)] private float mouseRotateSensitivity = .1f;
     [SerializeField] private Vector2 rotationXBounds = new Vector2(-70, 70);
@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour, IInputListener
     [SerializeField] private float maxWheelRotate;
     [SerializeField] private float maxSpeedRotate;
     [SerializeField] private float maxRPMRotate;
+    [SerializeField] private GameObject brakelightsArea;
     [Space]
     [SerializeField] private Transform frontSampler;
     [SerializeField] private Transform backSampler;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour, IInputListener
     private bool handledWheelThisFrame;
     private float speed;
     private float wheelRotation;
+    private float timeSinceBrakes = 100f;
 
     private Quaternion targetLook;
 
@@ -61,6 +63,9 @@ public class PlayerController : MonoBehaviour, IInputListener
         HandleStickyCam();
         HandlePhysics();
         HandleRoadLock();
+        
+        brakelightsArea.gameObject.SetActive(timeSinceBrakes <= .1f);
+        timeSinceBrakes += Time.deltaTime;
     }
 
     public void OnEnable()
@@ -144,6 +149,7 @@ public class PlayerController : MonoBehaviour, IInputListener
                         speed += accRate * Time.deltaTime;
                         break;
                     case InputManager.Command.Down:
+                        timeSinceBrakes = 0f;
                         speed -= decRate * Time.deltaTime;
                         break;
                 }

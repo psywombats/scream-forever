@@ -1,4 +1,4 @@
-Shader "Scream2024/NoiseGen"
+Shader "ScreamForever/RoadGen"
 {
     Properties
     {
@@ -11,6 +11,10 @@ Shader "Scream2024/NoiseGen"
         [PerRendererData] _BaseX("BaseX", Float) = 0
         [PerRendererData] _BaseY("BaseY", Float) = 0
         [PerRendererData] _BaseZ("BaseZ", Float) = 0
+        
+        _RoadWidth("RoadWidth", Float) = 2
+        _RoadGrading("RoadGrading", Float) = 2
+        _RoadHeight("RoadHeight", Float) = .3
 
         [PerRendererData] _NoiseTypeIn("Noise Type In", Integer) = 0
     }
@@ -36,6 +40,8 @@ Shader "Scream2024/NoiseGen"
             int _NoiseTypeIn;
 
             int _BaseX, _BaseY, _BaseZ;
+
+            float _RoadWidth, _RoadGrading, _RoadHeight;
 
             struct appdata
             {
@@ -65,9 +71,11 @@ Shader "Scream2024/NoiseGen"
             fixed4 frag(v2f IN) : SV_Target
             {
                 float3 pos;
-                pos.x = floor(_BaseX + IN.uv.x * 24.0) * _NoiseScale;
+                float worldX = floor(_BaseX + IN.uv.x * 24.0) - 12;
+                float worldZ = floor(_BaseZ + IN.uv.y * 24.0) - 12;
+                pos.x = worldX * _NoiseScale;
                 pos.y = 0;
-                pos.z = floor(_BaseZ + IN.uv.y * 24.0) * _NoiseScale;
+                pos.z = worldZ * _NoiseScale;
 
                 fnl_state noise = fnlCreateState();
                 noise.noise_type = _NoiseTypeIn;
@@ -75,8 +83,16 @@ Shader "Scream2024/NoiseGen"
                 noise.frequency = _Frequency;
                 noise.octaves = _Octaves;
 
-                float noiseVal = fnlGetNoise3D(noise, pos.x, 0, pos.z) * _Amplitude;
-                return noiseVal;
+                float distFromRoad = worldX;
+                if (distFromRoad < 0) distFromRoad *= -1;
+                float t = (distFromRoad - _RoadWidth) / _RoadGrading;
+                if (t < 0) t = 0;
+                if (t > 1) t = 1;
+
+                float noiseVal = fnlGetNoise3D(noise, pos.x, 0, pos.z);
+                float height = noiseVal * t + _RoadHeight * (1 - t);
+                
+                return height * _Amplitude;
             }
             ENDCG
         }

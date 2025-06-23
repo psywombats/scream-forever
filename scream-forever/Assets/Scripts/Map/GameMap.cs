@@ -8,6 +8,7 @@ public class GameMap : MonoBehaviour
     [Space]
     [Header("References")]
     [SerializeField] public MarchingTerrain terrain;
+    [SerializeField] public RoadManager road;
 
     public virtual void Start()
     {

@@ -9,8 +9,6 @@ public class TextAutotyper : MonoBehaviour, IInputListener
     [SerializeField] public float charsPerSecond = 120f;
     [SerializeField] protected GameObject advanceArrow;
 
-    public bool mode2 = false;
-
     public int LinesTyped { get; private set; } = 0;
 
     protected int typingStartIndex = 0;
@@ -26,28 +24,16 @@ public class TextAutotyper : MonoBehaviour, IInputListener
     {
         switch (eventType)
         {
-            case InputManager.Event.Hold:
-                if (command == InputManager.Command.Primary || command == InputManager.Command.Click)
-                {
-                    //hurried = true;
-                }
-                break;
             case InputManager.Event.Up:
                 if (command == InputManager.Command.Primary || command == InputManager.Command.Click)
                 {
                     hurried = true;
                     confirmed = true;
                 }
-                break;
+                return true;
         }
-        return true;
+        return false;
     }
-
-    //public void StartGlitch()
-    //{
-    //    StartCoroutine(MapOverlayUI.Instance.adv.GetHighlightedPortrait().JoltRoutine());
-    //    StartCoroutine(AudioManager.Instance.JumpscareRoutine());
-    //}
 
     public IEnumerator TypeRoutine(string text, bool waitForConfirm = true)
     {
@@ -58,10 +44,6 @@ public class TextAutotyper : MonoBehaviour, IInputListener
         float elapsed = 0.0f;
         float total = (text.Length - typingStartIndex) / charsPerSecond;
         textbox.GetComponent<CanvasGroup>().alpha = 1.0f;
-
-        var containsGlitch = text.IndexOf("____") >= 0;
-        var glitchesDelayed = 0;
-        var glitchStartedAt = -1;
 
         while (elapsed <= total)
         {
@@ -78,28 +60,10 @@ public class TextAutotyper : MonoBehaviour, IInputListener
                     uCount += 1;
                 }
             }
-            if (glitchesDelayed < uCount)
-            {
-                var tryg = textbox.text.Length;
-                while (tryg > 0 && textbox.text[tryg - 1] == '_')
-                {
-                    tryg -= 1;
-                }
-                if (tryg > glitchStartedAt)
-                {
-                    glitchStartedAt = tryg;
-                    //StartGlitch();
-                }
-                yield return CoUtils.Wait(.175f);
-                glitchesDelayed = uCount;
-            }
-
-            if (!mode2)
-            {
-                textbox.text += "<color=#aa000000>";
-                textbox.text += text.Substring(cutoff);
-                textbox.text += "</color>";
-            }
+            
+            textbox.text += "<color=#aa000000>";
+            textbox.text += text.Substring(cutoff);
+            textbox.text += "</color>";
             yield return null;
 
             elapsed += Time.deltaTime;

@@ -4,7 +4,9 @@ using System.IO;
 using System.Collections.Generic;
 using System;
 
-public class ScriptableObjectIndex<T, U> : ScriptableObject, IIndexPopulater, IDataIndex<T> where T : MainSchema, IKeyedDataObject where U : ScriptableObjectReference
+public class ScriptableObjectIndex<T, U> : ScriptableObject, IIndexPopulater, IDataIndex<T> 
+    where T : MainSchema, IKeyedDataObject 
+    where U : ScriptableObjectReference
 {
     [SerializeField] protected List<U> references;
 
