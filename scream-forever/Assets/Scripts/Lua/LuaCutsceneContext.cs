@@ -59,6 +59,8 @@ public class LuaCutsceneContext : LuaContext
         Lua.Globals["cs_expr"] = (Action<DynValue, DynValue>)Express;
         Lua.Globals["cs_enter"] = (Action<DynValue, DynValue>)Enter;
         Lua.Globals["cs_exit"] = (Action<DynValue>)Exit;
+
+        Lua.Globals["bump"] = (Action)Bump;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -151,5 +153,10 @@ public class LuaCutsceneContext : LuaContext
     {
         var speakerData = IndexDatabase.Instance.Speakers.GetData(speakerTag.String);
         RunRoutineFromLua(MapOverlayUI.Instance.nvl.ExitRoutine(speakerData));
+    }
+
+    private void Bump()
+    {
+        //Global.Instance.Avatar.Bump();
     }
 }

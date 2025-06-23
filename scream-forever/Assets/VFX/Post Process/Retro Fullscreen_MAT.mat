@@ -47,13 +47,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _Color_Burn: 18.7
-    - _Color_Burn_Strength: 0.1
+    - _Color_Burn_Strength: 0.3
     - _Color_Resolution: 128
-    - _Dither_Opacity: 0.00001
+    - _Dither_Opacity: 0.0001
     - _Dither_Spread: 4
     - _Dither_Tiling: 4
-    - _Pixelate: 270
-    - _Pixelate_Strength: 0.315
+    - _Pixelate: 135
+    - _Pixelate_Strength: 0.348
     - _Steps: 3.63
     m_Colors:
     - _Pixelate_Scale: {r: 2, g: 2, b: 0, a: 0}

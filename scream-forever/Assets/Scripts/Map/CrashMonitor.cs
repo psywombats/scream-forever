@@ -1,0 +1,73 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class CrashMonitor : MonoBehaviour
+{
+    [SerializeField] private MultibumpComponent bump;
+    [SerializeField] private List<MonoBehaviour> crashBehaviors;
+    [SerializeField] private RawImage glitchFade;
+    [Space]
+    [SerializeField] private float bumpCutoff = .1f;
+    [SerializeField] private float crashCutoff = .3f;
+    [SerializeField] private float flipAngle = -20;
+    
+    public void Update()
+    {
+        var avatar = Global.Instance.Avatar;
+        if (transform.rotation.eulerAngles.x < flipAngle && avatar.SpeedRatio > crashCutoff)
+        {
+            StartCrash();
+        }
+
+        bump.ContinuousMode = !avatar.IsCrashing && avatar.DistanceFromRoad > bumpCutoff;
+
+        if (!avatar.IsCrashing && avatar.DistanceFromRoad > 8f)
+        {
+            if (avatar.SpeedRatio > crashCutoff)
+            {
+                avatar.IsSpeeding = false;
+                StartCrash();
+            }
+            else
+            {
+                avatar.IsSpeeding = true;
+            }
+        }
+    }
+
+    private void StartCrash()
+    {
+        Global.Instance.Avatar.IsCrashing = true;
+        Global.Instance.Avatar.PauseInput();
+        foreach (var component in crashBehaviors)
+        {
+            component.enabled = true;
+        }
+
+        StartCoroutine(ResetRoutine());
+    }
+
+    public void StopCrash()
+    {
+        Global.Instance.Avatar.IsCrashing = false;
+        Global.Instance.Avatar.UnpauseInput();
+        foreach (var component in crashBehaviors)
+        {
+            component.enabled = false;
+        }
+        glitchFade.color = Color.clear;
+    }
+
+    public IEnumerator ResetRoutine()
+    {
+        yield return CoUtils.Wait(1f);
+        yield return CoUtils.RunTween(glitchFade.DOFade(1f, 1f));
+        yield return CoUtils.Wait(1f);
+        yield return CoUtils.RunTween(MapOverlayUI.Instance.fader.DOFade(1f, 1.5f));
+        StopCrash();
+    }
+}

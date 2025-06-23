@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -35,15 +36,32 @@ public class PlayerController : MonoBehaviour, IInputListener
     [SerializeField] private float maxTurn = 30;
     [SerializeField] private float friction = .5f;
     [SerializeField] private float suspension = .05f;
+    [Space]
+    [SerializeField] public MultibumpComponent bump;
+    
+    public bool IsCrashing { get; set; }
+    public bool IsSpeeding { get; set; }
     
     private int pauseCount;
     private bool selfPaused;
     public bool IsPaused => pauseCount > 0;
 
     private bool handledWheelThisFrame;
-    private float speed;
     private float wheelRotation;
     private float timeSinceBrakes = 100f;
+    
+    public float Speed { get; private set; }
+    public float SpeedRatio => Speed / maxSpeed;
+    public float Traversed { get; private set; }
+
+    public float DistanceFromRoad
+    {
+        get
+        {
+            var dist = Mathf.Abs(transform.position.x) - 4;
+            return dist < 0 ? 0 : dist;
+        }
+    }
 
     private Quaternion targetLook;
 
@@ -66,6 +84,11 @@ public class PlayerController : MonoBehaviour, IInputListener
         
         brakelightsArea.gameObject.SetActive(timeSinceBrakes <= .1f);
         timeSinceBrakes += Time.deltaTime;
+
+        if (IsSpeeding)
+        {
+            Speed += accRate * Time.deltaTime;
+        }
     }
 
     public void OnEnable()
@@ -146,11 +169,20 @@ public class PlayerController : MonoBehaviour, IInputListener
                         handledWheelThisFrame = true;
                         break;
                     case InputManager.Command.Up:
-                        speed += accRate * Time.deltaTime;
+                        Speed += accRate * Time.deltaTime;
                         break;
                     case InputManager.Command.Down:
+                        if (timeSinceBrakes > .5f)
+                        {
+                            bump.Bump(SpeedRatio * 5f);
+                        }
                         timeSinceBrakes = 0f;
-                        speed -= decRate * Time.deltaTime;
+                        Speed -= decRate * Time.deltaTime;
+                        break;
+                    case InputManager.Command.Secondary:
+                        selfPaused = !selfPaused;
+                        if (selfPaused) PauseInput();
+                        else UnpauseInput();
                         break;
                 }
                 break;
@@ -223,9 +255,10 @@ public class PlayerController : MonoBehaviour, IInputListener
             }
         }
 
-        speed -= friction * Time.deltaTime;
-        speed = Mathf.Clamp(speed, 0, maxSpeed);
-        body.velocity = transform.forward * speed;
+        Speed -= friction * Time.deltaTime;
+        Speed = Mathf.Clamp(Speed, 0, maxSpeed);
+        Traversed += Speed * Time.deltaTime;
+        body.velocity = transform.forward * Speed;
 
         wheelRotation = Mathf.Clamp(wheelRotation, -maxTurn, maxTurn);
         var angles = transform.localRotation.eulerAngles;

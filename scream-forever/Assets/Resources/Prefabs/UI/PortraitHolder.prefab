@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5527563511865587200}
   - component: {fileID: 2744595801434482268}
+  - component: {fileID: 2702056401797845127}
   m_Layer: 0
   m_Name: PortraitHolder
   m_TagString: Untagged
@@ -87,6 +88,22 @@ MonoBehaviour:
   highlightTime: 0.3
   highlightIntensity: 0.2
   enterTime: 0.8
+--- !u!114 &2702056401797845127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962409113457641147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9051ce560abd4b99b72c94ab0e671262, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 0.003
+  duration: 0.075
+  speedCutoff: 0.1
+  delay: 0.1
 --- !u!1 &2189781180719229460
 GameObject:
   m_ObjectHideFlags: 0

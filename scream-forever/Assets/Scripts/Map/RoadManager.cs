@@ -43,8 +43,8 @@ public class RoadManager : MonoBehaviour
         if (activeNodes.Count > maxNodes)
         {
             var toDelete = activeNodes.First();
-            activeNodes.Remove(firstNode);
-            Destroy(toDelete);
+            activeNodes.Remove(toDelete);
+            Destroy(toDelete.gameObject);
         }
     }
 }

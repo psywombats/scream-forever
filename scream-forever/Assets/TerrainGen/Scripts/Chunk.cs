@@ -32,11 +32,11 @@ public abstract class Chunk : MonoBehaviour
 
     public float GetWeightAt(Vector3 globalPoint)
     {
-        var localPoint = globalPoint - pos - new Vector3(GridMetrics.PointsPerChunk / 2f, 0, GridMetrics.PointsPerChunk / 2f);
+        var localPoint = globalPoint - pos + new Vector3(GridMetrics.PointsPerChunk / 2f, 0, GridMetrics.PointsPerChunk / 2f);
         localPoint = new Vector3(
-            Mathf.Clamp(localPoint.x, 0, GridMetrics.PointsPerChunk),
+            Mathf.Clamp(localPoint.x, 0, GridMetrics.PointsPerChunk - 1),
             0,
-            Mathf.Clamp(localPoint.z, 0, GridMetrics.PointsPerChunk));
+            Mathf.Clamp(localPoint.z, 0, GridMetrics.PointsPerChunk - 1));
         var x1 = Mathf.FloorToInt(localPoint.x);
         var x2 = Mathf.CeilToInt(localPoint.x);
         var z1 = Mathf.FloorToInt(localPoint.z);

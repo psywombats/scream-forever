@@ -124,9 +124,9 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RoadGrading: 4
+    - _RoadGrading: 3
     - _RoadHeight: 0.2
-    - _RoadWidth: 6
+    - _RoadWidth: 8
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
