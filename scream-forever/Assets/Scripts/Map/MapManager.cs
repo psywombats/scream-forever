@@ -5,8 +5,6 @@ using UnityEngine.Assertions;
 
 public class MapManager : SingletonBehavior
 {
-    [SerializeField] private PlayerController avatarPrefab;
-
     public static MapManager Instance => Global.Instance.Maps;
 
     public PlayerController Avatar { get; set; }
@@ -94,7 +92,8 @@ public class MapManager : SingletonBehavior
     {
         if (Avatar == null)
         {
-            var av = Instantiate(avatarPrefab.gameObject);
+            var av = Instantiate(ActiveMap.playerPrefab.gameObject);
+            av.gameObject.SetActive(true);
             Avatar = av.GetComponent<PlayerController>();
         }
         Avatar.transform.SetParent(ActiveMap.eventLayer.transform, false);

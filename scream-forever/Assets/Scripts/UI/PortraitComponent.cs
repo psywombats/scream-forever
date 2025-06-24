@@ -10,7 +10,7 @@ public class PortraitComponent : MonoBehaviour
     [SerializeField] private string speakerTag;
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private Light highlight;
-    [SerializeField] private Transform offsetter;
+    [SerializeField] private StandeeComponent standee;
     [Space] 
     [SerializeField] private float highlightTime = .3f;
     [SerializeField] private float highlightIntensity = .2f;
@@ -25,7 +25,7 @@ public class PortraitComponent : MonoBehaviour
 
     public void Start()
     {
-        offsetter.localScale = new Vector3(0, 0, 1);
+        standee.Hide();
     }
 
     private Sprite GetSpriteForExpr(string expr)
@@ -96,20 +96,16 @@ public class PortraitComponent : MonoBehaviour
     public IEnumerator EnterRoutine(string expr = null)
     {
         sprite.sprite = GetSpriteForExpr(expr);
-        offsetter.localScale = new Vector3(0, 0, 1);
+        standee.Hide();
         StartCoroutine(HighlightRoutine(showPointers: false));
-        offsetter.DOScaleY(1f, enterTime).SetEase(Ease.OutBounce).Play();
-        offsetter.DOScaleX(1f, enterTime).SetEase(Ease.OutCubic).Play();
-        yield return CoUtils.Wait(enterTime);
+        yield return standee.EnterRoutine(enterTime);
     }
 
     public IEnumerator ExitRoutine()
     {
-        offsetter.localScale = new Vector3(1, 1, 1);
+        standee.Show();
         yield return HighlightRoutine(showPointers: false);
-        offsetter.DOScaleY(0f, enterTime).SetEase(Ease.OutBounce).Play();
-        offsetter.DOScaleX(0f, enterTime).SetEase(Ease.OutCubic).Play();
-        yield return CoUtils.Wait(enterTime);
+        yield return standee.ExitRoutine(enterTime);
         StartCoroutine(UnhighlightRoutine());
     }
 }

@@ -8,6 +8,7 @@ public class GameMap : MonoBehaviour
     [SerializeField] public GameObject eventLayer;
     [SerializeField] public Transform startPos;
     [SerializeField] public Material skybox;
+    [SerializeField] public PlayerController playerPrefab;
     [Space]
     [Header("References")]
     [SerializeField] public MarchingTerrain terrain;

@@ -21,10 +21,11 @@ public class MouseChoiceSelector : MonoBehaviour, IInputListener
     private float weightLeft;
     private float weightRight;
 
-    public bool? Result; // left is false
+    public bool? Result; // right is false
 
     public IEnumerator ChooseRoutine(string choice1, string choice2)
     {
+        yield return MapOverlayUI.Instance.nvl.HideRoutine(preserveHighlight: true);
         Result = null;
         yield return ShowRoutine(choice1, choice2);
         Global.Instance.Input.PushListener(this);
@@ -35,6 +36,7 @@ public class MouseChoiceSelector : MonoBehaviour, IInputListener
         }
         Global.Instance.Input.RemoveListener(this);
         yield return HideRoutine();
+        yield return MapOverlayUI.Instance.nvl.ShowRoutine();
     }
 
     public IEnumerator ShowRoutine(string opt1, string opt2)
@@ -116,11 +118,11 @@ public class MouseChoiceSelector : MonoBehaviour, IInputListener
 
         if (weightLeft > 1)
         {
-            Result = false;
+            Result = true;
         }
         if (weightRight > 1)
         {
-            Result = true;
+            Result = false;
         }
 
         return true;

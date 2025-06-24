@@ -56,6 +56,11 @@ function choose(a, b)
     return selection
 end
 
+function smoothBrake(duration)
+	cs_smoothBrake(duration)
+	await()
+end
+
 function expr(speaker, expression)
 	cs_expr(speaker, expression)
 	await()

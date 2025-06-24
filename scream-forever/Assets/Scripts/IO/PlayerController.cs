@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour, IInputListener
     private int pauseCount;
     private bool selfPaused;
     public bool IsPaused => pauseCount > 0;
+    private bool isScriptControlled;
 
     private float lastRPM;
     private bool handledWheelThisFrame;
@@ -159,9 +161,44 @@ public class PlayerController : MonoBehaviour, IInputListener
         return CoUtils.RunTween(rotater.transform.DORotate(lookAngles, .5f));
     }
 
+    public IEnumerator SmoothBrakeRoutine(float duration)
+    {
+        isScriptControlled = true;
+        while (Mathf.Abs(transform.localRotation.eulerAngles.y) > 8 || Speed > 0)
+        {
+            if (Mathf.Abs(transform.localRotation.eulerAngles.y) > 8)
+            {
+                var delta = maxTurn / 4f * Time.deltaTime;
+                var newY = transform.localRotation.eulerAngles.y;
+                if (transform.localRotation.eulerAngles.y > 0)
+                {
+                    newY -= delta;
+                }
+                else
+                {
+                    newY += delta;
+                }
+                transform.localRotation = quaternion.Euler(new Vector3(
+                    transform.localRotation.eulerAngles.x,
+                    newY,
+                    transform.localRotation.eulerAngles.z));
+            }
+
+            if (Speed > 0)
+            {
+                timeSinceBrakes = 0f;
+                Speed -= decRate / 2f * Time.deltaTime;
+            }
+            
+            yield return null;
+        }
+        Speed = 0;
+        isScriptControlled = false;
+    }
+
     public bool OnCommand(InputManager.Command command, InputManager.Event eventType)
     {
-        if (IsPaused)
+        if (IsPaused || isScriptControlled)
         {
             return true;
         }

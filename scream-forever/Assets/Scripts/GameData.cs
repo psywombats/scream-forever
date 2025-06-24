@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 /// <summary>
@@ -13,6 +14,8 @@ public class GameData
     [JsonProperty] public Dictionary<string, bool> Switches { get; private set; }
 
     public int SwitchLastUpdatedFrame { get; set; } = 0;
+
+    public Action<string, bool> onSwitchChanged;
 
     public GameData()
     {
@@ -35,6 +38,7 @@ public class GameData
     {
         Switches[switchName] = value;
         SwitchLastUpdatedFrame = UnityEngine.Time.frameCount;
+        onSwitchChanged?.Invoke(switchName, value);
     }
 
     public int GetVariable(string variableName)

@@ -68,13 +68,19 @@ public class NVLComponent : MonoBehaviour
         Wipe();
     }
 
-    public IEnumerator HideRoutine()
+    public IEnumerator HideRoutine(bool preserveHighlight = false)
     {
         if (eventEmitter != null)
         {
             eventEmitter.Stop();
         }
         var routines = new List<IEnumerator>();
+
+        var highlighted = GetHighlightedPortrait();
+        if (highlighted != null && !preserveHighlight)
+        {
+            routines.Add(highlighted.UnhighlightRoutine());
+        }
 
         yield return CoUtils.RunParallel(routines.ToArray(), this);
         routines.Clear();
@@ -144,7 +150,7 @@ public class NVLComponent : MonoBehaviour
 
     public PortraitComponent GetHighlightedPortrait()
     {
-        return GetPortraits().Where(p => p.IsHighlighted).First();
+        return GetPortraits().Where(p => p.IsHighlighted).FirstOrDefault();
     }
 
     private PortraitComponent GetPortrait(string slot)

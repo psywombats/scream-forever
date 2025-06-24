@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7d20424549e4d02882c90a6614c0da, type: 3}
+  m_Name: ResiFog
+  m_EditorClassIdentifier: 
+  baseAltitude: 2
+  useXYZDistance: 0
+  densityLinear: 0.1
+  densityExponential: 0.4
+  maxHeight: 10000
+  distanceMax: 10000
+  tintColor: {r: 0.3679245, g: 0.071155205, b: 0.13607349, a: 1}
+  useVerticalGradient: 0
+  verticalGradient:
+    serializedVersion: 2
+    key0: {r: 0.027320892, g: 0.03433981, b: 0.33245158, a: 1}
+    key1: {r: 0.990566, g: 0.70554465, b: 0.70554465, a: 1}
+    key2: {r: 0.990566, g: 0.70554465, b: 0.70554465, a: 1}
+    key3: {r: 0.990566, g: 0.70554465, b: 0.70554465, a: 1}
+    key4: {r: 0, g: 0, b: 0, a: 1}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 13878
+    ctime1: 65535
+    ctime2: 65535
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 65535
+    atime3: 65535
+    atime4: 65535
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  boxProjection: 0
+  depthClip: 0
+  noiseColorBlend: 0.521
+  noiseColor: {r: 0.8584906, g: 0.6762638, b: 0.6834726, a: 1}
+  scale: 1
+  shift: 0.09
+  noiseDistanceAtten: 0.32
+  turbulence: 50
+  speed: 0.22
+  direction: {x: 0.5, y: 0, z: 0.1}
+  lightDiffusionPower: 105.1
+  lightDiffusionIntensity: 0.894
+  brightness: 2.5
+  useSunColor: 0
+  dithering: 0
+  renderQueue: 3100
+  sortingLayerID: 0
+  sortingOrder: 0

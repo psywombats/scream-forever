@@ -60,6 +60,7 @@ public class LuaCutsceneContext : LuaContext
         Lua.Globals["cs_enter"] = (Action<DynValue, DynValue>)Enter;
         Lua.Globals["cs_exit"] = (Action<DynValue>)Exit;
         Lua.Globals["cs_choose"] = (Action<DynValue, DynValue>)Choose;
+        Lua.Globals["cs_smoothBrake"] = (Action<DynValue>)SmoothBrake;
 
         Lua.Globals["bump"] = (Action)Bump;
     }
@@ -169,5 +170,10 @@ public class LuaCutsceneContext : LuaContext
     {
         yield return MapOverlayUI.Instance.selector.ChooseRoutine(opt1, opt2);
         Lua.Globals["selection"] = Marshal(MapOverlayUI.Instance.selector.Result.Value);
+    }
+
+    private void SmoothBrake(DynValue duration)
+    {
+        RunRoutineFromLua(Global.Instance.Avatar.SmoothBrakeRoutine((float)duration.Number));
     }
 }

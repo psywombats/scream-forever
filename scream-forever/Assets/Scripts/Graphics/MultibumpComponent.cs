@@ -7,6 +7,7 @@ public class MultibumpComponent : MonoBehaviour
 {
     [SerializeField] public List<BumpComponent> bumps;
     [SerializeField] public float interval = 32f;
+    [SerializeField] public PlayerController avatar;
 
     public bool ContinuousMode { get; set; }
 
@@ -35,7 +36,7 @@ public class MultibumpComponent : MonoBehaviour
     {
         while (Application.isPlaying)
         {
-            if (Global.Instance.Avatar.Traversed > lastBump + interval)
+            if (avatar.Traversed > lastBump + interval)
             {
                 Bump();
                 lastBump = Global.Instance.Avatar.Traversed;
