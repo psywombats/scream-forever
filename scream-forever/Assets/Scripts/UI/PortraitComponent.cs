@@ -7,10 +7,8 @@ using DG.Tweening;
 
 public class PortraitComponent : MonoBehaviour
 {
-    [SerializeField] private NVLComponent nvl;
     [SerializeField] private string speakerTag;
     [SerializeField] private SpriteRenderer sprite;
-    [SerializeField] private List<Image> pointers;
     [SerializeField] private Light highlight;
     [SerializeField] private Transform offsetter;
     [Space] 
@@ -21,6 +19,9 @@ public class PortraitComponent : MonoBehaviour
     public SpeakerData Speaker => IndexDatabase.Instance.Speakers.GetData(speakerTag);
     
     public bool IsHighlighted { get; private set; }
+
+    public IEnumerable<Image> Pointers => MapOverlayUI.Instance.nvl.pointers.Where(p => p.tag == speakerTag)
+        .Select(p => p.image);
 
     public void Start()
     {
@@ -59,7 +60,7 @@ public class PortraitComponent : MonoBehaviour
         }
         if (showPointers)
         {
-            tasks.AddRange(pointers.Select(pointer => CoUtils.RunTween(pointer.DOFade(1f, highlightTime))));
+            tasks.AddRange(Pointers.Select(pointer => CoUtils.RunTween(pointer.DOFade(1f, highlightTime))));
         }
         yield return CoUtils.RunParallel(this, tasks.ToArray());
 
@@ -77,7 +78,7 @@ public class PortraitComponent : MonoBehaviour
         {
             CoUtils.RunTween(highlight.DOIntensity(0, highlightTime))
         };
-        tasks.AddRange(pointers.Select(pointer => CoUtils.RunTween(pointer.DOFade(0f, highlightTime))));
+        tasks.AddRange(Pointers.Select(pointer => CoUtils.RunTween(pointer.DOFade(0f, highlightTime))));
         yield return CoUtils.RunParallel(this, tasks.ToArray());
 
         IsHighlighted = false;
@@ -87,7 +88,7 @@ public class PortraitComponent : MonoBehaviour
     {
         if (!IsHighlighted)
         {
-            yield return nvl.SetHighlightRoutine(Speaker);
+            yield return MapOverlayUI.Instance.nvl.SetHighlightRoutine(Speaker);
         }
         sprite.sprite = GetSpriteForExpr(expr);
     }

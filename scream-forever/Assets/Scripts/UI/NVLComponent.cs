@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,12 +9,19 @@ using UnityEngine.UI;
 
 public class NVLComponent : MonoBehaviour
 {
+    [Serializable]
+    public class PointerData
+    {
+        public Image image;
+        public string tag;
+    }
+    
     private static float bgTime = 0.5f;
 
-    public PortraitComponent slotA;
-    public PortraitComponent slotB;
-    public PortraitComponent slotC;
-    public PortraitComponent slotD;
+    public PortraitComponent slotA => Global.Instance.Avatar.slotA;
+    public PortraitComponent slotB => Global.Instance.Avatar.slotB;
+    public PortraitComponent slotC => Global.Instance.Avatar.slotC;
+    public PortraitComponent slotD => Global.Instance.Avatar.slotD;
 
     public GameObject backerArea;
     public ExpanderComponent backer;
@@ -23,6 +31,7 @@ public class NVLComponent : MonoBehaviour
     public CanvasGroup background;
     public StudioEventEmitter eventEmitter;
     public SlowFlashImageBehavior advanceIcon;
+    public List<PointerData> pointers;
 
     public bool IsShown { get; private set; }
 

@@ -1,8 +1,6 @@
 using DG.Tweening;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -38,6 +36,11 @@ public class PlayerController : MonoBehaviour, IInputListener
     [SerializeField] private float suspension = .05f;
     [Space]
     [SerializeField] public MultibumpComponent bump;
+    [Space] 
+    [SerializeField] public PortraitComponent slotA;
+    [SerializeField] public PortraitComponent slotB;
+    [SerializeField] public PortraitComponent slotC;
+    [SerializeField] public PortraitComponent slotD;
     
     public bool IsCrashing { get; set; }
     public bool IsSpeeding { get; set; }
@@ -46,7 +49,9 @@ public class PlayerController : MonoBehaviour, IInputListener
     private bool selfPaused;
     public bool IsPaused => pauseCount > 0;
 
+    private float lastRPM;
     private bool handledWheelThisFrame;
+    private bool acceleratedThisFrame;
     private float wheelRotation;
     private float timeSinceBrakes = 100f;
     
@@ -131,7 +136,10 @@ public class PlayerController : MonoBehaviour, IInputListener
 
     public void OnTeleport()
     {
-
+        timeSinceBrakes = 100f;
+        wheelRotation = 0f;
+        Speed = 0f;
+        Traversed = 0f;
     }
 
     public IEnumerator RotateTowardRoutine(GameObject mover, GameObject target, GameObject rotater)
@@ -171,6 +179,7 @@ public class PlayerController : MonoBehaviour, IInputListener
                         handledWheelThisFrame = true;
                         break;
                     case InputManager.Command.Up:
+                        acceleratedThisFrame = true;
                         Speed += accRate * Time.deltaTime;
                         break;
                     case InputManager.Command.Down:
@@ -267,7 +276,14 @@ public class PlayerController : MonoBehaviour, IInputListener
         angles.y += wheelRotation * Time.deltaTime;
         transform.localRotation = Quaternion.Euler(angles);
 
+        var rpm = lastRPM + (acceleratedThisFrame ? 1 : -1) * Time.deltaTime / 1.2f;
+        rpm = Mathf.Clamp(rpm, 0f, 1f);
+        acceleratedThisFrame = false;
+        lastRPM = rpm;
+        
         wheelTransform.localRotation = Quaternion.Euler(0f, wheelRotation / maxTurn * maxWheelRotate, 0f);
+        speedTransform.localRotation = Quaternion.Euler(0f, 0f, SpeedRatio * maxSpeedRotate);
+        rpmTransform.localRotation = Quaternion.Euler(0f, 0f, rpm * maxRPMRotate);
     }
 
     private void HandleRoadLock()

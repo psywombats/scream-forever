@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb7d20424549e4d02882c90a6614c0da, type: 3}
-  m_Name: FogHeavy
+  m_Name: MidnightFog
   m_EditorClassIdentifier: 
   baseAltitude: 0
-  useXYZDistance: 1
-  densityLinear: 0.02
-  densityExponential: 0.999
+  useXYZDistance: 0
+  densityLinear: 0.23
+  densityExponential: 0.75
   maxHeight: 10000
   distanceMax: 100000
-  tintColor: {r: 0.087664634, g: 0.08980886, b: 0.09433961, a: 1}
-  useVerticalGradient: 1
+  tintColor: {r: 0, g: 0, b: 0, a: 1}
+  useVerticalGradient: 0
   verticalGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -52,18 +52,18 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   boxProjection: 0
   depthClip: 0
-  noiseColorBlend: 0.059
-  noiseColor: {r: 0.05900677, g: 0.13633725, b: 0.3207547, a: 1}
-  scale: 20
-  shift: 0
+  noiseColorBlend: 0.528
+  noiseColor: {r: 0.070354216, g: 0.36376703, b: 0.4811321, a: 1}
+  scale: 1
+  shift: 0.02
   noiseDistanceAtten: 1
-  turbulence: 1
-  speed: 0.73
-  direction: {x: 0.001, y: 0, z: 0}
-  lightDiffusionPower: 74.4
-  lightDiffusionIntensity: 0.33
-  brightness: 0.02
-  useSunColor: 1
+  turbulence: 10
+  speed: 0.1
+  direction: {x: 0.5, y: 0, z: 0.1}
+  lightDiffusionPower: 0.1
+  lightDiffusionIntensity: 0
+  brightness: 0
+  useSunColor: 0
   dithering: 0
   renderQueue: 3100
   sortingLayerID: 0

@@ -50,7 +50,6 @@ public class InputManager : SingletonBehavior
 
     public void Update()
     {
-
         if (actions.Count == 0)
         {
             return;
@@ -63,7 +62,7 @@ public class InputManager : SingletonBehavior
             var held = false;
 
             var action = actions[command];
-            if (action.WasPerformedThisFrame())
+            if (action.IsPressed() && !holdStartTimes.ContainsKey(command))
             {
                 down = true;
                 holdStartTimes[command] = Time.time;
@@ -235,7 +234,11 @@ public class InputManager : SingletonBehavior
             }
             return eatsOthers;
         });
-        while (!done) yield return null;
+        var crashes = Global.Instance.Avatar.CrashCount;
+        while (!done && crashes == Global.Instance.Avatar.CrashCount)
+        {
+            yield return null;
+        }
     }
 
     public Task ConfirmAsync()

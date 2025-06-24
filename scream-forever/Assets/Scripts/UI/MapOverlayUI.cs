@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MapOverlayUI : MonoBehaviour
 {
@@ -26,4 +27,5 @@ public class MapOverlayUI : MonoBehaviour
     [SerializeField] public NVLComponent nvl;
     [SerializeField] public CanvasGroup fader;
     [SerializeField] public MouseChoiceSelector selector;
+    [SerializeField] public RawImage screenViewGlitch;
 }

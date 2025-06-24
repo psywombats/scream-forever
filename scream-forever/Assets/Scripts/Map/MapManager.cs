@@ -12,6 +12,8 @@ public class MapManager : SingletonBehavior
     public PlayerController Avatar { get; set; }
     public GameMap ActiveMap { get; set; }
 
+    public string ActiveMapName { get; set; }
+
     private new Camera camera;
     public Camera Camera
     {
@@ -56,32 +58,23 @@ public class MapManager : SingletonBehavior
 
     private void RawTeleport(string mapName)
     {
-        GameMap newMapInstance;
         var oldMap = ActiveMap;
-        if (ActiveMap != null && mapName == ActiveMap.name)
+        var newMapInstance = InstantiateMap(mapName);
+        if (ActiveMap != null)
         {
-            newMapInstance = ActiveMap;
+            ActiveMap.OnTeleportAway(newMapInstance);
         }
-        else
+        
+        if (ActiveMap != null)
         {
-            newMapInstance = InstantiateMap(mapName);
-            if (ActiveMap != null)
-            {
-                ActiveMap.OnTeleportAway(newMapInstance);
-            }
-        }
-
-        if (newMapInstance != ActiveMap)
-        {
-            if (ActiveMap != null)
-            {
-                Destroy(ActiveMap.gameObject);
-            }
+            Destroy(ActiveMap.gameObject);
         }
 
         ActiveMap = newMapInstance;
+        ActiveMapName = mapName;
         AddInitialAvatar();
-        Avatar.transform.position = Vector3.zero;
+        Avatar.transform.position = newMapInstance.startPos.position;
+        Avatar.transform.rotation = newMapInstance.startPos.rotation;
 
         Avatar.OnTeleport();
         ActiveMap.OnTeleportTo(oldMap);
@@ -104,7 +97,6 @@ public class MapManager : SingletonBehavior
             var av = Instantiate(avatarPrefab.gameObject);
             Avatar = av.GetComponent<PlayerController>();
         }
-        Avatar.gameObject.name = "hero";
         Avatar.transform.SetParent(ActiveMap.eventLayer.transform, false);
     }
 }

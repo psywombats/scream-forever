@@ -29,7 +29,6 @@ public class CrashMonitor : MonoBehaviour
         {
             if (avatar.SpeedRatio > crashCutoff)
             {
-                avatar.IsSpeeding = false;
                 StartCrash();
             }
             else
@@ -47,18 +46,22 @@ public class CrashMonitor : MonoBehaviour
             Global.Instance.Lua.ForceTerminate();
         }
         Global.Instance.Avatar.IsCrashing = true;
+        Global.Instance.Avatar.IsSpeeding = true;
         Global.Instance.Avatar.PauseInput();
+        MapOverlayUI.Instance.screenViewGlitch.enabled = true;
         foreach (var component in crashBehaviors)
         {
             component.enabled = true;
         }
 
-        StartCoroutine(ResetRoutine());
+        Global.Instance.StartCoroutine(ResetRoutine());
     }
 
     public void StopCrash()
     {
         Global.Instance.Avatar.IsCrashing = false;
+        Global.Instance.Avatar.IsSpeeding = false;
+        MapOverlayUI.Instance.screenViewGlitch.enabled = false;
         Global.Instance.Avatar.UnpauseInput();
         foreach (var component in crashBehaviors)
         {
@@ -74,5 +77,8 @@ public class CrashMonitor : MonoBehaviour
         yield return CoUtils.Wait(1f);
         yield return CoUtils.RunTween(MapOverlayUI.Instance.fader.DOFade(1f, 1.5f));
         StopCrash();
+        Destroy(Global.Instance.Avatar.gameObject);
+        yield return CoUtils.Wait(1f);
+        yield return Global.Instance.Maps.TeleportRoutine(Global.Instance.Maps.ActiveMapName);
     }
 }

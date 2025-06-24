@@ -28,7 +28,8 @@ public class MouseChoiceSelector : MonoBehaviour, IInputListener
         Result = null;
         yield return ShowRoutine(choice1, choice2);
         Global.Instance.Input.PushListener(this);
-        while (Result == null)
+        var crashes = Global.Instance.Avatar.CrashCount;
+        while (Result == null && Global.Instance.Avatar.CrashCount == crashes)
         {
             yield return null;
         }

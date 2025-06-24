@@ -22,6 +22,10 @@ public class RoadManager : MonoBehaviour
 
     public void Update()
     {
+        if (Global.Instance.Avatar == null)
+        {
+            return;
+        }
         if (Vector3.Distance(Global.Instance.Avatar.transform.position, HeadNode.transform.position) < distBetweenNodes)
         {
             SpawnNextNode();

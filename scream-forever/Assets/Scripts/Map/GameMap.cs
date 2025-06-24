@@ -1,3 +1,4 @@
+using DynamicFogAndMist2;
 using UnityEngine;
 
 public class GameMap : MonoBehaviour
@@ -5,10 +6,13 @@ public class GameMap : MonoBehaviour
     public const string ResourcePath = "Maps/";
     
     [SerializeField] public GameObject eventLayer;
+    [SerializeField] public Transform startPos;
+    [SerializeField] public Material skybox;
     [Space]
     [Header("References")]
     [SerializeField] public MarchingTerrain terrain;
     [SerializeField] public RoadManager road;
+    [SerializeField] public DynamicFogManager fogger;
 
     public virtual void Start()
     {
@@ -17,6 +21,7 @@ public class GameMap : MonoBehaviour
             if (Global.Instance.Maps.ActiveMap == null)
             {
                 Global.Instance.Maps.ActiveMap = this;
+                Global.Instance.Maps.ActiveMapName = name;
                 OnTeleportTo(null);
             }
         }
@@ -24,7 +29,11 @@ public class GameMap : MonoBehaviour
 
     public virtual void OnTeleportTo(GameMap from)
     {
-
+        if (Global.Instance.Avatar != null)
+        {
+            fogger.mainCamera = Global.Instance.Avatar.camera;
+        }
+        RenderSettings.skybox = skybox;
     }
 
     public virtual void OnTeleportAway(GameMap nextMap)
