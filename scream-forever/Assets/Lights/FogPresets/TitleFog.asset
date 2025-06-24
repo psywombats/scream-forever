@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb7d20424549e4d02882c90a6614c0da, type: 3}
-  m_Name: NightFog
+  m_Name: TitleFog
   m_EditorClassIdentifier: 
   baseAltitude: 2
   useXYZDistance: 1
@@ -52,17 +52,17 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   boxProjection: 0
   depthClip: 0
-  noiseColorBlend: 0
+  noiseColorBlend: 0.492
   noiseColor: {r: 0.1721698, g: 0.28144658, b: 0.5, a: 1}
   scale: 1
   shift: 0.08
   noiseDistanceAtten: 0.576
-  turbulence: 12
-  speed: 0.05
+  turbulence: 60
+  speed: 0.1
   direction: {x: 0.5, y: 0, z: 0.1}
-  lightDiffusionPower: 61.1
+  lightDiffusionPower: 63.6
   lightDiffusionIntensity: 0.41
-  brightness: 4
+  brightness: 1
   useSunColor: 1
   dithering: 0
   renderQueue: 3100

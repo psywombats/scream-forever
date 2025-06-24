@@ -7,6 +7,7 @@ public class RoadManager : MonoBehaviour
 {
     [SerializeField] private RoadNode firstNode;
     [SerializeField] private GameObject nodePrefab;
+    [SerializeField] private GameObject toTrack;
     [Space]
     [SerializeField] private float distBetweenNodes = 48f;
     [SerializeField] private int maxNodes = 3;
@@ -22,11 +23,13 @@ public class RoadManager : MonoBehaviour
 
     public void Update()
     {
-        if (Global.Instance.Avatar == null)
+        if (Global.Instance.Avatar == null && toTrack == null)
         {
             return;
         }
-        if (Vector3.Distance(Global.Instance.Avatar.transform.position, HeadNode.transform.position) < distBetweenNodes)
+
+        var myTrack = Global.Instance.Avatar != null ? Global.Instance.Avatar.gameObject : toTrack;
+        if (Vector3.Distance(myTrack.transform.position, HeadNode.transform.position) < distBetweenNodes)
         {
             SpawnNextNode();
         }

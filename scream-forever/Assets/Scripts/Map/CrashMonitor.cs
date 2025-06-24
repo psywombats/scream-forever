@@ -3,13 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CrashMonitor : MonoBehaviour
 {
     [SerializeField] private MultibumpComponent bump;
     [SerializeField] private List<MonoBehaviour> crashBehaviors;
-    [SerializeField] private RawImage glitchFade;
     [Space]
     [SerializeField] private float bumpCutoff = .1f;
     [SerializeField] private float crashCutoff = .3f;
@@ -67,13 +65,13 @@ public class CrashMonitor : MonoBehaviour
         {
             component.enabled = false;
         }
-        glitchFade.color = Color.clear;
+        MapOverlayUI.Instance.screenViewGlitch.color = Color.clear;
     }
 
     public IEnumerator ResetRoutine()
     {
         yield return CoUtils.Wait(1f);
-        yield return CoUtils.RunTween(glitchFade.DOFade(1f, 1f));
+        yield return CoUtils.RunTween(MapOverlayUI.Instance.screenViewGlitch.DOFade(1f, 1f));
         yield return CoUtils.Wait(1f);
         yield return CoUtils.RunTween(MapOverlayUI.Instance.fader.DOFade(1f, 1.5f));
         StopCrash();
