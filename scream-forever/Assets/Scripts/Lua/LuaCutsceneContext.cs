@@ -59,6 +59,7 @@ public class LuaCutsceneContext : LuaContext
         Lua.Globals["cs_expr"] = (Action<DynValue, DynValue>)Express;
         Lua.Globals["cs_enter"] = (Action<DynValue, DynValue>)Enter;
         Lua.Globals["cs_exit"] = (Action<DynValue>)Exit;
+        Lua.Globals["cs_choose"] = (Action<DynValue, DynValue>)Choose;
 
         Lua.Globals["bump"] = (Action)Bump;
     }
@@ -78,7 +79,7 @@ public class LuaCutsceneContext : LuaContext
 
     private void Teleport(DynValue mapName, DynValue rawLua)
     {
-        var raw = rawLua.IsNil() ? false : rawLua.Boolean;
+        var raw = !rawLua.IsNil() && rawLua.Boolean;
         RunRoutineFromLua(Global.Instance.Maps.TeleportRoutine(mapName.String, raw));
     }
 
@@ -158,5 +159,15 @@ public class LuaCutsceneContext : LuaContext
     private void Bump()
     {
         //Global.Instance.Avatar.Bump();
+    }
+
+    private void Choose(DynValue opt1, DynValue opt2)
+    {
+        RunRoutineFromLua(ChooseRoutine(opt1.String, opt2.String));
+    }
+    private IEnumerator ChooseRoutine(string opt1, string opt2)
+    {
+        yield return MapOverlayUI.Instance.selector.ChooseRoutine(opt1, opt2);
+        Lua.Globals["selection"] = Marshal(MapOverlayUI.Instance.selector.Result.Value);
     }
 }

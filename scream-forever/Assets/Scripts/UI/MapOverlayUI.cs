@@ -25,4 +25,5 @@ public class MapOverlayUI : MonoBehaviour
 
     [SerializeField] public NVLComponent nvl;
     [SerializeField] public CanvasGroup fader;
+    [SerializeField] public MouseChoiceSelector selector;
 }

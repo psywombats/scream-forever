@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour, IInputListener
     public float Speed { get; private set; }
     public float SpeedRatio => Speed / maxSpeed;
     public float Traversed { get; private set; }
+    
+    public int CrashCount { get; set; }
 
     public float DistanceFromRoad
     {
@@ -179,7 +181,7 @@ public class PlayerController : MonoBehaviour, IInputListener
                         timeSinceBrakes = 0f;
                         Speed -= decRate * Time.deltaTime;
                         break;
-                    case InputManager.Command.Secondary:
+                    case InputManager.Command.Debug:
                         selfPaused = !selfPaused;
                         if (selfPaused) PauseInput();
                         else UnpauseInput();

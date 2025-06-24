@@ -9,12 +9,15 @@ speak('ALISTAIR', "Alistair here! All I'm here to do is leave.")
 speak('LIAM', "Seriously? That's it?")
 exit('ALISTAIR')
 speak('LIAM', "Oh, you can't see me, but I'm the protagonist.")
-speak('LIAM', "Let's cut to black.")
+speak('BIANCA', "Liam, I'm gonna call the pizza place. What do you want on yours?")
 exitNVL()
-fade('black', 3.0)
-wait(1.0)
-fade('white', 1.0)
-enterNVL()
-speak('LIAM', "Surprise! Still here!")
-speak('LIAM', "Okay let's get back to the road, kids.")
-exitNVL()
+
+if choose("Pepperoni", "Veggies") then
+	enterNVL()
+	speak('BIANCA', "Since when are you vegetarian?")
+	exitNVL()
+else
+	enterNVL()
+	speak('BIANCA', "Aren't you vegetarian?")
+	exitNVL()
+end

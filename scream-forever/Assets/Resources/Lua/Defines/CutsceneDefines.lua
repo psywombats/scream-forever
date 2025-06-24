@@ -50,6 +50,12 @@ function exit(arg)
 	await()
 end
 
+function choose(a, b)
+    cs_choose(a, b)
+    await()
+    return selection
+end
+
 function expr(speaker, expression)
 	cs_expr(speaker, expression)
 	await()

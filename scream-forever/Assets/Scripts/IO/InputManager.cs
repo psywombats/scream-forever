@@ -34,6 +34,7 @@ public class InputManager : SingletonBehavior
     private static readonly float KeyRepeatSeconds = 0.3f;
 
     private List<IInputListener> listeners = new List<IInputListener>();
+    private List<IInputListener> listeners2 = new List<IInputListener>();
     private Dictionary<Command, float> holdStartTimes = new Dictionary<Command, float>();
     private Dictionary<string, IInputListener> anonymousListeners = new Dictionary<string, IInputListener>();
 
@@ -77,7 +78,9 @@ public class InputManager : SingletonBehavior
                 held = true;
             }
 
-            foreach (var listener in listeners)
+            listeners2.Clear();
+            listeners2.AddRange(listeners);
+            foreach (var listener in listeners2)
             {
                 endProcessing = false;
 

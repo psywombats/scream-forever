@@ -41,6 +41,11 @@ public class CrashMonitor : MonoBehaviour
 
     private void StartCrash()
     {
+        Global.Instance.Avatar.CrashCount += 1;
+        if (Global.Instance.Lua.IsRunning())
+        {
+            Global.Instance.Lua.ForceTerminate();
+        }
         Global.Instance.Avatar.IsCrashing = true;
         Global.Instance.Avatar.PauseInput();
         foreach (var component in crashBehaviors)
