@@ -6,9 +6,10 @@ public class GameMap : MonoBehaviour
     public const string ResourcePath = "Maps/";
     
     [SerializeField] public GameObject eventLayer;
-    [SerializeField] public Transform startPos;
     [SerializeField] public Material skybox;
+    [SerializeField] public Light sun;
     [SerializeField] public PlayerController playerPrefab;
+    [SerializeField] public string firstScript;
     [Space]
     [Header("References")]
     [SerializeField] public MarchingTerrain terrain;
@@ -35,6 +36,11 @@ public class GameMap : MonoBehaviour
             fogger.mainCamera = Global.Instance.Avatar.camera;
         }
         RenderSettings.skybox = skybox;
+        RenderSettings.sun = sun;
+        if (!string.IsNullOrEmpty(firstScript))
+        {
+            StartCoroutine(Global.Instance.Lua.RunRoutine($"play('{firstScript}')", canBlock: true));
+        }
     }
 
     public virtual void OnTeleportAway(GameMap nextMap)

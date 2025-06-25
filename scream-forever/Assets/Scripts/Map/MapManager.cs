@@ -82,8 +82,6 @@ public class MapManager : SingletonBehavior
         ActiveMap = newMapInstance;
         ActiveMapName = mapName;
         AddInitialAvatar();
-        Avatar.transform.position = newMapInstance.startPos.position;
-        Avatar.transform.rotation = newMapInstance.startPos.rotation;
 
         Avatar.OnTeleport();
         ActiveMap.OnTeleportTo(oldMap);

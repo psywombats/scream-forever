@@ -65,6 +65,8 @@ public class LuaCutsceneContext : LuaContext
         Lua.Globals["cs_driveWait"] = (Action<DynValue>)DriveWait;
 
         Lua.Globals["bump"] = (Action)Bump;
+        Lua.Globals["allowDriving"] = (Action<DynValue>)AllowDriving;
+        Lua.Globals["setSpeed"] = (Action<DynValue>)SetSpeed;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -195,5 +197,15 @@ public class LuaCutsceneContext : LuaContext
         {
             yield return null;
         }
+    }
+
+    private void SetSpeed(DynValue speed)
+    {
+        Global.Instance.Avatar.Speed = (float)speed.Number;
+    }
+
+    private void AllowDriving(DynValue allow)
+    {
+        Global.Instance.Avatar.IsDrivingAllowed = false;
     }
 }

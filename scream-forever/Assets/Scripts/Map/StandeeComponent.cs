@@ -1,14 +1,13 @@
-using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
 public class StandeeComponent : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer spriteHolder;
-    [SerializeField] private Transform offsetter;
-    [SerializeField] private float defaultDuration;
-    [SerializeField] private bool spawnOnEnable;
+    [SerializeField] public SpriteRenderer spriteHolder;
+    [SerializeField] public Transform offsetter;
+    [SerializeField] public float defaultDuration;
+    [SerializeField] public bool spawnOnEnable;
 
     public void Start()
     {

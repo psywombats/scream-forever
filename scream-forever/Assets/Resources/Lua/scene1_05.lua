@@ -18,5 +18,12 @@ exitNVL()
 setSwitch('scene1_cyn' , true)
 driveWait(10)
 distBrake(20)
+allowDriving(false)
 
 wait(2)
+
+setSwitch('scene1_cyn' , false)
+wait(1.5)
+enter('CYN')
+
+play('scene1_06')

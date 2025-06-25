@@ -20,11 +20,6 @@ function speak(speaker, line)
     await()
 end
 
-function radio(speaker, line, qual)
-	cs_radio(speaker, line, qual)
-	await()
-end
-
 function fade(fadeType, dur)
     cs_fade(fadeType, dur)
     await()

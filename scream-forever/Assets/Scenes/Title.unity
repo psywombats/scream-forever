@@ -1841,6 +1841,12 @@ RectTransform:
   m_AnchoredPosition: {x: 14.090942, y: -148.78787}
   m_SizeDelta: {x: 640, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &1022137028 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6307619020705068284, guid: 7e4b3fe76d377ab43989964fea842320,
+    type: 3}
+  m_PrefabInstance: {fileID: 5603617961561411045}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1046266324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3030740712647391970, guid: a129a19ed5275f14d881490f9c16bc4a,
@@ -3501,8 +3507,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleFader: {fileID: 2038710083}
+  toNuke: {fileID: 0}
   orderedMapNames:
-  - Midnight
+  - Residential
 --- !u!225 &2038710083
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4151,7 +4158,11 @@ PrefabInstance:
       objectReference: {fileID: 5453036109547923646}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6307619020705068284, guid: 7e4b3fe76d377ab43989964fea842320,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4721845187401241697}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e4b3fe76d377ab43989964fea842320, type: 3}
 --- !u!54 &6828452160442141913 stripped
@@ -4180,7 +4191,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1022137028}
     m_Modifications:
     - target: {fileID: 138210418566057881, guid: a129a19ed5275f14d881490f9c16bc4a,
         type: 3}
@@ -4210,17 +4221,17 @@ PrefabInstance:
     - target: {fileID: 847041740986151750, guid: a129a19ed5275f14d881490f9c16bc4a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 847041740986151750, guid: a129a19ed5275f14d881490f9c16bc4a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 847041740986151750, guid: a129a19ed5275f14d881490f9c16bc4a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 847041740986151750, guid: a129a19ed5275f14d881490f9c16bc4a,
         type: 3}
@@ -4316,6 +4327,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992642327239140149, guid: a129a19ed5275f14d881490f9c16bc4a,
+        type: 3}
+      propertyPath: bump
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5346871197611909904, guid: a129a19ed5275f14d881490f9c16bc4a,
         type: 3}
@@ -4422,7 +4438,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 832575519}
-  - {fileID: 7889112726834651640}
   - {fileID: 5603617961561411045}
   - {fileID: 2085828682}
   - {fileID: 6040800}

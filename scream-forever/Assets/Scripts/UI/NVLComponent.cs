@@ -122,10 +122,12 @@ public class NVLComponent : MonoBehaviour
         string toType = message;
         nameText.text = name;
         //yield return text.WriteLineRoutine(toType);
+        GetPortrait(speaker).StartTalking();
         yield return text.TypeRoutine(toType, waitForConfirm: false);
         advanceIcon.TurnOn();
         yield return null;
         yield return InputManager.Instance.ConfirmRoutine(eatsOthers: false);
+        GetPortrait(speaker).StopTalking();
         advanceIcon.TurnOff();
         //Global.Instance.Audio.PlaySFX("in_game/popups", null, AudioManager.Bank.UI);
     }

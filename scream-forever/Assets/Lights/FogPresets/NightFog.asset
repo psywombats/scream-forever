@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseAltitude: 2
   useXYZDistance: 1
-  densityLinear: 0.12
-  densityExponential: 0.88
+  densityLinear: 0.02
+  densityExponential: 1.05
   maxHeight: 10000
   distanceMax: 10000
   tintColor: {r: 0, g: 0, b: 0, a: 1}
-  useVerticalGradient: 0
+  useVerticalGradient: 1
   verticalGradient:
     serializedVersion: 2
     key0: {r: 0.027320892, g: 0.03433981, b: 0.33245158, a: 1}
@@ -52,17 +52,17 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   boxProjection: 0
   depthClip: 0
-  noiseColorBlend: 0
+  noiseColorBlend: 0.821
   noiseColor: {r: 0.1721698, g: 0.28144658, b: 0.5, a: 1}
   scale: 1
-  shift: 0.08
-  noiseDistanceAtten: 0.576
+  shift: 0.254
+  noiseDistanceAtten: 0.755
   turbulence: 12
   speed: 0.05
   direction: {x: 0.5, y: 0, z: 0.1}
-  lightDiffusionPower: 61.1
-  lightDiffusionIntensity: 0.41
-  brightness: 4
+  lightDiffusionPower: 54.9
+  lightDiffusionIntensity: 0.434
+  brightness: 7
   useSunColor: 1
   dithering: 0
   renderQueue: 3100

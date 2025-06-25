@@ -6,6 +6,7 @@ using UnityEngine;
 public class TitleView : MonoBehaviour
 {
     [SerializeField] private CanvasGroup titleFader;
+    [SerializeField] private GameObject toNuke;
     [Space]
     [SerializeField] private List<string> orderedMapNames;
 
@@ -13,12 +14,12 @@ public class TitleView : MonoBehaviour
     
     public void StartGame()
     {
-        StartCoroutine(StartGameRoutine(orderedMapNames[0]));
+        Global.Instance.StartCoroutine(StartGameRoutine(orderedMapNames[0]));
     }
 
     private void Continue(int bookmark)
     {
-        StartCoroutine(StartGameRoutine(orderedMapNames[bookmark]));
+        Global.Instance.StartCoroutine(StartGameRoutine(orderedMapNames[bookmark]));
     }
 
     public void Exit()
@@ -36,6 +37,7 @@ public class TitleView : MonoBehaviour
         if (selected) yield break;
         selected = true;
         yield return CoUtils.RunTween(titleFader.DOFade(0f, 2.5f));
+        Destroy(toNuke);
         yield return Global.Instance.Maps.TeleportRoutine(mapName);
     }
 }

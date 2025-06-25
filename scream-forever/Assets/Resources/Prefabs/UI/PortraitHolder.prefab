@@ -51,6 +51,8 @@ MonoBehaviour:
   sprite: {fileID: 823318096597231909}
   highlight: {fileID: 5618329195897811746}
   standee: {fileID: 7677955224251285609}
+  primarySprite: {fileID: 0}
+  secondarySprite: {fileID: 0}
   highlightTime: 0.3
   highlightIntensity: 0.2
   enterTime: 0.8
@@ -197,6 +199,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5527563511865587200}
     m_Modifications:
+    - target: {fileID: 154274160215126651, guid: d7b2e58629d3aaf4da5c8d4e6e4bf017,
+        type: 3}
+      propertyPath: spriteHolder
+      value: 
+      objectReference: {fileID: 823318096597231909}
     - target: {fileID: 3065378754348824637, guid: d7b2e58629d3aaf4da5c8d4e6e4bf017,
         type: 3}
       propertyPath: m_LocalScale.x

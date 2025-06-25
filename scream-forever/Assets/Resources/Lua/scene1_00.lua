@@ -1,3 +1,4 @@
+setSpeed(10)
 enter("BIANCA")
 
 driveWait(150)

@@ -2,7 +2,7 @@ enterNVL()
 speak('BIANCA', "So...")
 speak('BIANCA', "Do you think our friends will get along alright?")
 
-if choose("If Cynthia has thick skin", "If Alistair behaves")
+if choose("If Cynthia has thick skin", "If Alistair behaves") then
 	speak('LIAM', "Yeah, I hope Cynthia has some thick skin. Alistair can be really something, sometimes.")
 else
 	speak('LIAM', "Surely. That is, as long as Alistair behaves like he really should.")

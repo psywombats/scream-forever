@@ -11,6 +11,8 @@ public class PortraitComponent : MonoBehaviour
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private Light highlight;
     [SerializeField] private StandeeComponent standee;
+    [SerializeField] private Sprite primarySprite;
+    [SerializeField] private Sprite secondarySprite;
     [Space] 
     [SerializeField] private float highlightTime = .3f;
     [SerializeField] private float highlightIntensity = .2f;
@@ -86,16 +88,17 @@ public class PortraitComponent : MonoBehaviour
     
     public IEnumerator ExpressRoutine(string expr)
     {
-        if (!IsHighlighted)
-        {
-            yield return MapOverlayUI.Instance.nvl.SetHighlightRoutine(Speaker);
-        }
-        sprite.sprite = GetSpriteForExpr(expr);
+        yield return null;
+        // if (!IsHighlighted)
+        // {
+        //     yield return MapOverlayUI.Instance.nvl.SetHighlightRoutine(Speaker);
+        // }
+        // sprite.sprite = GetSpriteForExpr(expr);
     }
     
     public IEnumerator EnterRoutine(string expr = null)
     {
-        sprite.sprite = GetSpriteForExpr(expr);
+        sprite.sprite = primarySprite;
         standee.Hide();
         StartCoroutine(HighlightRoutine(showPointers: false));
         yield return standee.EnterRoutine(enterTime);
@@ -107,5 +110,15 @@ public class PortraitComponent : MonoBehaviour
         yield return HighlightRoutine(showPointers: false);
         yield return standee.ExitRoutine(enterTime);
         StartCoroutine(UnhighlightRoutine());
+    }
+
+    public void StartTalking()
+    {
+        standee.spriteHolder.sprite = secondarySprite;
+    }
+    
+    public void StopTalking()
+    {
+        standee.spriteHolder.sprite = primarySprite;
     }
 }

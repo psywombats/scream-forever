@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour, IInputListener
     private int pauseCount;
     private bool selfPaused;
     public bool IsPaused => pauseCount > 0;
+
+    public bool IsDrivingAllowed { get; set; } = true;
     private bool isScriptControlled;
 
     private float lastRPM;
@@ -57,7 +59,7 @@ public class PlayerController : MonoBehaviour, IInputListener
     private float wheelRotation;
     private float timeSinceBrakes = 100f;
     
-    public float Speed { get; private set; }
+    public float Speed { get; set; }
     public float SpeedRatio => Speed / maxSpeed;
     public float TotalTraversed { get; private set; }
     public float RoadTraversed => transform.localPosition.z;
@@ -167,30 +169,10 @@ public class PlayerController : MonoBehaviour, IInputListener
         isScriptControlled = true;
         var turnRate = transform.localRotation.eulerAngles.y / duration;
         var decRate = Speed / duration;
-        while (Mathf.Abs(transform.localRotation.eulerAngles.y) > 8 || Speed > 0)
+        while (Speed > 0)
         {
-            if (Mathf.Abs(transform.localRotation.eulerAngles.y) > 8)
-            {
-                var newY = transform.localRotation.eulerAngles.y;
-                if (transform.localRotation.eulerAngles.y > 0)
-                {
-                    newY -= turnRate * Time.deltaTime;
-                }
-                else
-                {
-                    newY += turnRate * Time.deltaTime;
-                }
-                transform.localRotation = quaternion.Euler(new Vector3(
-                    transform.localRotation.eulerAngles.x,
-                    newY,
-                    transform.localRotation.eulerAngles.z));
-            }
-
-            if (Speed > 0)
-            {
-                timeSinceBrakes = 0f;
-                Speed -= decRate * Time.deltaTime;
-            }
+            timeSinceBrakes = 0f;
+            Speed -= decRate * Time.deltaTime;
             
             yield return null;
         }
@@ -304,6 +286,11 @@ public class PlayerController : MonoBehaviour, IInputListener
 
     private void HandlePhysics()
     {
+        if (!IsDrivingAllowed)
+        {
+            Speed = 0;
+            wheelRotation = 0;
+        }
         if (handledWheelThisFrame)
         {
             handledWheelThisFrame = false;

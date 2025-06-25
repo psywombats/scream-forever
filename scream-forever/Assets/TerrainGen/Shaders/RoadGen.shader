@@ -15,6 +15,10 @@ Shader "ScreamForever/RoadGen"
         _RoadWidth("RoadWidth", Float) = 2
         _RoadGrading("RoadGrading", Float) = 2
         _RoadHeight("RoadHeight", Float) = .3
+        _RoadMidWidth("RoadMedianWidth", Float) = -1
+        
+        _ValleyPower("ValleyPower", Float) = 0
+        _ValleySlope("ValleySlope", Float) = .1
 
         [PerRendererData] _NoiseTypeIn("Noise Type In", Integer) = 0
     }
@@ -41,7 +45,9 @@ Shader "ScreamForever/RoadGen"
 
             int _BaseX, _BaseY, _BaseZ;
 
-            float _RoadWidth, _RoadGrading, _RoadHeight;
+            float _RoadWidth, _RoadGrading, _RoadHeight, _RoadMidWidth;
+
+            float _ValleyPower, _ValleySlope;
 
             struct appdata
             {
@@ -85,12 +91,25 @@ Shader "ScreamForever/RoadGen"
 
                 float distFromRoad = worldX;
                 if (distFromRoad < 0) distFromRoad *= -1;
+
+                if (_RoadMidWidth >= 0)
+                {
+                    float distFromRoad2 = worldX + _RoadWidth + _RoadMidWidth;
+                    if (distFromRoad2 < 0) distFromRoad2 *= -1;
+                    if (distFromRoad2 < distFromRoad) distFromRoad = distFromRoad2;
+                }
+                
                 float t = (distFromRoad - _RoadWidth) / _RoadGrading;
                 if (t < 0) t = 0;
                 if (t > 1) t = 1;
 
                 float noiseVal = fnlGetNoise3D(noise, pos.x, 0, pos.z);
                 float height = noiseVal * t + _RoadHeight * (1 - t);
+
+                if (_ValleyPower > 0 && (distFromRoad - _RoadWidth) > _ValleyPower)
+                {
+                    height += ((distFromRoad - _RoadWidth) - _ValleyPower) * _ValleySlope;
+                }
                 
                 return height * _Amplitude;
             }

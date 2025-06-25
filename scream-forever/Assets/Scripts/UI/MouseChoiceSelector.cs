@@ -25,6 +25,11 @@ public class MouseChoiceSelector : MonoBehaviour, IInputListener
 
     public IEnumerator ChooseRoutine(string choice1, string choice2)
     {
+        weightLeft = 0;
+        weightRight = 0;
+        leftSlider.SetValue(0f);
+        rightSlider.SetValue(0f);
+        
         yield return MapOverlayUI.Instance.nvl.HideRoutine(preserveHighlight: true);
         Result = null;
         yield return ShowRoutine(choice1, choice2);
