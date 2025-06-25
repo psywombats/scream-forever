@@ -63,6 +63,7 @@ public class LuaCutsceneContext : LuaContext
         Lua.Globals["cs_smoothBrake"] = (Action<DynValue>)SmoothBrake;
         Lua.Globals["cs_distBrake"] = (Action<DynValue>)DistBrake;
         Lua.Globals["cs_driveWait"] = (Action<DynValue>)DriveWait;
+        Lua.Globals["cs_pamphlet"] = (Action<DynValue>)ViewPamphlet;
 
         Lua.Globals["bump"] = (Action)Bump;
         Lua.Globals["allowDriving"] = (Action<DynValue>)AllowDriving;
@@ -207,5 +208,10 @@ public class LuaCutsceneContext : LuaContext
     private void AllowDriving(DynValue allow)
     {
         Global.Instance.Avatar.IsDrivingAllowed = false;
+    }
+
+    private void ViewPamphlet(DynValue pamphletTag)
+    {
+        RunRoutineFromLua(MapOverlayUI.Instance.Pamphlet.ViewPamphletRoutine(pamphletTag.String));
     }
 }

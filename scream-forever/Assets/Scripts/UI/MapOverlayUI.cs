@@ -28,4 +28,17 @@ public class MapOverlayUI : MonoBehaviour
     [SerializeField] public CanvasGroup fader;
     [SerializeField] public MouseChoiceSelector selector;
     [SerializeField] public RawImage screenViewGlitch;
+
+    private PamphletViewer pamphlet;
+    public PamphletViewer Pamphlet
+    {
+        get
+        {
+            if (pamphlet == null)
+            {
+                pamphlet = FindObjectOfType<PamphletViewer>();
+            }
+            return pamphlet;
+        }
+    }
 }
