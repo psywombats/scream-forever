@@ -36,10 +36,10 @@ public class MultibumpComponent : MonoBehaviour
     {
         while (Application.isPlaying)
         {
-            if (avatar.Traversed > lastBump + interval)
+            if (avatar.TotalTraversed > lastBump + interval)
             {
                 Bump();
-                lastBump = Global.Instance.Avatar.Traversed;
+                lastBump = Global.Instance.Avatar.TotalTraversed;
             }
 
             yield return null;

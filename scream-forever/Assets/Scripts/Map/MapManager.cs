@@ -7,9 +7,20 @@ public class MapManager : SingletonBehavior
 {
     public static MapManager Instance => Global.Instance.Maps;
 
-    public PlayerController Avatar { get; set; }
+    private PlayerController avatar;
+    public PlayerController Avatar
+    {
+        get
+        {
+            if (avatar == null)
+            {
+                avatar = FindObjectOfType<PlayerController>();
+            }
+            return avatar;
+        }
+        set => avatar = value;
+    }
     public GameMap ActiveMap { get; set; }
-
     public string ActiveMapName { get; set; }
 
     private new Camera camera;

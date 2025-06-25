@@ -10,3 +10,6 @@ else
 	setSwitch("broughtInLaundry", true)
 end
 exitNVL()
+
+driveWait(40)
+play('scene1_02')

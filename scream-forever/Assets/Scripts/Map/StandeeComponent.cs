@@ -1,11 +1,36 @@
+using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
 public class StandeeComponent : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer spriteHolder;
     [SerializeField] private Transform offsetter;
     [SerializeField] private float defaultDuration;
+    [SerializeField] private bool spawnOnEnable;
+
+    public void Start()
+    {
+        if (spawnOnEnable)
+        {
+            Hide();
+        }
+    }
+
+    public void OnEnable()
+    {
+        if (spawnOnEnable)
+        {
+            Hide();
+            StartCoroutine(EnterRoutine());
+        }
+    }
+
+    public void AssignBySpeaker(string speakerTag)
+    {
+        spriteHolder.sprite = IndexDatabase.Instance.Speakers.GetData(speakerTag).sprite;
+    }
 
     public IEnumerator EnterRoutine(float duration = -1f)
     {

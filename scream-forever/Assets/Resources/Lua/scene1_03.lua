@@ -17,7 +17,7 @@ wait(4)
 
 enterNVL()
 speak('BIANCA', "And you’re gonna be alright with hanging out with him? It's been a while.")
-if choose("It'll be fine", "Why are you concerned?")
+if choose("It'll be fine", "Why are you concerned?") then
 	speak('LIAM', "It'll be fine. There's nothing for you to worry about.")
 	speak('BIANCA', "Good.")
 	speak('BIANCA', "As long as you're okay with it, I'm okay with it.")
@@ -29,3 +29,6 @@ else
 end
 
 exitNVL()
+
+driveWait(100)
+play('scene1_04')

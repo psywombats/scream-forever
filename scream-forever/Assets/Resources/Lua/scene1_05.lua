@@ -15,6 +15,8 @@ speak('LIAM', "Over there?")
 speak('BIANCA', "Yup. I think I see Cynthia.")
 exitNVL()
 
-smoothBrake()
+setSwitch('scene1_cyn' , true)
+driveWait(10)
+distBrake(20)
 
 wait(2)

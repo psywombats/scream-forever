@@ -23,3 +23,6 @@ else
 end
 
 exitNVL()
+
+driveWait(60)
+play('scene1_03')

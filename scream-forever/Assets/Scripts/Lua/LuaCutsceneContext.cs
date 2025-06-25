@@ -61,6 +61,8 @@ public class LuaCutsceneContext : LuaContext
         Lua.Globals["cs_exit"] = (Action<DynValue>)Exit;
         Lua.Globals["cs_choose"] = (Action<DynValue, DynValue>)Choose;
         Lua.Globals["cs_smoothBrake"] = (Action<DynValue>)SmoothBrake;
+        Lua.Globals["cs_distBrake"] = (Action<DynValue>)DistBrake;
+        Lua.Globals["cs_driveWait"] = (Action<DynValue>)DriveWait;
 
         Lua.Globals["bump"] = (Action)Bump;
     }
@@ -175,5 +177,23 @@ public class LuaCutsceneContext : LuaContext
     private void SmoothBrake(DynValue duration)
     {
         RunRoutineFromLua(Global.Instance.Avatar.SmoothBrakeRoutine((float)duration.Number));
+    }
+    
+    private void DistBrake(DynValue duration)
+    {
+        RunRoutineFromLua(Global.Instance.Avatar.DistBrakeRoutine((float)duration.Number));
+    }
+
+    private void DriveWait(DynValue dist)
+    {
+        RunRoutineFromLua(DriveWaitRoutine((float)dist.Number));
+    }
+    private IEnumerator DriveWaitRoutine(float dist)
+    {
+        var traversed = Global.Instance.Avatar.RoadTraversed;
+        while (Global.Instance.Avatar.RoadTraversed < traversed + dist)
+        {
+            yield return null;
+        }
     }
 }

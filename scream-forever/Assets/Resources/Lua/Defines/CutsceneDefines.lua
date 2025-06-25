@@ -61,8 +61,17 @@ function smoothBrake(duration)
 	await()
 end
 
+function distBrake(duration)
+	cs_distBrake(duration)
+	await()
+end
+
 function expr(speaker, expression)
 	cs_expr(speaker, expression)
 	await()
 end
 
+function driveWait(dist)
+	cs_driveWait(dist)
+	await()
+end

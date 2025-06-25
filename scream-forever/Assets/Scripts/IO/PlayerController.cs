@@ -59,7 +59,8 @@ public class PlayerController : MonoBehaviour, IInputListener
     
     public float Speed { get; private set; }
     public float SpeedRatio => Speed / maxSpeed;
-    public float Traversed { get; private set; }
+    public float TotalTraversed { get; private set; }
+    public float RoadTraversed => transform.localPosition.z;
     
     public int CrashCount { get; set; }
 
@@ -141,7 +142,7 @@ public class PlayerController : MonoBehaviour, IInputListener
         timeSinceBrakes = 100f;
         wheelRotation = 0f;
         Speed = 0f;
-        Traversed = 0f;
+        TotalTraversed = 0f;
     }
 
     public IEnumerator RotateTowardRoutine(GameObject mover, GameObject target, GameObject rotater)
@@ -164,19 +165,20 @@ public class PlayerController : MonoBehaviour, IInputListener
     public IEnumerator SmoothBrakeRoutine(float duration)
     {
         isScriptControlled = true;
+        var turnRate = transform.localRotation.eulerAngles.y / duration;
+        var decRate = Speed / duration;
         while (Mathf.Abs(transform.localRotation.eulerAngles.y) > 8 || Speed > 0)
         {
             if (Mathf.Abs(transform.localRotation.eulerAngles.y) > 8)
             {
-                var delta = maxTurn / 4f * Time.deltaTime;
                 var newY = transform.localRotation.eulerAngles.y;
                 if (transform.localRotation.eulerAngles.y > 0)
                 {
-                    newY -= delta;
+                    newY -= turnRate * Time.deltaTime;
                 }
                 else
                 {
-                    newY += delta;
+                    newY += turnRate * Time.deltaTime;
                 }
                 transform.localRotation = quaternion.Euler(new Vector3(
                     transform.localRotation.eulerAngles.x,
@@ -187,13 +189,30 @@ public class PlayerController : MonoBehaviour, IInputListener
             if (Speed > 0)
             {
                 timeSinceBrakes = 0f;
-                Speed -= decRate / 2f * Time.deltaTime;
+                Speed -= decRate * Time.deltaTime;
             }
             
             yield return null;
         }
         Speed = 0;
         isScriptControlled = false;
+    }
+
+    public IEnumerator DistBrakeRoutine(float distance)
+    {
+        var duration = 2f * distance / Speed;
+        if (duration > 10f)
+        {
+            var elapsed = 0f;
+            while (elapsed < 3f)
+            {
+                Speed += accRate * Time.deltaTime;
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+            duration = distance / Speed;
+        }
+        yield return SmoothBrakeRoutine(duration);
     }
 
     public bool OnCommand(InputManager.Command command, InputManager.Event eventType)
@@ -305,7 +324,7 @@ public class PlayerController : MonoBehaviour, IInputListener
 
         Speed -= friction * Time.deltaTime;
         Speed = Mathf.Clamp(Speed, 0, maxSpeed);
-        Traversed += Speed * Time.deltaTime;
+        TotalTraversed += Speed * Time.deltaTime;
         body.velocity = transform.forward * Speed;
 
         wheelRotation = Mathf.Clamp(wheelRotation, -maxTurn, maxTurn);

@@ -2,9 +2,17 @@ using UnityEngine;
 
 public class DetachOnSpawnBehavior : MonoBehaviour
 {
-    [SerializeField] private string triggerSwitch;
+    [SerializeField] protected string triggerSwitch;
+    [SerializeField] protected GameObject disableChild;
 
     private bool spawned;
+    private Vector3 offset;
+
+    public virtual void Start()
+    {
+        disableChild.gameObject.SetActive(false);
+        offset = transform.position - Global.Instance.Avatar.transform.position;
+    }
 
     public void OnEnable()
     {
@@ -16,7 +24,7 @@ public class DetachOnSpawnBehavior : MonoBehaviour
         Global.Instance.Data.onSwitchChanged -= OnSwitchChanged;
     }
 
-    private void OnSwitchChanged(string switchName, bool value)
+    protected virtual void OnSwitchChanged(string switchName, bool value)
     {
         if (switchName == triggerSwitch && value && !spawned)
         {
@@ -26,12 +34,14 @@ public class DetachOnSpawnBehavior : MonoBehaviour
 
     public void Spawn()
     {
-        var map = Global.Instance.Maps.ActiveMap;
-        transform.SetParent(map.transform, true);
+        disableChild.gameObject.SetActive(true);
         spawned = true;
-        var position = transform.position;
+        
+        var map = Global.Instance.Maps.ActiveMap;
+        var avAt = Global.Instance.Avatar.transform.position;
+
+        var position = new Vector3(transform.position.x, 0, avAt.z + offset.z);
         var height = map.terrain.GetHeightAt(position);
-        var newPos = new Vector3(position.x, height, position.z);
-        transform.position = newPos;
+        transform.position = new Vector3(position.x, height, position.z);
     }
 }

@@ -15,7 +15,7 @@ wait(1)
 
 enterNVL()
 speak('BIANCA', "Do you need a massage later?")
-if choose("I might", "No thanks")
+if choose("I might", "No thanks") then
 	setSwitch('wantsMassage', true)
 	speak('LIAM', "I might like one, yeah. Thanks.")
 	speak('BIANCA', "Then I’ll give you one later to ease your mind.")
@@ -26,3 +26,6 @@ else
 	speak('BIANCA', "Yeah, okay. I thought a massage might solve that, but...")
 end
 exitNVL()
+
+driveWait(60)
+play('scene1_05')
