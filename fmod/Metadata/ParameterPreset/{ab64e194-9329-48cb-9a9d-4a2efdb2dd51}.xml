@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.01.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="ParameterPreset" id="{ab64e194-9329-48cb-9a9d-4a2efdb2dd51}">
 		<property name="name">
 			<value>Floor_Type</value>

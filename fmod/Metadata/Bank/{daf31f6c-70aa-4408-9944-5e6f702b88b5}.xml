@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.01.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="Bank" id="{daf31f6c-70aa-4408-9944-5e6f702b88b5}">
 		<property name="name">
 			<value>LateSFX</value>

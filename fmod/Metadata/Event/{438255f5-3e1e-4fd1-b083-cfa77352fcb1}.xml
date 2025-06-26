@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{438255f5-3e1e-4fd1-b083-cfa77352fcb1}">
 		<property name="name">
 			<value>day</value>
@@ -81,8 +81,8 @@
 	</object>
 	<object class="Timeline" id="{58931897-4896-4828-b186-1b345f825c79}">
 		<relationship name="modules">
-			<destination>{2934832b-9c9a-43b2-b578-8171119c534c}</destination>
 			<destination>{4373aaab-e645-4212-9f92-692ee13dae1d}</destination>
+			<destination>{2934832b-9c9a-43b2-b578-8171119c534c}</destination>
 		</relationship>
 		<relationship name="markers">
 			<destination>{e7f6f2b2-dc70-4099-8cd4-be61dd355ae3}</destination>
