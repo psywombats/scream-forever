@@ -60,3 +60,6 @@ driveWait(10)
 
 speak('ALISTAIR', "Hang on, this thing moves? A marvel of the industrial era! The people cheered and clapped!")
 speak('CYN', "Heehee.")
+exitNVL()
+
+teleport('nighttime', true)
