@@ -23,6 +23,7 @@ public class PamphletViewer : MonoBehaviour, IInputListener
     [SerializeField] private SpriteRenderer leaf1;
     [SerializeField] private SpriteRenderer leaf2;
     [SerializeField] private SpriteRenderer leaf3;
+    [SerializeField] private SpriteRenderer noteLeaf;
     [Space]
     [SerializeField] private List<PamphletData> pamphlets;
 
@@ -40,8 +41,7 @@ public class PamphletViewer : MonoBehaviour, IInputListener
     public IEnumerator ViewPamphletRoutine(string pamphletTag)
     {
         yield return ShowRoutine(pamphletTag);
-        var crashes = Global.Instance.Avatar.CrashCount;
-        while (crashes == Global.Instance.Avatar.CrashCount && !finished)
+        while (!Global.Instance.Avatar.IsCrashing && !finished)
         {
             yield return null;
         }
@@ -54,14 +54,21 @@ public class PamphletViewer : MonoBehaviour, IInputListener
     public IEnumerator ShowRoutine(string pamphletTag)
     {
         finished = false;
-        foreach (var pamphlet in pamphlets)
+        if (pamphletTag == "note")
         {
-            if (pamphlet.tag == pamphletTag)
+            //noteLeaf.sprite = 
+        }
+        else
+        {
+            foreach (var pamphlet in pamphlets)
             {
-                leaf1.sprite = pamphlet.leaf1;
-                leaf2.sprite = pamphlet.leaf2;
-                leaf3.sprite = pamphlet.leaf3;
-                break;
+                if (pamphlet.tag == pamphletTag)
+                {
+                    leaf1.sprite = pamphlet.leaf1;
+                    leaf2.sprite = pamphlet.leaf2;
+                    leaf3.sprite = pamphlet.leaf3;
+                    break;
+                }
             }
         }
         translate.transform.localPosition = fromPos;

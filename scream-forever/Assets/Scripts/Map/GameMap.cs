@@ -15,6 +15,7 @@ public class GameMap : MonoBehaviour
     [SerializeField] public MarchingTerrain terrain;
     [SerializeField] public RoadManager road;
     [SerializeField] public DynamicFogManager fogger;
+    [SerializeField] public DynamicFog fog;
 
     public virtual void Start()
     {

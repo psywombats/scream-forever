@@ -92,29 +92,29 @@ public class NVLComponent : MonoBehaviour
         IsShown = false;
     }
 
-    public IEnumerator EnterRoutine(SpeakerData speaker, string expr = null)
+    public IEnumerator EnterRoutine(SpeakerData speaker, bool useAnim)
     {
         var portrait = GetPortrait(speaker);
-        yield return portrait.EnterRoutine(expr);
+        yield return portrait.EnterRoutine(useAnim);
     }
 
-    public IEnumerator ExitRoutine(SpeakerData speaker)
+    public IEnumerator ExitRoutine(SpeakerData speaker, bool useAnim)
     {
         var portrait = GetPortrait(speaker);
-        yield return portrait.ExitRoutine();
+        yield return portrait.ExitRoutine(useAnim);
     }
 
-    public IEnumerator SpeakRoutine(SpeakerData speaker, string message)
+    public IEnumerator SpeakRoutine(SpeakerData speaker, string message, bool useAnims, bool useHighlight)
     {
         Wipe();
         var name = speaker.displayName;
 
-        if (!IsShown)
+        if (!IsShown && useAnims)
         {
             yield return ShowRoutine(hideBackers: true);
         }
 
-        if (speaker != null)
+        if (speaker != null && useHighlight)
         {
             yield return SetHighlightRoutine(speaker);
         }
@@ -122,12 +122,18 @@ public class NVLComponent : MonoBehaviour
         string toType = message;
         nameText.text = name;
         //yield return text.WriteLineRoutine(toType);
-        GetPortrait(speaker).StartTalking();
+        if (useAnims)
+        {
+            GetPortrait(speaker).StartTalking();
+        }
         yield return text.TypeRoutine(toType, waitForConfirm: false);
         advanceIcon.TurnOn();
         yield return null;
         yield return InputManager.Instance.ConfirmRoutine(eatsOthers: false);
-        GetPortrait(speaker).StopTalking();
+        if (useAnims)
+        {
+            GetPortrait(speaker).StopTalking();
+        }
         advanceIcon.TurnOff();
         //Global.Instance.Audio.PlaySFX("in_game/popups", null, AudioManager.Bank.UI);
     }

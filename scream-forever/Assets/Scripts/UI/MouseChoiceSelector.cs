@@ -29,19 +29,26 @@ public class MouseChoiceSelector : MonoBehaviour, IInputListener
         weightRight = 0;
         leftSlider.SetValue(0f);
         rightSlider.SetValue(0f);
-        
-        yield return MapOverlayUI.Instance.nvl.HideRoutine(preserveHighlight: true);
+
+        var isShown = false;
+        if (MapOverlayUI.Instance.nvl.IsShown)
+        {
+            isShown = true;
+            yield return MapOverlayUI.Instance.nvl.HideRoutine(preserveHighlight: true);
+        }
         Result = null;
         yield return ShowRoutine(choice1, choice2);
         Global.Instance.Input.PushListener(this);
-        var crashes = Global.Instance.Avatar.CrashCount;
-        while (Result == null && Global.Instance.Avatar.CrashCount == crashes)
+        while (Result == null && !Global.Instance.Avatar.IsCrashing)
         {
             yield return null;
         }
         Global.Instance.Input.RemoveListener(this);
         yield return HideRoutine();
-        yield return MapOverlayUI.Instance.nvl.ShowRoutine();
+        if (isShown)
+        {
+            yield return MapOverlayUI.Instance.nvl.ShowRoutine();
+        }
     }
 
     public IEnumerator ShowRoutine(string opt1, string opt2)

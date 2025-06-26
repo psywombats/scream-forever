@@ -20,6 +20,10 @@ public class Global : MonoBehaviour
     public GameData Data { get; private set; }
 
     private Dictionary<Type, SingletonBehavior> singletons = new Dictionary<Type, SingletonBehavior>();
+    
+    
+    // hack
+    public Dictionary<string, float> tagAccum = new();
 
     public static Global Instance
     {

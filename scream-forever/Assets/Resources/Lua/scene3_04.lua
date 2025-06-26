@@ -20,6 +20,8 @@ enterNVL()
 speak('LIAM', "I know.")
 exitNVL()
 
+wait(0.5)
+
 fade('black', 0.1)
-teleport('Midnight1', true)
+teleport('Nighttime_LightGreen', true)
 play('scene4_01')

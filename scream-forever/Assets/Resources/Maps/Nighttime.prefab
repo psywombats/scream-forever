@@ -287,7 +287,7 @@ MonoBehaviour:
   maskBrushFuzziness: 0.5
   maskBrushOpacity: 0.15
   _fogOfWarTexture: {fileID: 0}
-  profile: {fileID: 11400000, guid: db2d156cc322f1d4e9fd08dc34f9ebd3, type: 2}
+  profile: {fileID: 11400000, guid: cbd4edb7a1865b34eba1bc93e696c4a4, type: 2}
   enableFade: 0
   fadeDistance: 1
   fadeController: {fileID: 0}

@@ -15,8 +15,8 @@ function fadeOutBGM(seconds)
     await()
 end
 
-function speak(speaker, line)
-    cs_speak(speaker, line)
+function speak(speaker, line, mode)
+    cs_speak(speaker, line, mode)
     await()
 end
 
@@ -40,8 +40,8 @@ function enter(speaker, expression)
 	await()
 end
 
-function exit(arg)
-	cs_exit(arg)
+function exit(arg, useAnim)
+	cs_exit(arg, useAnim)
 	await()
 end
 
@@ -73,5 +73,10 @@ end
 
 function pamphlet(tag)
 	cs_pamphlet(tag)
+	await()
+end
+
+function video(arg)
+	cs_video(arg)
 	await()
 end

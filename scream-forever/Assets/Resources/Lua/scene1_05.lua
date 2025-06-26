@@ -5,7 +5,7 @@ speak('BIANCA', "I'll pull it up on the GPS for you.")
 exitNVL()
 
 wait(1)
-setSwitch('gpsOn', true)
+setSwitch('gps_on', true)
 wait(1)
 
 enterNVL()

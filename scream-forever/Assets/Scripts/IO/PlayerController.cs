@@ -11,10 +11,10 @@ public class PlayerController : MonoBehaviour, IInputListener
     [SerializeField] public Rigidbody body;
     [Space]
     [SerializeField] [Range(0f, 9f)] private float mouseRotateSensitivity = .1f;
-    [SerializeField] private Vector2 rotationXBounds = new Vector2(-70, 70);
-    [SerializeField] private Vector2 rotationYBounds = new Vector2(-70, 70);
+    [SerializeField] public Vector2 rotationXBounds = new Vector2(-70, 70);
+    [SerializeField] public Vector2 rotationYBounds = new Vector2(-70, 70);
     [SerializeField] [Range(0f, 10f)] private float stickyStrength;
-    [SerializeField] [Range(0f, 180)] private int stickyAllowance;
+    [SerializeField] [Range(0f, 180)] public float stickyAllowance;
     [Space] 
     [SerializeField] private Transform wheelTransform;
     [SerializeField] private Transform speedTransform;

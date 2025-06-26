@@ -96,19 +96,25 @@ public class PortraitComponent : MonoBehaviour
         // sprite.sprite = GetSpriteForExpr(expr);
     }
     
-    public IEnumerator EnterRoutine(string expr = null)
+    public IEnumerator EnterRoutine(bool useAnim)
     {
         sprite.sprite = primarySprite;
         standee.Hide();
-        StartCoroutine(HighlightRoutine(showPointers: false));
-        yield return standee.EnterRoutine(enterTime);
+        if (useAnim)
+        {
+            StartCoroutine(HighlightRoutine(showPointers: false));
+        }
+        yield return standee.EnterRoutine(useAnim ? enterTime : 0.05f);
     }
 
-    public IEnumerator ExitRoutine()
+    public IEnumerator ExitRoutine(bool useAnim)
     {
         standee.Show();
-        yield return HighlightRoutine(showPointers: false);
-        yield return standee.ExitRoutine(enterTime);
+        if (useAnim)
+        {
+            yield return HighlightRoutine(showPointers: false);
+        }
+        yield return standee.ExitRoutine(useAnim ? enterTime : .05f);
         StartCoroutine(UnhighlightRoutine());
     }
 

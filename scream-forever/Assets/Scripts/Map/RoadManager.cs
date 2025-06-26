@@ -37,7 +37,7 @@ public class RoadManager : MonoBehaviour
             SpawnNextNode();
         }
 
-        if (Global.Instance.Avatar.transform.position.z > 2500)
+        if (Global.Instance.Avatar.transform.position.z > 2400)
         {
             var toTransform = new List<Transform>();
             toTransform.AddRange( activeNodes.Select(node => node.transform));
@@ -53,7 +53,7 @@ public class RoadManager : MonoBehaviour
                 trans.position = new Vector3(
                     position.x,
                     position.y,
-                    position.z - 2500);
+                    position.z - 2400);
             }
         }
     }

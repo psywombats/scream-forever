@@ -55,15 +55,16 @@ public class LuaCutsceneContext : LuaContext
 
         Lua.Globals["cs_enterNVL"] = (Action<DynValue>)EnterNVL;
         Lua.Globals["cs_exitNVL"] = (Action)ExitNVL;
-        Lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
+        Lua.Globals["cs_speak"] = (Action<DynValue, DynValue, DynValue>)Speak;
         Lua.Globals["cs_expr"] = (Action<DynValue, DynValue>)Express;
         Lua.Globals["cs_enter"] = (Action<DynValue, DynValue>)Enter;
-        Lua.Globals["cs_exit"] = (Action<DynValue>)Exit;
+        Lua.Globals["cs_exit"] = (Action<DynValue, DynValue>)Exit;
         Lua.Globals["cs_choose"] = (Action<DynValue, DynValue>)Choose;
         Lua.Globals["cs_smoothBrake"] = (Action<DynValue>)SmoothBrake;
         Lua.Globals["cs_distBrake"] = (Action<DynValue>)DistBrake;
         Lua.Globals["cs_driveWait"] = (Action<DynValue>)DriveWait;
         Lua.Globals["cs_pamphlet"] = (Action<DynValue>)ViewPamphlet;
+        Lua.Globals["cs_video"] = (Action<DynValue>)Video;
 
         Lua.Globals["bump"] = (Action)Bump;
         Lua.Globals["allowDriving"] = (Action<DynValue>)AllowDriving;
@@ -140,26 +141,28 @@ public class LuaCutsceneContext : LuaContext
         MapOverlayUI.Instance.nvl.Wipe();
     }
 
-    public void Speak(DynValue speakerNameLua, DynValue messageLua)
+    public void Speak(DynValue speakerNameLua, DynValue messageLua, DynValue mode)
     {
+        var useAnims = mode.String != "no_anim";
+        var useHighlight = mode.String != "no_highlight";
         var speaker = IndexDatabase.Instance.Speakers.GetData(speakerNameLua.String);
-        RunRoutineFromLua(SpeakRoutine(speaker, messageLua.String));
+        RunRoutineFromLua(SpeakRoutine(speaker, messageLua.String, useAnims, useHighlight));
     }
-    private IEnumerator SpeakRoutine(SpeakerData speaker, string message)
+    private IEnumerator SpeakRoutine(SpeakerData speaker, string message, bool useAnims, bool useHighlight)
     {
-        yield return MapOverlayUI.Instance.nvl.SpeakRoutine(speaker, message);
+        yield return MapOverlayUI.Instance.nvl.SpeakRoutine(speaker, message, useAnims, useHighlight);
     }
 
-    private void Enter(DynValue speakerTag, DynValue expression)
+    private void Enter(DynValue speakerTag, DynValue useAnim)
     {
         var speakerData = IndexDatabase.Instance.Speakers.GetData(speakerTag.String);
-        RunRoutineFromLua(MapOverlayUI.Instance.nvl.EnterRoutine(speakerData, expression.String));
+        RunRoutineFromLua(MapOverlayUI.Instance.nvl.EnterRoutine(speakerData, useAnim.IsNil() || useAnim.Boolean));
     }
     
-    private void Exit(DynValue speakerTag)
+    private void Exit(DynValue speakerTag, DynValue useAnim)
     {
         var speakerData = IndexDatabase.Instance.Speakers.GetData(speakerTag.String);
-        RunRoutineFromLua(MapOverlayUI.Instance.nvl.ExitRoutine(speakerData));
+        RunRoutineFromLua(MapOverlayUI.Instance.nvl.ExitRoutine(speakerData, useAnim.IsNil() || useAnim.Boolean));
     }
 
     private void Bump()
@@ -194,7 +197,7 @@ public class LuaCutsceneContext : LuaContext
     private IEnumerator DriveWaitRoutine(float dist)
     {
         var traversed = Global.Instance.Avatar.RoadTraversed;
-        while (Global.Instance.Avatar.RoadTraversed < traversed + dist)
+        while (!Global.Instance.Avatar.IsCrashing && Global.Instance.Avatar.RoadTraversed < traversed + dist)
         {
             yield return null;
         }
@@ -213,5 +216,10 @@ public class LuaCutsceneContext : LuaContext
     private void ViewPamphlet(DynValue pamphletTag)
     {
         RunRoutineFromLua(MapOverlayUI.Instance.Pamphlet.ViewPamphletRoutine(pamphletTag.String));
+    }
+
+    private void Video(DynValue arg)
+    {
+        RunRoutineFromLua(MapOverlayUI.Instance.Video.ShowRoutine());
     }
 }

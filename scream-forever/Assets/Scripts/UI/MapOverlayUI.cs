@@ -41,4 +41,17 @@ public class MapOverlayUI : MonoBehaviour
             return pamphlet;
         }
     }
+    
+    private VideoController video;
+    public VideoController Video
+    {
+        get
+        {
+            if (video == null)
+            {
+                video = FindObjectOfType<VideoController>();
+            }
+            return video;
+        }
+    }
 }

@@ -62,5 +62,5 @@ speak('ALISTAIR', "Hang on, this thing moves? A marvel of the industrial era! Th
 --speak('CYN', "Heehee.")
 exitNVL()
 
-teleport('nighttime', true)
+teleport('Nighttime', true)
 play('scene3_00')
