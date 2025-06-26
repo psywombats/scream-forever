@@ -43,11 +43,11 @@ public class PamphletViewer : MonoBehaviour, IInputListener
         var crashes = Global.Instance.Avatar.CrashCount;
         while (crashes == Global.Instance.Avatar.CrashCount && !finished)
         {
-            if (!finished)
-            {
-                StartCoroutine(HideRoutine());
-            }
             yield return null;
+        }
+        if (!finished)
+        {
+            StartCoroutine(HideRoutine());
         }
     }
 

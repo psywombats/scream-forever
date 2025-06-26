@@ -1,7 +1,7 @@
 speak('BIANCA', "Well, you had to have printed them off in quite high quality. This one’s laminated.")
-if choose("We have a laminator at home.", "I used my friend’s printer.")
+if choose("We have a laminator at home.", "I used my friend’s printer.") then
 	speak('BIANCA', "We don’t have a laminator at home.")
-	if choose("It’s stored away.", "Well, I borrowed it from my friend.")
+	if choose("It’s stored away.", "Well, I borrowed it from my friend.") then
 		speak('BIANCA', "But... so you brought it out just to laminate these 4 different pamphlets individually, hid the laminator, and then gave them to us?")
 		if choose("I didn't hide it", "Only three pamphlets") then
 			speak('LIAM', "I didn't hide the laminator. I just put it away.")
@@ -16,7 +16,7 @@ if choose("We have a laminator at home.", "I used my friend’s printer.")
 		driveWait(70)
 		
 		enterNVL()
-		speak('ALISTAIR', "I do think it’s matte lamination, too, which increases the likelihood he’s not telling the truth."_
+		speak('ALISTAIR', "I do think it’s matte lamination, too, which increases the likelihood he’s not telling the truth.")
 		exitNVL()
 		
 		driveWait(100)

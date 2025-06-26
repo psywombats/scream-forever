@@ -20,5 +20,6 @@ enterNVL()
 speak('LIAM', "I know.")
 exitNVL()
 
+fade('black', 0.1)
 teleport('Midnight1', true)
 play('scene4_01')

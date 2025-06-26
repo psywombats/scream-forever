@@ -70,3 +70,8 @@ function driveWait(dist)
 	cs_driveWait(dist)
 	await()
 end
+
+function pamphlet(tag)
+	cs_pamphlet(tag)
+	await()
+end

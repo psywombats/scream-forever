@@ -836,9 +836,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerSwitch: needs_gas
   toEnable:
-  - {fileID: 3887069319760946173}
-  toDisable:
   - {fileID: 4085242579570337344}
+  toDisable:
+  - {fileID: 3887069319760946173}
 --- !u!1 &1875228911189957467
 GameObject:
   m_ObjectHideFlags: 0
@@ -4105,6 +4105,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8219612563581214010}
     m_Modifications:
+    - target: {fileID: 823318096597231909, guid: 039a18aa3aa730a4c8ea836793ace01a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c6cd5d979ba6aec4cb49617d32b29ef1,
+        type: 3}
     - target: {fileID: 1962409113457641147, guid: 039a18aa3aa730a4c8ea836793ace01a,
         type: 3}
       propertyPath: m_Name
@@ -4115,6 +4121,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2718806708808494120, guid: 039a18aa3aa730a4c8ea836793ace01a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9743701
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718806708808494120, guid: 039a18aa3aa730a4c8ea836793ace01a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.22495107
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718806708808494120, guid: 039a18aa3aa730a4c8ea836793ace01a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -26
+      objectReference: {fileID: 0}
     - target: {fileID: 2744595801434482268, guid: 039a18aa3aa730a4c8ea836793ace01a,
         type: 3}
       propertyPath: speakerTag
@@ -4122,13 +4143,45 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2744595801434482268, guid: 039a18aa3aa730a4c8ea836793ace01a,
         type: 3}
+      propertyPath: primarySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c6cd5d979ba6aec4cb49617d32b29ef1,
+        type: 3}
+    - target: {fileID: 2744595801434482268, guid: 039a18aa3aa730a4c8ea836793ace01a,
+        type: 3}
+      propertyPath: secondarySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4f1294609fd9ea447b5622af838a42f7,
+        type: 3}
+    - target: {fileID: 2744595801434482268, guid: 039a18aa3aa730a4c8ea836793ace01a,
+        type: 3}
       propertyPath: pointers.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322883609380181124, guid: 039a18aa3aa730a4c8ea836793ace01a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322883609380181124, guid: 039a18aa3aa730a4c8ea836793ace01a,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5527563511865587200, guid: 039a18aa3aa730a4c8ea836793ace01a,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: -0.28
+      value: -0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527563511865587200, guid: 039a18aa3aa730a4c8ea836793ace01a,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527563511865587200, guid: 039a18aa3aa730a4c8ea836793ace01a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 5527563511865587200, guid: 039a18aa3aa730a4c8ea836793ace01a,
         type: 3}
@@ -4138,7 +4191,7 @@ PrefabInstance:
     - target: {fileID: 5527563511865587200, guid: 039a18aa3aa730a4c8ea836793ace01a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.022
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 5527563511865587200, guid: 039a18aa3aa730a4c8ea836793ace01a,
         type: 3}
@@ -4252,17 +4305,17 @@ PrefabInstance:
     - target: {fileID: 2718806708808494120, guid: 039a18aa3aa730a4c8ea836793ace01a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9999829
+      value: 0.9958448
       objectReference: {fileID: 0}
     - target: {fileID: 2718806708808494120, guid: 039a18aa3aa730a4c8ea836793ace01a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.005846863
+      value: -0.09106705
       objectReference: {fileID: 0}
     - target: {fileID: 2718806708808494120, guid: 039a18aa3aa730a4c8ea836793ace01a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.67
+      value: -10.45
       objectReference: {fileID: 0}
     - target: {fileID: 2744595801434482268, guid: 039a18aa3aa730a4c8ea836793ace01a,
         type: 3}

@@ -11,7 +11,7 @@ if choose("I think I printed them off.", "A man on the street gave them to me.")
 		speak('BIANCA', "What?")
 		speak('ALISTAIR', "Well, it’s kind of vague. You don’t know whether you printed them off?")
 		speak('BIANCA', "Liam, we don’t have a printer. Where did you print them?")
-		if choose("I printed them at the local copy center.", "I don't know")
+		if choose("I printed them at the local copy center.", "I don't know") then
 			play('scene03_03_aaa')
 		else
 			speak('BIANCA', "You don’t know how you printed the pamphlets.")
@@ -29,9 +29,9 @@ else
 	speak('ALISTAIR', "Right, right. And which street was it?")
 	if choose("I don't know", "27th Street.") then
 		speak('LIAM', "I don’t know. I was walking on a street somewhere.")
-		speak('ALISTAIR', "Yes, we gathered you were walking on a street. And the destination was, indeed, "somewhere\".")
+		speak('ALISTAIR', "Yes, we gathered you were walking on a street. And the destination was, indeed, \"somewhere\".")
 		speak('BIANCA', "I’ve seen you. You never take flyers from strangers. You always just ignore them.")
-		if choose("They always want money, anyway", "Should I be accepting them?")
+		if choose("They always want money, anyway", "Should I be accepting them?") then
 			speak("LIAM", "They’re always just trying to get your money, anyway.")
 			speak("ALISTAIR", "That’s true.")
 			speak("BIANCA", "You took 4 flyers from this man -- 4 different flyers with 4 different designs -- aiming to invite us all to 4 different things?")

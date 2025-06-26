@@ -59,7 +59,8 @@ setSpeed(.05)
 driveWait(10)
 
 speak('ALISTAIR', "Hang on, this thing moves? A marvel of the industrial era! The people cheered and clapped!")
-speak('CYN', "Heehee.")
+--speak('CYN', "Heehee.")
 exitNVL()
 
 teleport('nighttime', true)
+play('scene3_00')

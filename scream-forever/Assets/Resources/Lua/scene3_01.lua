@@ -1,10 +1,4 @@
-setSpeed(20)
-enter('cyn')
-enter('bianca')
-enter('alistair')
-fade('normal')
 
-driveWait(300)
 
 enterNVL()
 speak('ALISTAIR', "So what’s this whole thing about, anyway?")
@@ -30,7 +24,7 @@ speak('ALISTAIR', "Honestly, you’d always struck me as a guy who’d have a si
 speak('ALISTAIR', "Then you went and moved to the city and left me all by my lonesome. Funny how life works.")
 exitNVL()
 
-driveDist(50)
+driveWait(50)
 
 enterNVL()
 speak('BIANCA', "Oh, I found it. It's the pamphlet Liam gave me.")
