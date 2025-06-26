@@ -38,6 +38,7 @@ speak('BIANCA', "You were just fidgeting around the entire time as if you didnâ€
 
 if choose("I like the outdoors", "Guess it's not my thing") then
 	speak('LIAM', "No, I like the outdoors.")
+	speak('BIANCA', "No, you don't.")
 else
 	speak('LIAM', "Fine, itâ€™s not exactly my thing. But I only went because you wanted to go.")
 	speak('BIANCA', "There we go. The truth comes out. You only went because I wanted to go.")

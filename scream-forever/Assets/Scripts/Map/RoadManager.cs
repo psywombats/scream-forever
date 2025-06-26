@@ -36,6 +36,26 @@ public class RoadManager : MonoBehaviour
         {
             SpawnNextNode();
         }
+
+        if (Global.Instance.Avatar.transform.position.z > 2500)
+        {
+            var toTransform = new List<Transform>();
+            toTransform.AddRange( activeNodes.Select(node => node.transform));
+            //toTransform.Add( Global.Instance.Maps.ActiveMap.terrain.transform ); //buggy
+            foreach (Transform trans in Global.Instance.Maps.ActiveMap.eventLayer.transform)
+            {
+                toTransform.Add( trans );
+            }
+            
+            foreach (var trans in toTransform)
+            {
+                var position = trans.position;
+                trans.position = new Vector3(
+                    position.x,
+                    position.y,
+                    position.z - 2500);
+            }
+        }
     }
 
     private void SpawnNextNode()

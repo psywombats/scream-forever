@@ -4,8 +4,6 @@ if choose("You know. Someone you haven't met.", "John.") then
 	if not choose("John.", "Philip.") then
 		setSwitch("friendsNameIsPhilip", true)
 	end
-else
-	setSwitch("friendsNameIsPhilip", true)
 end
 
 if getSwitch("friendsNameIsPhilip") then
