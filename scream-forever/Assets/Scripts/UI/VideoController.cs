@@ -19,7 +19,9 @@ public class VideoController : MonoBehaviour
         Global.Instance.Maps.ActiveMap.terrain.gameObject.SetActive(false);
         Global.Instance.Maps.ActiveMap.road.gameObject.SetActive(false);
         
+        Global.Instance.Data.SetSwitch("kill_lights", true);
         Global.Instance.Avatar.GetComponent<Rigidbody>().useGravity = false;
+        
         var boundsX = Global.Instance.Avatar.rotationXBounds;
         var boundsY = Global.Instance.Avatar.rotationYBounds;
         var stickyAllowance = Global.Instance.Avatar.stickyAllowance;
@@ -51,6 +53,8 @@ public class VideoController : MonoBehaviour
         }
         
         Global.Instance.Avatar.GetComponent<Rigidbody>().useGravity = true;
+        Global.Instance.Data.SetSwitch("kill_lights", false);
+        
         Global.Instance.Avatar.rotationXBounds = boundsX;
         Global.Instance.Avatar.rotationYBounds = boundsY;
         Global.Instance.Avatar.stickyAllowance = stickyAllowance;

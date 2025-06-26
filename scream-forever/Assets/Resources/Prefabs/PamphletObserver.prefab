@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1285c2fa2209420ba06afa06723c431e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fromPos: {x: 40, y: -2, z: -20}
+  fromPos: {x: 41, y: -2, z: -20}
   pivot: {fileID: 6300888688931948523}
   translate: {fileID: 2212265774505853526}
   transDuration: 0.5

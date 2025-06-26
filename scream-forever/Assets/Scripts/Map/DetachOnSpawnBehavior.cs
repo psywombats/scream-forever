@@ -4,6 +4,7 @@ public class DetachOnSpawnBehavior : MonoBehaviour
 {
     [SerializeField] protected string triggerSwitch;
     [SerializeField] protected GameObject disableChild;
+    [SerializeField] protected bool playerX;
 
     private bool spawned;
     private Vector3 offset;
@@ -40,7 +41,10 @@ public class DetachOnSpawnBehavior : MonoBehaviour
         var map = Global.Instance.Maps.ActiveMap;
         var avAt = Global.Instance.Avatar.transform.position;
 
-        var position = new Vector3(transform.position.x, 0, avAt.z + offset.z);
+        var position = new Vector3(
+            playerX ? avAt.x + offset.x : transform.position.x, 
+            0, 
+            avAt.z + offset.z);
         var height = map.terrain.GetHeightAt(position);
         transform.position = new Vector3(position.x, height, position.z);
     }

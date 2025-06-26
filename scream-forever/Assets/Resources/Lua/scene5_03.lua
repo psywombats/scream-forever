@@ -4,29 +4,29 @@ setSwitch('scene5_alistair', true)
 enterNVL()
 speak('ALISTAIR', "Now do you any of you idiots want a drink or a snack?", 'no_highlight')
 if choose("No thanks.", "Just an energy drink.") then
-	speak('ALISTAIR', "Fine. Bianca?")
+	speak('ALISTAIR', "Fine. Bianca?", 'no_highlight')
 	setSwitch('askedForDrink', true)
 else
-	speak('ALISTAIR', "Noted. Bianca?")
+	speak('ALISTAIR', "Noted. Bianca?", 'no_highlight')
 end
 speak('BIANCA', "Uh, water for me, thanks.", 'no_anim')
 speak('ALISTAIR', "Not a fan of the tap?", 'no_highlight')
 speak('BIANCA', "I am. I just didn’t pack a bottle of water with me.", 'no_anim')
 speak('ALISTAIR', "And you, Cynthia?", 'no_highlight')
 speak('CYN', "I’ll come in with you, actually. Need the fresh air.")
-speak('ALISTAIR', "Understandable. Let’s adventure.")
+speak('ALISTAIR', "Understandable. Let’s adventure.", 'no_highlight')
 exitNVL()
 
 exit('CYN')
 wait(1)
 
 enterNVL()
-speak('ALISTAIR', "And the petrol's on me.")
+speak('ALISTAIR', "And the petrol's on me.", 'no_highlight')
 choose("No, it's not", "No thanks, I'll cover.")
-speak('ALISTAIR', "Come on. You're the one driving! It's on me.")
+speak('ALISTAIR', "Come on. You're the one driving! It's on me.", 'no_highlight')
 speak('BIANCA', "He thanks you for the kind offer. And he accepts it.", 'no_anim')
-speak('ALISTAIR', "That would be better if it came out of his mouth.")
-speak('ALISTAIR', "But I won’t push my luck. Tends to bite me in the bum. Ciao for now!")
+speak('ALISTAIR', "That would be better if it came out of his mouth.", 'no_highlight')
+speak('ALISTAIR', "But I won’t push my luck. Tends to bite me in the bum. Ciao for now!", 'no_highlight')
 exitNVL()
 setSwitch('scene5_alistair', false)
 
@@ -56,10 +56,11 @@ speak('LIAM', "If it were a naturist retreat, Bianca, we’d be naked.")
 speak('BIANCA', "You know what I mean. You don’t like all that nature crap. So why?")
 speak('BIANCA', "And please cut out the deception, Liam. I want the truth.")
 speak('BIANCA', "Tell me now or this is going to grow into a serious problem.")
+exitNVL()
+
 if choose("(Tell her)", "(Don't tell her)") then
 	setSwitch("youToldHer", true)
-	exitNVL()
-	
+
 	wait(3)
 	
 	enterNVL()
@@ -86,7 +87,7 @@ if choose("(Tell her)", "(Don't tell her)") then
 	
 	wait(.5)
 	choose("You Heard Me", "You Heard Me")
-	wait(2.2)
+	wait(1)
 	
 	enterNVL()
 	speak('BIANCA', "I see.")
@@ -106,17 +107,17 @@ else
 	wait(3)
 	
 	enterNVL()
-	speak('LIAM', "I just like trees..")
+	speak('LIAM', "I just like trees.")
 	speak('BIANCA', "I'm sorry?")
 	speak('BIANCA', "Did you just say that?")
 	choose("Did I just say that?", "No, I didn't.")
 	speak('BIANCA', "What the...")
 	exitNVL()
 	
-	wait(1.5)
+	wait(1)
 	
 	enterNVL()
-	speak('BIANCA', "I think you need time alone")
+	speak('BIANCA', "I think you need time alone.")
 	exitNVL()
 	
 	exit('BIANCA')

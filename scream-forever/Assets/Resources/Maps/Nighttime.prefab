@@ -355,6 +355,7 @@ MonoBehaviour:
   terrain: {fileID: 5699145245613958401}
   road: {fileID: 5501610803951765163}
   fogger: {fileID: 8576691453004855473}
+  fog: {fileID: 1325403802626262311}
 --- !u!114 &8894643808584589312
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -337,7 +337,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventLayer: {fileID: 5234343814323305450}
-  startPos: {fileID: 924873487822492910}
   skybox: {fileID: 2100000, guid: dd186f3b7e419164caeb3672debef786, type: 2}
   sun: {fileID: 0}
   playerPrefab: {fileID: 6319694738979287973}
@@ -345,6 +344,7 @@ MonoBehaviour:
   terrain: {fileID: 2447599108450012335}
   road: {fileID: 8496664009246302089}
   fogger: {fileID: 5467038788023226056}
+  fog: {fileID: 7126348838196625582}
 --- !u!114 &8653567536057361681
 MonoBehaviour:
   m_ObjectHideFlags: 0

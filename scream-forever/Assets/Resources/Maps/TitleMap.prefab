@@ -1179,11 +1179,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventLayer: {fileID: 1706717421403120342}
-  startPos: {fileID: 4418476301413101465}
   skybox: {fileID: 2100000, guid: 97637a2a763b7f24b8da4e139e4144ca, type: 2}
+  sun: {fileID: 0}
+  playerPrefab: {fileID: 0}
+  firstScript: 
   terrain: {fileID: 8792965772777295916}
   road: {fileID: 9218594180136505057}
   fogger: {fileID: 7091856327073741530}
+  fog: {fileID: 7713181815655341200}
 --- !u!114 &9218121511338180127
 MonoBehaviour:
   m_ObjectHideFlags: 0
