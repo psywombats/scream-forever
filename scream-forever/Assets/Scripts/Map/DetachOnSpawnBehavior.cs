@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class DetachOnSpawnBehavior : MonoBehaviour
 {
-    [SerializeField] protected string triggerSwitch;
-    [SerializeField] protected GameObject disableChild;
-    [SerializeField] protected bool playerX;
+    [SerializeField] public string triggerSwitch;
+    [SerializeField] public GameObject disableChild;
+    [SerializeField] public bool playerX;
 
     private bool spawned;
     private Vector3 offset;
@@ -47,5 +47,6 @@ public class DetachOnSpawnBehavior : MonoBehaviour
             avAt.z + offset.z);
         var height = map.terrain.GetHeightAt(position);
         transform.position = new Vector3(position.x, height, position.z);
+        transform.SetParent(Global.Instance.Maps.ActiveMap.eventLayer.transform, worldPositionStays:true);
     }
 }

@@ -69,6 +69,7 @@ public class LuaCutsceneContext : LuaContext
         Lua.Globals["bump"] = (Action)Bump;
         Lua.Globals["allowDriving"] = (Action<DynValue>)AllowDriving;
         Lua.Globals["setSpeed"] = (Action<DynValue>)SetSpeed;
+        Lua.Globals["impact"] = (Action)Impact;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -206,6 +207,11 @@ public class LuaCutsceneContext : LuaContext
     private void SetSpeed(DynValue speed)
     {
         Global.Instance.Avatar.Speed = (float)speed.Number;
+    }
+
+    private void Impact()
+    {
+        Global.Instance.StartCoroutine(MapOverlayUI.Instance.Hit.HitRoutine());
     }
 
     private void AllowDriving(DynValue allow)

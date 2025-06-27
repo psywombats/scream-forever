@@ -223,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerSwitch: spawn_gas
   disableChild: {fileID: 6316280746683220963}
+  playerX: 0
 --- !u!1 &5986664807645317836
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,7 +822,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 742675707786725344}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &5099496634818761331
+--- !u!1001 &5850039624342663631
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -829,107 +830,71 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3429685915938593592}
     m_Modifications:
-    - target: {fileID: 3223968165006005793, guid: 5a011ffa985223540aba23596da6eabf,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 05c1c351d962f4f41a3b19f35dffea38,
-        type: 3}
-    - target: {fileID: 7346280460274562347, guid: 5a011ffa985223540aba23596da6eabf,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 7346280460274562347, guid: 5a011ffa985223540aba23596da6eabf,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 7346280460274562347, guid: 5a011ffa985223540aba23596da6eabf,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 7346280460274562347, guid: 5a011ffa985223540aba23596da6eabf,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 7346280460274562347, guid: 5a011ffa985223540aba23596da6eabf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735784476513130405, guid: 5a011ffa985223540aba23596da6eabf,
-        type: 3}
-      propertyPath: m_Name
-      value: Alistair
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064561683612720580, guid: 5a011ffa985223540aba23596da6eabf,
+    - target: {fileID: 8647365655546117752, guid: 317bc6f75140ae94284551fc49718d98,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.98
       objectReference: {fileID: 0}
-    - target: {fileID: 8064561683612720580, guid: 5a011ffa985223540aba23596da6eabf,
+    - target: {fileID: 8647365655546117752, guid: 317bc6f75140ae94284551fc49718d98,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 5.85
       objectReference: {fileID: 0}
-    - target: {fileID: 8064561683612720580, guid: 5a011ffa985223540aba23596da6eabf,
+    - target: {fileID: 8647365655546117752, guid: 317bc6f75140ae94284551fc49718d98,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 2.4
       objectReference: {fileID: 0}
-    - target: {fileID: 8064561683612720580, guid: 5a011ffa985223540aba23596da6eabf,
+    - target: {fileID: 8647365655546117752, guid: 317bc6f75140ae94284551fc49718d98,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8064561683612720580, guid: 5a011ffa985223540aba23596da6eabf,
+    - target: {fileID: 8647365655546117752, guid: 317bc6f75140ae94284551fc49718d98,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8064561683612720580, guid: 5a011ffa985223540aba23596da6eabf,
+    - target: {fileID: 8647365655546117752, guid: 317bc6f75140ae94284551fc49718d98,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8064561683612720580, guid: 5a011ffa985223540aba23596da6eabf,
+    - target: {fileID: 8647365655546117752, guid: 317bc6f75140ae94284551fc49718d98,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8064561683612720580, guid: 5a011ffa985223540aba23596da6eabf,
+    - target: {fileID: 8647365655546117752, guid: 317bc6f75140ae94284551fc49718d98,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8064561683612720580, guid: 5a011ffa985223540aba23596da6eabf,
+    - target: {fileID: 8647365655546117752, guid: 317bc6f75140ae94284551fc49718d98,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8064561683612720580, guid: 5a011ffa985223540aba23596da6eabf,
+    - target: {fileID: 8647365655546117752, guid: 317bc6f75140ae94284551fc49718d98,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9157606162861013251, guid: 5a011ffa985223540aba23596da6eabf,
+    - target: {fileID: 8985120916245623833, guid: 317bc6f75140ae94284551fc49718d98,
         type: 3}
-      propertyPath: triggerSwitch
-      value: scene5_alistair
+      propertyPath: m_Name
+      value: AlistairStandee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5a011ffa985223540aba23596da6eabf, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 317bc6f75140ae94284551fc49718d98, type: 3}
 --- !u!4 &2967336917212483511 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8064561683612720580, guid: 5a011ffa985223540aba23596da6eabf,
+  m_CorrespondingSourceObject: {fileID: 8647365655546117752, guid: 317bc6f75140ae94284551fc49718d98,
     type: 3}
-  m_PrefabInstance: {fileID: 5099496634818761331}
+  m_PrefabInstance: {fileID: 5850039624342663631}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6613665032399865578
 PrefabInstance:

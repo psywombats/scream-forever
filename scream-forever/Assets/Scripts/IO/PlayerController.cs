@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour, IInputListener
 {
     [SerializeField] public new Camera camera;
     [SerializeField] public Rigidbody body;
+    [SerializeField] public GameObject passengerArea;
     [Space]
     [SerializeField] [Range(0f, 9f)] private float mouseRotateSensitivity = .1f;
     [SerializeField] public Vector2 rotationXBounds = new Vector2(-70, 70);
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour, IInputListener
     public bool IsPaused => pauseCount > 0;
 
     public bool IsDrivingAllowed { get; set; } = true;
+    public bool IsHardBraking { get; set; } = false;
     private bool isScriptControlled;
 
     private float lastRPM;
@@ -286,7 +288,7 @@ public class PlayerController : MonoBehaviour, IInputListener
 
     private void HandlePhysics()
     {
-        if (!IsDrivingAllowed)
+        if (!IsDrivingAllowed && !IsHardBraking)
         {
             Speed = 0;
             wheelRotation = 0;
@@ -313,7 +315,7 @@ public class PlayerController : MonoBehaviour, IInputListener
         Speed = Mathf.Clamp(Speed, 0, maxSpeed);
         TotalTraversed += Speed * Time.deltaTime;
         body.velocity = transform.forward * Speed;
-
+        
         wheelRotation = Mathf.Clamp(wheelRotation, -maxTurn, maxTurn);
         var angles = transform.localRotation.eulerAngles;
         angles.y += wheelRotation * Time.deltaTime;

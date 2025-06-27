@@ -48,9 +48,12 @@ public class MultibumpComponent : MonoBehaviour
     
     public void Bump(float mult = 1f)
     {
-        foreach (var bump in bumps)
+        if (isActiveAndEnabled)
         {
-            StartCoroutine(bump.SpeedBumpRoutine(mult));
+            foreach (var bump in bumps)
+            {
+                StartCoroutine(bump.SpeedBumpRoutine(mult));
+            }
         }
     }
 }

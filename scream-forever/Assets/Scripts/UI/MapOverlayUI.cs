@@ -54,4 +54,17 @@ public class MapOverlayUI : MonoBehaviour
             return video;
         }
     }
+    
+    private AnimalHitController hit;
+    public AnimalHitController Hit
+    {
+        get
+        {
+            if (hit == null)
+            {
+                hit = FindObjectOfType<AnimalHitController>();
+            }
+            return hit;
+        }
+    }
 }
