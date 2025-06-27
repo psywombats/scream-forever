@@ -5,6 +5,8 @@ speak('BIANCA', "Wow, he’s running quite fast.")
 speak('CYN', "Yeah. He’s got long legs, hasn’t he?")
 exitNVL()
 
+playSFX('door')
+wait(.8)
 enter('ALISTAIR')
 wait(.5)
 

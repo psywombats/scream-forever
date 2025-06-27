@@ -1,4 +1,5 @@
 setSwitch('gps_on', false)
+playSFX('impact')
 impact()
 wait(3.5)
 

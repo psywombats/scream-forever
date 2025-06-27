@@ -3,9 +3,9 @@ speak('BIANCA', "It's pretty quiet in here, isn't it?")
 exitNVL()
 
 wait(1)
-setSwitch('emit_click', true)
+playSFX('knob')
 wait(.8)
-playBGM('deeper')
+playBGM('radio_tune')
 
 enterNVL()
 speak('LIAM', "Okay, I might be worried. I haven’t seen him in a long time.")
