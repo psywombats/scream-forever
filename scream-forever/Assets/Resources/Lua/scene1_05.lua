@@ -23,7 +23,9 @@ allowDriving(false)
 wait(2)
 
 setSwitch('scene1_cyn' , false)
-wait(1.5)
+wait(.7)
+playSFX('door')
+wait(.8)
 enter('CYN')
 
 play('scene1_06')
