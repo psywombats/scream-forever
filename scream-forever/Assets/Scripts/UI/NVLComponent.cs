@@ -22,6 +22,7 @@ public class NVLComponent : MonoBehaviour
     public PortraitComponent slotB => Global.Instance.Avatar.slotB;
     public PortraitComponent slotC => Global.Instance.Avatar.slotC;
     public PortraitComponent slotD => Global.Instance.Avatar.slotD;
+    public PortraitComponent slotE => Global.Instance.Avatar.slotE;
 
     public GameObject backerArea;
     public ExpanderComponent backer;
@@ -170,6 +171,7 @@ public class NVLComponent : MonoBehaviour
             case "b": portrait = slotB; break;
             case "c": portrait = slotC; break;
             case "d": portrait = slotD; break;
+            case "e": portrait = slotE; break;
         }
         return portrait;
     }
@@ -180,6 +182,7 @@ public class NVLComponent : MonoBehaviour
         if (slotB.Speaker == speaker) return slotB;
         if (slotC.Speaker == speaker) return slotC;
         if (slotD.Speaker == speaker) return slotD;
+        if (slotE.Speaker == speaker) return slotE;
         return null;
     }
 
@@ -190,6 +193,7 @@ public class NVLComponent : MonoBehaviour
             slotB,
             slotC,
             slotD,
+            slotE
         };
     }
 }

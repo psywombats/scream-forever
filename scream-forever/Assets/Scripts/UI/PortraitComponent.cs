@@ -17,6 +17,9 @@ public class PortraitComponent : MonoBehaviour
     [SerializeField] private float highlightTime = .3f;
     [SerializeField] private float highlightIntensity = .2f;
     [SerializeField] private float enterTime = .5f;
+    [Space] 
+    [SerializeField] private GlitchImageEffect glitch;
+    private bool UsePointers => glitch == null;
 
     public SpeakerData Speaker => IndexDatabase.Instance.Speakers.GetData(speakerTag);
     
@@ -30,37 +33,19 @@ public class PortraitComponent : MonoBehaviour
         standee.Hide();
     }
 
-    private Sprite GetSpriteForExpr(string expr)
-    {
-        if (string.IsNullOrEmpty(expr))
-        {
-            return Speaker.sprite;
-        }
-        Sprite found = null;
-        foreach (var sub in Speaker.exprs)
-        {
-            if (sub.key == expr)
-            {
-                found = sub.sprite;
-                break;
-            }
-        }
-        if (found == null)
-        {
-            found = Speaker.sprite;
-            Debug.LogWarning("Couldn't find expression " + expr + " for " + Speaker.Key);
-        }
-        return found;
-    }
 
     public IEnumerator HighlightRoutine(bool showPointers = true)
     {
         var tasks = new List<IEnumerator>();
+        if (glitch != null)
+        {
+            StartCoroutine(glitch.FadeInRoutine(highlightTime));
+        }
         if (highlight.intensity != highlightIntensity)
         {
             tasks.Add(CoUtils.RunTween(highlight.DOIntensity(highlightIntensity, highlightTime)));
         }
-        if (showPointers)
+        if (showPointers && UsePointers)
         {
             tasks.AddRange(Pointers.Select(pointer => CoUtils.RunTween(pointer.DOFade(1f, highlightTime))));
         }
@@ -76,6 +61,10 @@ public class PortraitComponent : MonoBehaviour
             yield break;
         }
 
+        if (glitch != null)
+        {
+            StartCoroutine(glitch.FadeOutRoutine(highlightTime));
+        }
         var tasks = new List<IEnumerator>()
         {
             CoUtils.RunTween(highlight.DOIntensity(0, highlightTime))

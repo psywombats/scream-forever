@@ -24,4 +24,4 @@ wait(0.5)
 
 fade('black', 0.1)
 teleport('Nighttime_LightGreen', true)
-play('scene4_01')
+play('scene4_00')

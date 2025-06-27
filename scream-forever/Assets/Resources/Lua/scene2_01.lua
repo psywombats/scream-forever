@@ -55,7 +55,7 @@ speak('LIAM', "It is. We should probably leave before it gets late.")
 exitNVL()
 
 allowDriving(true)
-setSpeed(.05)
+setSpeed(1)
 driveWait(10)
 
 speak('ALISTAIR', "Hang on, this thing moves? A marvel of the industrial era! The people cheered and clapped!")

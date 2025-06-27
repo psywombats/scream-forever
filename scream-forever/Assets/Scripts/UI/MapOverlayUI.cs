@@ -67,4 +67,17 @@ public class MapOverlayUI : MonoBehaviour
             return hit;
         }
     }
+    
+    private MomController mom;
+    public MomController Mom
+    {
+        get
+        {
+            if (mom == null)
+            {
+                mom = FindObjectOfType<MomController>();
+            }
+            return mom;
+        }
+    }
 }

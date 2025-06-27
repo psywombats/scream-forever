@@ -13,7 +13,7 @@ speak('ALISTAIR', "Yo.")
 speak('BIANCA', "I’ve heard you restore old cars in the garage.")
 speak('ALISTAIR', "Yeah. My car’s in the shop at the moment, actually, otherwise I wouldn’t have asked for a ride in.")
 speak('CYN', "You didn’t want to hang out with three of the most exciting people in the world having the time of their lives?")
-speak('ALISTAIR', "Ha ha. Very funny. I didn’t realise it would be such a fun and dandy time, then, did I?")
+speak('ALISTAIR', "Ha ha. Very funny. I didn’t realize it would be such a fun and dandy time, then, did I?")
 speak('CYN', "No awkward moments at all.")
 exitNVL()
 
@@ -31,8 +31,9 @@ else
 	speak('ALISTAIR', "Largely because I was the Brit with the funny accent, and Liam was the guy who refused to chatter one bit.")
 end
 speak('BIANCA', "Actually, that’s believable.")
-choose("Alright...", "Okay...")
 exitNVL()
+choose("Alright...", "Okay...")
+
 
 driveWait(250)
 
@@ -77,8 +78,8 @@ speak('ALISTAIR', "On the contrary. I think that spirituality doesn’t have to 
 speak('BIANCA', "Well, I don’t think many people can claim to take care of that space.")
 speak('ALISTAIR', "You’re talking about it as if it’s a personal garden that you take care of. It doesn’t belong to you.")
 speak('BIANCA', "Our minds are personal gardens connected by paths. So we take care of them, connect them, and enjoy their patterns.")
-speak('BIANCA', "They need nutrient, exercise and water to survive... so that’s why it’s paramount to take care of the mind, body and soul.")
-speak('BIANCA', "No, I don’t think I will...")
+speak('BIANCA', "They need nutrients, exercise and water to survive... so that’s why it’s paramount to take care of the mind, body and soul.")
+speak('ALISTAIR', "No, I don’t think I will...")
 speak('CYN', "Oh, when we get to the camp, we should get some puzzles and just have a great big puzzle-off!")
 speak('ALISTAIR', "Sure. Sounds like fun.")
 speak('LIAM', "Can't tell if you're joking.")

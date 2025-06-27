@@ -34,7 +34,7 @@ choose("Be quiet, now.", "Tighten flapping lips.")
 speak('ALISTAIR', "You get ugly when you’re angry.")
 speak('LIAM', "I’d shut up if I were you right now.")
 speak('ALISTAIR', "And why should I? After what you did to your mother?")
-exitNVl()
+exitNVL()
 choose("........", "........")
 
 play('scene6_03')

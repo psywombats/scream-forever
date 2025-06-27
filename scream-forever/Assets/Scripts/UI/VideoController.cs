@@ -13,7 +13,7 @@ public class VideoController : MonoBehaviour
     [SerializeField] private Vector2 altBoundsY;
     [SerializeField] private float altAllowance;
 
-    public IEnumerator ShowRoutine()
+    public IEnumerator ShowRoutine(float quickCut)
     {
         Global.Instance.Maps.ActiveMap.fog.gameObject.SetActive(false);
         Global.Instance.Maps.ActiveMap.terrain.gameObject.SetActive(false);
@@ -37,12 +37,22 @@ public class VideoController : MonoBehaviour
         {
             obj.SetActive(false);
         }
+
+        var elapsed = 0f;
         player.Play();
-        yield return CoUtils.Wait(1f);
-        while (player.isPlaying)
+        while (!player.isPlaying && elapsed < 2f)
         {
+            elapsed += Time.deltaTime;
             yield return null;
         }
+
+        elapsed = 0f;
+        while (player.isPlaying && (quickCut == 0 || elapsed < quickCut))
+        {
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        player.Stop();
         foreach (var obj in toEnable)
         {
             obj.SetActive(false);

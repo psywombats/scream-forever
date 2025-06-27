@@ -52,7 +52,8 @@ else
 	speak('BIANCA', "He’s... okay at it. But he brought much more than that, just... a lot later on.")
 end
 
-speak('BIANCA', "A lot later on. You didn’t even kiss until the.. seventh date, wasn’t it?")
+speak('CYN', "A lot later on. You didn’t even kiss until the.. seventh date, wasn’t it?")
+speak('BIANCA', "Did I honestly tell you that?")
 speak('CYN', "I remember everything, Bee. My mind is a steel trap.")
 speak('ALISTAIR', "Seven dates! That's a long time...")
 

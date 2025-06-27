@@ -567,6 +567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6759284035715216601}
+  - component: {fileID: 8653539069799297099}
   m_Layer: 0
   m_Name: Streetlight
   m_TagString: Untagged
@@ -594,3 +595,19 @@ Transform:
   - {fileID: 5969406802231043270}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 99.34, y: -59.2, z: 0}
+--- !u!114 &8653539069799297099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7959442205414768634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498adde12c044cb680762ecfcf969e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerSwitch: kill_lights
+  toEnable: []
+  toDisable:
+  - {fileID: 7673598810633140829}

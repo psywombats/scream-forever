@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour, IInputListener
     [SerializeField] public PortraitComponent slotB;
     [SerializeField] public PortraitComponent slotC;
     [SerializeField] public PortraitComponent slotD;
+    [SerializeField] public PortraitComponent slotE;
     
     public bool IsCrashing { get; set; }
     public bool IsSpeeding { get; set; }

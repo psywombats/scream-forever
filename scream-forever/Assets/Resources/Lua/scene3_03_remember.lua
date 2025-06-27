@@ -9,4 +9,4 @@ enterNVL()
 speak('BIANCA', "Huh.")
 exitNVL()
 
-play('scene3_03_04')
+play('scene3_04')

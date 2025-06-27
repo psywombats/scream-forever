@@ -70,6 +70,7 @@ public class LuaCutsceneContext : LuaContext
         Lua.Globals["allowDriving"] = (Action<DynValue>)AllowDriving;
         Lua.Globals["setSpeed"] = (Action<DynValue>)SetSpeed;
         Lua.Globals["impact"] = (Action)Impact;
+        Lua.Globals["mom"] = (Action<DynValue>)Mom;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -216,7 +217,7 @@ public class LuaCutsceneContext : LuaContext
 
     private void AllowDriving(DynValue allow)
     {
-        Global.Instance.Avatar.IsDrivingAllowed = false;
+        Global.Instance.Avatar.IsDrivingAllowed = allow.Boolean;
     }
 
     private void ViewPamphlet(DynValue pamphletTag)
@@ -226,6 +227,18 @@ public class LuaCutsceneContext : LuaContext
 
     private void Video(DynValue arg)
     {
-        RunRoutineFromLua(MapOverlayUI.Instance.Video.ShowRoutine());
+        RunRoutineFromLua(MapOverlayUI.Instance.Video.ShowRoutine(arg.IsNil() ? 0f : (float)arg.Number));
+    }
+
+    private void Mom(DynValue showhide)
+    {
+        if (showhide.Boolean)
+        {
+            MapOverlayUI.Instance.Mom.MoveInFog();
+        }
+        else
+        {
+            MapOverlayUI.Instance.Mom.CancelFog();
+        }
     }
 }
