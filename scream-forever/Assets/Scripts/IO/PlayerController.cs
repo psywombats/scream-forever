@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System;
 using System.Collections;
+using FMODUnity;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -44,8 +45,25 @@ public class PlayerController : MonoBehaviour, IInputListener
     [SerializeField] public PortraitComponent slotC;
     [SerializeField] public PortraitComponent slotD;
     [SerializeField] public PortraitComponent slotE;
-    
-    public bool IsCrashing { get; set; }
+    [Space] 
+    [SerializeField] public EmitterList sfx;
+    [SerializeField] public EmitterList radios;
+    [SerializeField] public GameObject screechEmitter;
+    [SerializeField] public StudioEventEmitter crashEmitter;
+
+    private bool isCrashing;
+    public bool IsCrashing
+    {
+        get => isCrashing;
+        set
+        {
+            if (value && !isCrashing)
+            {
+                crashEmitter.Play();
+            }
+            isCrashing = value;
+        }
+    }
     public bool IsSpeeding { get; set; }
     
     private int pauseCount;
@@ -61,11 +79,20 @@ public class PlayerController : MonoBehaviour, IInputListener
     private bool acceleratedThisFrame;
     private float wheelRotation;
     private float timeSinceBrakes = 100f;
+
+    private float speed;
+    public float Speed
+    {
+        get => speed;
+        set
+        {
+            speed = value;
+            AudioManager.Instance.SetGlobalParam("Speed", SpeedRatio);
+        }
+    }
     
-    public float Speed { get; set; }
     public float SpeedRatio => Speed / maxSpeed;
     public float TotalTraversed { get; private set; }
-    public float RoadTraversed => transform.localPosition.z;
     
     public int CrashCount { get; set; }
 
@@ -98,6 +125,7 @@ public class PlayerController : MonoBehaviour, IInputListener
         HandleRoadLock();
         
         brakelightsArea.gameObject.SetActive(timeSinceBrakes <= .1f);
+        screechEmitter.gameObject.SetActive(timeSinceBrakes <= .1f && !IsHardBraking && SpeedRatio > .5f);
         timeSinceBrakes += Time.deltaTime;
 
         if (IsSpeeding)

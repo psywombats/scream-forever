@@ -58,6 +58,8 @@ speak('BIANCA', "And please cut out the deception, Liam. I want the truth.")
 speak('BIANCA', "Tell me now or this is going to grow into a serious problem.")
 exitNVL()
 
+playBGM('tension')
+
 if choose("(Tell her)", "(Don't tell her)") then
 	setSwitch("youToldHer", true)
 

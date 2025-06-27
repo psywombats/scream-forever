@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{7c79eeb1-3be5-4206-ba29-56740094dcf4}">
 		<property name="name">
-			<value>tbg_-_telling_her</value>
+			<value>tension</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -55,7 +55,7 @@
 			<destination>{a6b0b818-c2a0-4f0d-8169-8c0e709d109b}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{5af502cd-8836-4d9c-b345-8f72735fb99f}</destination>
+			<destination>{bae5aa07-437b-4a11-8299-f34f5f55dc32}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{0151d8cd-f9d7-4b87-8bdd-65cb1ab965d1}" />

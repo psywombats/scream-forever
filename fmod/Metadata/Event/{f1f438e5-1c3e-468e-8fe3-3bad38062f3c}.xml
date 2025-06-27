@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{f1f438e5-1c3e-468e-8fe3-3bad38062f3c}">
 		<property name="name">
-			<value>Tire Screech</value>
+			<value>screech</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -53,7 +53,7 @@
 			<destination>{f249e670-21c5-4fda-bceb-cdfb1d14da9a}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{5af502cd-8836-4d9c-b345-8f72735fb99f}</destination>
+			<destination>{04e84155-a4c2-4c18-b1ba-5ec6423a9b58}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{bd0fafbf-c7f8-4e4c-ae6c-1b0740a92856}" />
@@ -72,6 +72,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{66a949cb-1214-452f-8add-4c1b3576688e}">
+		<property name="volume">
+			<value>-4.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{bd994d41-74f0-4766-8f5d-648c631b39b3}</destination>
 		</relationship>
@@ -113,6 +116,7 @@
 	<object class="MixerBusEffectChain" id="{bd994d41-74f0-4766-8f5d-648c631b39b3}">
 		<relationship name="effects">
 			<destination>{a0e52f36-383e-409f-b7b4-c0fbb5860454}</destination>
+			<destination>{2ea031eb-a3cb-4129-b655-34dca643cb1c}</destination>
 			<destination>{66c0754f-77a4-4ed1-affd-ad2b949bdb9a}</destination>
 		</relationship>
 	</object>
@@ -125,6 +129,14 @@
 	</object>
 	<object class="MixerBusPanner" id="{3f8a6753-c2b0-41fc-ac72-94f6b7337c07}" />
 	<object class="MixerBusFader" id="{a0e52f36-383e-409f-b7b4-c0fbb5860454}" />
+	<object class="MultibandEqEffect" id="{2ea031eb-a3cb-4129-b655-34dca643cb1c}">
+		<property name="frequencyA">
+			<value>1260.87061</value>
+		</property>
+		<property name="qualityA">
+			<value>2.20689631</value>
+		</property>
+	</object>
 	<object class="SpatialiserEffect" id="{66c0754f-77a4-4ed1-affd-ad2b949bdb9a}" />
 	<object class="MixerBusFader" id="{356ce0b1-ce1d-4d6d-8331-8ffb91cc53ce}" />
 </objects>

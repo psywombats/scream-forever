@@ -1,6 +1,7 @@
 --play sfx
 
 setSwitch('gps_error', true)
+playSFX('gps_recalc')
 wait(1.5)
 setSwitch('gps_error', false)
 wait(1.5)
@@ -20,6 +21,7 @@ setSwitch('gps_on', true)
 setSwitch('gps_error', true)
 wait(3.0)
 setSwitch('gps_error', false)
+playSFX('gps_continue_70')
 
 driveWait(15)
 
@@ -57,6 +59,8 @@ speak('BIANCA', "Did I honestly tell you that?")
 speak('CYN', "I remember everything, Bee. My mind is a steel trap.")
 speak('ALISTAIR', "Seven dates! That's a long time...")
 
+setSwitch('gps_error', true)
+playSFX('gps_recalc')
 choose("It's not very long!", "I guess it's long...")
 
 speak('ALISTAIR', "You were much quicker with all those other girls you’ve kissed. Technically first date on all of them!")
@@ -68,7 +72,10 @@ speak('ALISTAIR', "My bad. It’s just that he’s usually well-known for being 
 if choose("That's none of your business, really.", "What, are you envoius?") then
 	speak('ALISTAIR', "Oh, isn’t it? Funny how that all fades away once you live a comfy life in The Big Apple.")
 	exitNVL()
-	driveWait(30)
+	driveWait(15)
+	setSwitch('gps_error', false)
+	playSFX('gps_continue_3000')
+	driveWait(15)
 	enterNVL()
 	speak('CYN', "That’s New York City, Alistair. Not DC.")
 	speak('ALISTAIR', "Oh. Right. The Big Pear, then.")
@@ -80,7 +87,10 @@ else
 	speak('LIAM', "You can talk. Half the amount of girls I’ve kissed -- you wouldn’t even meet that margin.")
 	speak('ALISTAIR', "Not a competition!")
 	exitNVL()
-	driveWait(15)
+	driveWait(8)
+	setSwitch('gps_error', false)
+	playSFX('gps_continue_3000')
+	driveWait(8)
 	enterNVL()
 	speak('ALISTAIR', "Especially bragging while you’re tied down. Quite a dangerous pursuit, my friend!")
 	speak('LIAM', "Don't say \"friend\" like that.")
@@ -105,6 +115,7 @@ exitNVL()
 
 driveWait(300)
 
+fadeOutBGM(3)
 fade('black', 4)
 teleport('Nighttime_PurpleMist', true)
 play('scene5_00')

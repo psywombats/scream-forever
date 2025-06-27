@@ -12,19 +12,23 @@ public class GpsComponent : MonoBehaviour
 
     public void Update()
     {
-        var off = Global.Instance.Avatar.SpeedRatio * unitsPerSpeed;
-        scroller.anchoredPosition = new Vector2(0, scroller.anchoredPosition.y + off);
-        
-        rotater.localRotation = quaternion.Euler(new Vector3(0, 0, 
-            Global.Instance.Avatar.transform.localRotation.eulerAngles.y * .07f));
-        
-        if (scroller.anchoredPosition.y > scroller.sizeDelta.y / 2)
+        if (Global.Instance.Avatar != null)
         {
-            scroller.anchoredPosition = new Vector2(0, -scroller.sizeDelta.y / 2f);
+            var off = Global.Instance.Avatar.SpeedRatio * unitsPerSpeed;
+            scroller.anchoredPosition = new Vector2(0, scroller.anchoredPosition.y + off);
+        
+            rotater.localRotation = quaternion.Euler(new Vector3(0, 0, 
+                Global.Instance.Avatar.transform.localRotation.eulerAngles.y * .07f));
+        
+            if (scroller.anchoredPosition.y > scroller.sizeDelta.y / 2)
+            {
+                scroller.anchoredPosition = new Vector2(0, -scroller.sizeDelta.y / 2f);
+            }
+            if (scroller.anchoredPosition.y < -scroller.sizeDelta.y / 2)
+            {
+                scroller.anchoredPosition = new Vector2(0, scroller.sizeDelta.y / 2f);
+            }
         }
-        if (scroller.anchoredPosition.y < -scroller.sizeDelta.y / 2)
-        {
-            scroller.anchoredPosition = new Vector2(0, scroller.sizeDelta.y / 2f);
-        }
+
     }
 }

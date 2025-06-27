@@ -4,6 +4,8 @@ enter('bianca')
 enter('alistair')
 fade('normal')
 
-driveWait(300)
+driveWait(150)
+playBGM('tension')
+driveWait(150)
 
 play('scene3_01')

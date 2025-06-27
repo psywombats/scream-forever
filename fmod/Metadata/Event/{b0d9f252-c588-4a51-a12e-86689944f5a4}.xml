@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{b0d9f252-c588-4a51-a12e-86689944f5a4}">
 		<property name="name">
-			<value>tbg_-_sometimes_goes_deeper_(instrumental)</value>
+			<value>radio_tune</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -55,7 +55,7 @@
 			<destination>{f0ef8401-84ea-4304-a233-ab36d5b46022}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{5af502cd-8836-4d9c-b345-8f72735fb99f}</destination>
+			<destination>{209296da-2a99-41e8-b86b-5064aa3da191}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{dfdac840-bf48-4a85-a708-2460190e5d02}" />

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{6a2e8db5-d12a-43f7-9491-c1c0c4d70e88}">
 		<property name="name">
-			<value>tbg_-_when_i_ride_with_you</value>
+			<value>ride</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -56,7 +56,7 @@
 			<destination>{aac6836e-47cb-42d8-a007-1ddf804352ef}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{5af502cd-8836-4d9c-b345-8f72735fb99f}</destination>
+			<destination>{209296da-2a99-41e8-b86b-5064aa3da191}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{0123bde7-63b5-491c-9771-b58c0adea4a7}" />

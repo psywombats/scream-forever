@@ -15,7 +15,7 @@ https://www.youtube.com/watch?v=K0_GCuim9kY
 </value>
 		</property>
 		<property name="name">
-			<value>Car Engine</value>
+			<value>engine</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -71,7 +71,7 @@ https://www.youtube.com/watch?v=K0_GCuim9kY
 			<destination>{31355081-4b37-43d9-b4f0-7410ad6d5cd5}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{5af502cd-8836-4d9c-b345-8f72735fb99f}</destination>
+			<destination>{04e84155-a4c2-4c18-b1ba-5ec6423a9b58}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{42a760f3-7917-4a8e-898f-6cb167fa9b37}">

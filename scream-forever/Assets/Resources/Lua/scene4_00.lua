@@ -3,6 +3,7 @@ enter('bianca')
 enter('alistair')
 setSpeed(20)
 
+playBGM('ride')
 fade('normal', 3)
 
 driveWait(300)

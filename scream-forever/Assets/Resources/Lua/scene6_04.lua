@@ -1,6 +1,8 @@
 enter('???', 'no_highlight')
 wait(2)
 
+playBGM('mom')
+
 enterNVL()
 speak('???', "LLLLLL L LL LLLL LLLLM LM LMLL MLM LML LLLLLLL")
 exitNVL()
@@ -76,6 +78,7 @@ exitNVL()
 wait(2)
 
 enterNVL()
+playBGM('none')
 speak('???', "Find Me Over And Over Again")
 exitNVL()
 exit('???')

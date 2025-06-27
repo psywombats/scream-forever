@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{c5d687ec-20c1-411e-ab93-5f065a69f2ec}">
 		<property name="name">
-			<value>Crows</value>
+			<value>crows</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -54,7 +54,7 @@
 			<destination>{cba71a46-0686-476e-8aef-12fb53721ce5}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{5af502cd-8836-4d9c-b345-8f72735fb99f}</destination>
+			<destination>{bebc6b70-584e-4439-8c45-7883d83f8e44}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{f57ca62f-4ffe-4cbd-ade8-2c61d65c5bb7}" />

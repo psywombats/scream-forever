@@ -1,3 +1,4 @@
+playBGM('none')
 video('short')
 
 setSwitch('needs_gas', false)

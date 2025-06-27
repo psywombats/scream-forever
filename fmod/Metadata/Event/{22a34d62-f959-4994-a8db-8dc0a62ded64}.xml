@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{22a34d62-f959-4994-a8db-8dc0a62ded64}">
 		<property name="name">
-			<value>Radio Noise Crackle</value>
+			<value>crackle</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -53,7 +53,7 @@
 			<destination>{7607ab73-c442-4c3a-abc4-ad1de22c91d3}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{5af502cd-8836-4d9c-b345-8f72735fb99f}</destination>
+			<destination>{04e84155-a4c2-4c18-b1ba-5ec6423a9b58}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{d379a9bf-cd3f-4026-9bca-855bede6c447}" />

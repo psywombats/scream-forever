@@ -1,6 +1,11 @@
+video(.3)
+wait(2)
+
 enterNVL()
 speak('BIANCA', "So...")
 speak('BIANCA', "Do you think our friends will get along alright?")
+exitNVL()
+
 
 if choose("If Cynthia has thick skin", "If Alistair behaves") then
 	speak('LIAM', "Yeah, I hope Cynthia has some thick skin. Alistair can be really something, sometimes.")

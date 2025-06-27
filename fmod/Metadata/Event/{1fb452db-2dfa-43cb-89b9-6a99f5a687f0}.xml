@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{1fb452db-2dfa-43cb-89b9-6a99f5a687f0}">
 		<property name="name">
-			<value>tbg_-_heartbeat_(uplift)</value>
+			<value>finale</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -55,7 +55,7 @@
 			<destination>{3d16cebe-140d-4a29-b205-e5cae2600b3d}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{5af502cd-8836-4d9c-b345-8f72735fb99f}</destination>
+			<destination>{bae5aa07-437b-4a11-8299-f34f5f55dc32}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{be250b0f-80c2-4a7f-80cf-0d7d42323d27}" />

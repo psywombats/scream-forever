@@ -54,6 +54,7 @@ speak('BIANCA', "Let's be off.")
 exitNVL()
 
 allowDriving(true)
+fadeOutBGM()
 fade('black')
 teleport('Residential2', true)
 play('scene2_00')

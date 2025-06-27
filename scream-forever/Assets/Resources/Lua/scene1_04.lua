@@ -2,7 +2,10 @@ enterNVL()
 speak('BIANCA', "It's pretty quiet in here, isn't it?")
 exitNVL()
 
-wait(2)
+wait(1)
+setSwitch('emit_click', true)
+wait(.8)
+playBGM('deeper')
 
 enterNVL()
 speak('LIAM', "Okay, I might be worried. I haven’t seen him in a long time.")

@@ -18,12 +18,8 @@ public class AudioManager : SingletonBehavior
 
     public static AudioManager Instance => Global.Instance.Audio;
 
-    [SerializeField] private StudioEventEmitter nightmareSnap;
-
     private EventInstance bgmEvent;
     private EventInstance sfxEvent;
-    private Dictionary<string, EventInstance> envEvents = new();
-    private Dictionary<string, string> envParams = new();
 
     public const string NoBGMKey = "none";
     private const string NoChangeBGMKey = "no_change";
@@ -52,70 +48,51 @@ public class AudioManager : SingletonBehavior
                 bgmEvent.stop(STOP_MODE.ALLOWFADEOUT);
                 bgmEvent.clearHandle();
             }
+
+            if (Global.Instance.Avatar != null)
+            {
+                foreach (var emitter in Global.Instance.Avatar.radios.emitters)
+                {
+                    emitter.emitter.Stop();
+                }
+            }
             if (key.StartsWith(NoBGMKey))
             {
                 return;
             }
-            foreach (var ev in envEvents.Values)
-            {
-                if (ev.hasHandle())
-                {
-                    ev.stop(STOP_MODE.ALLOWFADEOUT);
-                    ev.clearHandle();
-                }
-            }
-            envEvents.Clear();
             BaseVolume = 1f;
             SetVolume();
             CurrentBGMKey = key;
-            bgmEvent = RuntimeManager.CreateInstance($"event:/BGM/{key}");
-            bgmEvent.start();
+
+            if (Global.Instance.Avatar == null || !Global.Instance.Avatar.radios.TryPlay(key))
+            {
+                bgmEvent = RuntimeManager.CreateInstance($"event:/BGM/{key}");
+                bgmEvent.start();
+            }
         }
     }
 
-    public void PlaySFX(string sfxKey, GameObject src = null, Bank bank = Bank.SFX)
+    public void PlaySFX(string sfxKey, Bank bank = Bank.SFX)
     {
-        //var banksy = bank == Bank.BGM ? "BGM" : "Other/" + bank;
-        sfxEvent = RuntimeManager.CreateInstance($"event:/{bank}/{sfxKey}");
-        if (src != null)
-        {
-            RuntimeManager.AttachInstanceToGameObject(sfxEvent, src.transform);
-        }
-        sfxEvent.start();
-    }
-
-    public void PlayENV(string envKey, GameObject src = null)
-    {
-        if (envEvents.ContainsKey(envKey))
+        var avList = Global.Instance.Avatar.sfx;
+        if (avList.TryPlay(sfxKey))
         {
             return;
         }
-        var envEvent = RuntimeManager.CreateInstance($"event:/ENV/{envKey}");
-        if (src != null || Global.Instance.Avatar != null)
-        {
-            RuntimeManager.AttachInstanceToGameObject(envEvent, src == null ? Global.Instance.Avatar.transform : src.transform);
-        }
-        foreach (var param in envParams)
-        {
-            envEvent.setParameterByNameWithLabel(param.Key, param.Value);
-        }
-        envEvent.start();
-        envEvents[envKey] = envEvent;
-    }
-
-    public void SetENVParam(string key, string value)
-    {
-        envParams[key] = value;
+        
+        //var banksy = bank == Bank.BGM ? "BGM" : "Other/" + bank;
+        sfxEvent = RuntimeManager.CreateInstance($"event:/{bank}/{sfxKey}");
+        sfxEvent.start();
     }
 
     public void SetGlobalParam(string key, float value)
     {
-        FMODUnity.RuntimeManager.StudioSystem.setParameterByName(key, value);
+        RuntimeManager.StudioSystem.setParameterByName(key, value);
     }
 
     public void SetGlobalParam(string key, string value)
     {
-        FMODUnity.RuntimeManager.StudioSystem.setParameterByNameWithLabel(key, value);
+        RuntimeManager.StudioSystem.setParameterByNameWithLabel(key, value);
     }
 
     public void StopSFX()
@@ -123,41 +100,16 @@ public class AudioManager : SingletonBehavior
         sfxEvent.stop(STOP_MODE.ALLOWFADEOUT);
     }
 
-    public void StopENV()
-    {
-        foreach (var envEvent in envEvents.Values)
-        {
-            if (envEvent.hasHandle())
-            {
-                envEvent.stop(STOP_MODE.ALLOWFADEOUT);
-                envEvent.clearHandle();
-            } 
-        }
-        envEvents.Clear();
-    }
-
     public void SetVolume()
     {
         //var sfxBus = RuntimeManager.GetBus("bus:/SFX");
         var bgmBus = RuntimeManager.GetBus("bus:/BGM");
-        //var envBus = RuntimeManager.GetBus("bus:/UI");
-        //var uiBus = RuntimeManager.GetBus("bus:/ENV");
+        var envBus = RuntimeManager.GetBus("bus:/ENV");
+        //var uiBus = RuntimeManager.GetBus("bus:/UI");
         //sfxBus.setVolume(BaseVolume);
         bgmBus.setVolume(BaseVolume);
         //uiBus.setVolume(BaseVolume);
-        //envBus.setVolume(BaseVolume);
-    }
-
-    public void SetNightmare(bool isNightmare)
-    {
-        if (!nightmareSnap.IsPlaying() && isNightmare)
-        {
-            nightmareSnap.Play();
-        } 
-        else if (nightmareSnap.IsPlaying() && !isNightmare)
-        {
-            nightmareSnap.Stop();
-        }
+        envBus.setVolume(BaseVolume);
     }
 
     public IEnumerator FadeOutRoutine(float durationSeconds)
@@ -178,19 +130,9 @@ public class AudioManager : SingletonBehavior
             bgmEvent.stop(STOP_MODE.ALLOWFADEOUT);
             bgmEvent.clearHandle();
         }
-        StopENV();
 
         BaseVolume = 1.0f;
         SetVolume();
         PlayBGM(NoBGMKey);
-    }
-
-    public IEnumerator CrossfadeRoutine(string tag, Bank bank = Bank.BGM)
-    {
-        if (CurrentBGMKey != null && CurrentBGMKey != NoBGMKey)
-        {
-            yield return FadeOutRoutine(FadeSeconds);
-        }
-        PlayBGM(tag);
     }
 }

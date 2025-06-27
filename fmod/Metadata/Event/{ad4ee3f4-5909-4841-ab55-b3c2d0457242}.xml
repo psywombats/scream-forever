@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{ad4ee3f4-5909-4841-ab55-b3c2d0457242}">
 		<property name="name">
-			<value>tbg_-_i_cant_move</value>
+			<value>title</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -56,7 +56,7 @@
 			<destination>{5940f4ff-7202-4077-89c7-d82ac726d357}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{5af502cd-8836-4d9c-b345-8f72735fb99f}</destination>
+			<destination>{bae5aa07-437b-4a11-8299-f34f5f55dc32}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{d81f4eed-c217-4409-856d-c3b06546d805}" />

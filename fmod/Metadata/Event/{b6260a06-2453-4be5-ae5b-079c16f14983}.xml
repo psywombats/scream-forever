@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{b6260a06-2453-4be5-ae5b-079c16f14983}">
 		<property name="name">
-			<value>Rumble Strip</value>
+			<value>rumble</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -54,7 +54,7 @@
 			<destination>{c13c5410-7598-4446-936d-42b8e40517ae}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{5af502cd-8836-4d9c-b345-8f72735fb99f}</destination>
+			<destination>{04e84155-a4c2-4c18-b1ba-5ec6423a9b58}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{2d9d059a-6533-47cb-88dc-501285020e06}" />
@@ -86,6 +86,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{b5e2d810-eeaa-497c-ae0d-48a43e2eebe2}">
+		<property name="volume">
+			<value>9.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{86118735-d2b4-4020-98f0-e2ed04748891}</destination>
 		</relationship>
@@ -183,6 +186,7 @@
 	<object class="MixerBusEffectChain" id="{86118735-d2b4-4020-98f0-e2ed04748891}">
 		<relationship name="effects">
 			<destination>{381d7f60-d98a-4036-80c6-9f9e07ff7a80}</destination>
+			<destination>{686e417e-8454-411f-94b3-24b127ba1a48}</destination>
 			<destination>{16d15b23-bbdb-42ff-ba30-74246df2154a}</destination>
 		</relationship>
 	</object>
@@ -217,6 +221,17 @@
 	</object>
 	<object class="MixerBusPanner" id="{2b6f0c91-05a0-437c-858e-789d30a9cdcf}" />
 	<object class="MixerBusFader" id="{381d7f60-d98a-4036-80c6-9f9e07ff7a80}" />
+	<object class="MultibandEqEffect" id="{686e417e-8454-411f-94b3-24b127ba1a48}">
+		<property name="filterTypeA">
+			<value>9</value>
+		</property>
+		<property name="frequencyA">
+			<value>868.36615</value>
+		</property>
+		<property name="gainA">
+			<value>15.5172405</value>
+		</property>
+	</object>
 	<object class="SpatialiserEffect" id="{16d15b23-bbdb-42ff-ba30-74246df2154a}" />
 	<object class="AutomationPoint" id="{d9f31d0d-aa85-4bf4-85b2-7f3688b4154e}">
 		<property name="position">

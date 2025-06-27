@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{5962e6a2-2a7e-46c6-b8a1-64aeee1683a4}">
 		<property name="name">
-			<value>tbg_-_heartbeat_(mother)</value>
+			<value>mom</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -55,7 +55,7 @@
 			<destination>{ee4d03e3-6823-4a24-80d6-439226450bc8}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{5af502cd-8836-4d9c-b345-8f72735fb99f}</destination>
+			<destination>{bae5aa07-437b-4a11-8299-f34f5f55dc32}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{d3965b6e-a74c-4ce9-aab7-8530011d8654}" />

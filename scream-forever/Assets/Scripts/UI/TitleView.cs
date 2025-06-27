@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TitleView : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class TitleView : MonoBehaviour
     [SerializeField] private GameObject toNuke;
     [Space]
     [SerializeField] private List<string> orderedMapNames;
+    [SerializeField] private List<Button> buttons;
 
     private bool selected = false;
     
@@ -34,6 +36,10 @@ public class TitleView : MonoBehaviour
 
     private IEnumerator StartGameRoutine(string mapName)
     {
+        foreach (var button in buttons)
+        {
+            button.interactable = false;
+        }
         if (selected) yield break;
         selected = true;
         yield return CoUtils.RunTween(titleFader.DOFade(0f, 2.5f));

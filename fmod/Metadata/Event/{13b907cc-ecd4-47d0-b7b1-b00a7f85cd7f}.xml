@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{13b907cc-ecd4-47d0-b7b1-b00a7f85cd7f}">
 		<property name="name">
-			<value>tbg_-_biancas_favourite_viral_track</value>
+			<value>biancas_viral_song</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -56,7 +56,7 @@
 			<destination>{fb4d10b5-7205-41d9-b489-e0a2558af10b}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{5af502cd-8836-4d9c-b345-8f72735fb99f}</destination>
+			<destination>{209296da-2a99-41e8-b86b-5064aa3da191}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{f5384d26-3d1b-4bc0-825c-f1e435408c70}" />

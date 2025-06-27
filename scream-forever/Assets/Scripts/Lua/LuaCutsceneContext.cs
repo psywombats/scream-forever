@@ -48,9 +48,10 @@ public class LuaCutsceneContext : LuaContext
         base.AssignGlobals();
         Lua.Globals["playBGM"] = (Action<DynValue>)PlayBGM;
         Lua.Globals["playSFX"] = (Action<DynValue>)PlaySound;
+        Lua.Globals["cs_fadeOutBGM"] = (Action<DynValue>)FadeOutBGM;
+        
         Lua.Globals["sceneSwitch"] = (Action<DynValue, DynValue>)SetSwitch;
         Lua.Globals["cs_teleport"] = (Action<DynValue, DynValue>)Teleport;
-        Lua.Globals["cs_fadeOutBGM"] = (Action<DynValue>)FadeOutBGM;
         Lua.Globals["cs_fade"] = (Action<DynValue, DynValue>)Fade;
 
         Lua.Globals["cs_enterNVL"] = (Action<DynValue>)EnterNVL;
@@ -71,6 +72,7 @@ public class LuaCutsceneContext : LuaContext
         Lua.Globals["setSpeed"] = (Action<DynValue>)SetSpeed;
         Lua.Globals["impact"] = (Action)Impact;
         Lua.Globals["mom"] = (Action<DynValue>)Mom;
+        Lua.Globals["endGame"] = (Action)EndGame;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -198,8 +200,8 @@ public class LuaCutsceneContext : LuaContext
     }
     private IEnumerator DriveWaitRoutine(float dist)
     {
-        var traversed = Global.Instance.Avatar.RoadTraversed;
-        while (!Global.Instance.Avatar.IsCrashing && Global.Instance.Avatar.RoadTraversed < traversed + dist)
+        var traversed = Global.Instance.Avatar.TotalTraversed;
+        while (!Global.Instance.Avatar.IsCrashing && Global.Instance.Avatar.TotalTraversed < traversed + dist)
         {
             yield return null;
         }
@@ -207,7 +209,10 @@ public class LuaCutsceneContext : LuaContext
 
     private void SetSpeed(DynValue speed)
     {
-        Global.Instance.Avatar.Speed = (float)speed.Number;
+        if (Global.Instance.Avatar.Speed < (float)speed.Number)
+        {
+            Global.Instance.Avatar.Speed = (float)speed.Number;
+        }
     }
 
     private void Impact()
@@ -240,5 +245,10 @@ public class LuaCutsceneContext : LuaContext
         {
             MapOverlayUI.Instance.Mom.CancelFog();
         }
+    }
+    
+    private void EndGame()
+    {
+        SceneManager.LoadScene("Title2");
     }
 }

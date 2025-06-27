@@ -8,8 +8,18 @@ public class MultibumpComponent : MonoBehaviour
     [SerializeField] public List<BumpComponent> bumps;
     [SerializeField] public float interval = 32f;
     [SerializeField] public PlayerController avatar;
+    [SerializeField] public GameObject rumbleEmitter;
 
-    public bool ContinuousMode { get; set; }
+    private bool continuousMode;
+    public bool ContinuousMode
+    {
+        get => continuousMode;
+        set
+        {
+            continuousMode = value;
+            rumbleEmitter.SetActive(continuousMode);
+        }
+    }
 
     private float lastBump = 0f;
     

@@ -22,6 +22,7 @@ exitNVL()
 
 wait(0.5)
 
-fade('black', 0.1)
+fadeOutBGM(3)
+fade('black', 3)
 teleport('Nighttime_LightGreen', true)
 play('scene4_00')

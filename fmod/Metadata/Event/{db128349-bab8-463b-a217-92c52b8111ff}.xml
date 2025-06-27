@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{db128349-bab8-463b-a217-92c52b8111ff}">
 		<property name="name">
-			<value>Raging Fire</value>
+			<value>fire</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -53,7 +53,7 @@
 			<destination>{9b08490c-c919-42a1-b649-4bf9cc791643}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{5af502cd-8836-4d9c-b345-8f72735fb99f}</destination>
+			<destination>{04e84155-a4c2-4c18-b1ba-5ec6423a9b58}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{487acdca-0d19-4751-962b-9ec9b91d73ec}" />
