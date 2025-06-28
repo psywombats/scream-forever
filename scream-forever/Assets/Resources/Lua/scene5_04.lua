@@ -1,4 +1,4 @@
-playBGM('none')
+
 video()
 
 setSwitch('needs_gas', false)

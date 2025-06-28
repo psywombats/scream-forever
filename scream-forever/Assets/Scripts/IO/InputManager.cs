@@ -19,7 +19,6 @@ public class InputManager : SingletonBehavior
         Down,
         Menu,
         Debug,
-        Click,
     };
 
     public enum Event
@@ -188,6 +187,7 @@ public class InputManager : SingletonBehavior
                 action.AddBinding(Keyboard.current.zKey);
                 action.AddBinding(Keyboard.current.numpadEnterKey);
                 action.AddBinding("<Gamepad>/buttonSouth");
+                action.AddBinding(Mouse.current.leftButton);
                 break;
             case Command.Secondary:
                 action.AddBinding(Keyboard.current.xKey);
@@ -205,8 +205,6 @@ public class InputManager : SingletonBehavior
             case Command.Debug:
                 action.AddBinding(Keyboard.current.f12Key);
                 break;
-            case Command.Click:
-                action.AddBinding(Mouse.current.leftButton);
                 break;
         }
         action.Enable();
@@ -226,7 +224,7 @@ public class InputManager : SingletonBehavior
         var done = false;
         PushListener(id, (command, type) =>
         {
-            if (type == Event.Down && (command == Command.Primary || command == Command.Click))
+            if (type == Event.Down && command == Command.Primary)
             {
                 RemoveListener(id);
                 done = true;
@@ -246,7 +244,7 @@ public class InputManager : SingletonBehavior
         var source = new TaskCompletionSource<bool>();
         PushListener(id, (command, type) =>
         {
-            if (type == Event.Up && command == Command.Primary || command == Command.Click)
+            if (type == Event.Up && command == Command.Primary)
             {
                 RemoveListener(id);
                 source.SetResult(true);

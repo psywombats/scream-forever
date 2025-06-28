@@ -26,13 +26,14 @@ enterNVL()
 speak('ALISTAIR', "A bit preachy.")
 speak('BIANCA', "We do need to fill up. There’s not enough fuel. It’s running on empty.")
 speak('LIAM', "...")
+exitNVL()
 
 if choose("(React.)", "(Stay silent.)") then
+	enterNVL()
 	speak('LIAM', "I remember. I saw the blinking light, just as you did.")
 	speak('BIANCA', "Yeah. You did.")
+	exitNVL()
 end
-
-exitNVL()
 
 driveWait(12)
 

@@ -62,7 +62,7 @@ speak('BIANCA', "Tell me now or this is going to grow into a serious problem.")
 exitNVL()
 
 fadeOutBGM(3)
-playBGM('none')
+playBGM('tension')
 
 if choose("(Tell her)", "(Don't tell her)") then
 	setSwitch("youToldHer", true)
@@ -106,7 +106,10 @@ if choose("(Tell her)", "(Don't tell her)") then
 	
 	enterNVL()
 	speak('BIANCA', "Crows?")
+	playBGM('none')
 	exit('BIANCA', false)
+	exitNVL()
+	wait(.8)
 else
 	exitNVL()
 	

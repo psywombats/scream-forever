@@ -1,7 +1,9 @@
+setSwitch('gps_on', true)
+setSpeed(20)
 enter('cyn')
 enter('bianca')
 enter('alistair')
-setSpeed(20)
+
 
 playBGM('ride')
 fade('normal', 3)

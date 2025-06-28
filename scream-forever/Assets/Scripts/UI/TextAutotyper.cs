@@ -25,7 +25,7 @@ public class TextAutotyper : MonoBehaviour, IInputListener
         switch (eventType)
         {
             case InputManager.Event.Up:
-                if (command == InputManager.Command.Primary || command == InputManager.Command.Click)
+                if (command == InputManager.Command.Primary)
                 {
                     hurried = true;
                     confirmed = true;

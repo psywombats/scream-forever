@@ -1,7 +1,10 @@
 setSwitch('gps_on', false)
 playSFX('impact')
 impact()
+allowDriving(false)
 wait(3.5)
+enterNVL()
+
 
 enterNVL()
 speak('BIANCA', "Liam! Are you okay?")

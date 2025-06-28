@@ -71,7 +71,10 @@ public class CrashMonitor : MonoBehaviour
         yield return CoUtils.Wait(1f);
         yield return CoUtils.RunTween(MapOverlayUI.Instance.fader.DOFade(1f, 1.5f));
         StopCrash();
+        Global.Instance.StartCoroutine(Global.Instance.Audio.FadeOutRoutine(.5f));
         yield return CoUtils.Wait(1f);
+        Global.Instance.Input.GameReset();
         yield return Global.Instance.Maps.TeleportRoutine(Global.Instance.Maps.ActiveMapName);
+        
     }
 }

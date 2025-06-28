@@ -17,9 +17,7 @@ exitNVL()
 
 driveWait(200)
 
-enterNVL()
 choose("I know.", "(Stay silent.)")
-exitNVL()
 
 wait(0.1)
 

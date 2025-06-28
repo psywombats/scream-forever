@@ -52,5 +52,6 @@ enterNVL()
 speak('BIANCA', "Why did you print out four different pamphlets, Liam?")
 speak('LIAM', "I don't remember.")
 speak('BIANCA', "Right.")
+exitNVL()
 
 play('scene3_04')

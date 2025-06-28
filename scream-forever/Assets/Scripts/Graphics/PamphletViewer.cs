@@ -104,7 +104,6 @@ public class PamphletViewer : MonoBehaviour, IInputListener
     {
         switch (command)
         {
-            case InputManager.Command.Click:
             case InputManager.Command.Primary:
                 if (eventType == InputManager.Event.Hold)
                 {

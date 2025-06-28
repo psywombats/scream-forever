@@ -73,7 +73,7 @@ public class MouseChoiceSelector : MonoBehaviour, IInputListener
     public bool OnCommand(InputManager.Command command, InputManager.Event eventType)
     {
         bool isSecondary;
-        if (command == InputManager.Command.Click || command == InputManager.Command.Primary)
+        if (command == InputManager.Command.Primary)
         {
             isSecondary = false;
         }

@@ -69,7 +69,7 @@ speak('CYN', "I’m sure people grow up and become different as they get older?"
 speak('BIANCA', "I don’t really want to think about that.")
 speak('ALISTAIR', "My bad. It’s just that he’s usually well-known for being quick to go!")
 
-if choose("That's none of your business, really.", "What, are you envoius?") then
+if choose("That's none of your business, really.", "What, are you envious?") then
 	speak('ALISTAIR', "Oh, isn’t it? Funny how that all fades away once you live a comfy life in The Big Apple.")
 	exitNVL()
 	driveWait(15)

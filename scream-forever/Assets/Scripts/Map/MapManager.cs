@@ -63,6 +63,8 @@ public class MapManager : SingletonBehavior
 
     private void RawTeleport(string mapName)
     {
+        InputManager.Instance.GameReset();
+        
         var oldMap = ActiveMap;
         var newMapInstance = InstantiateMap(mapName);
         if (ActiveMap != null)
@@ -73,7 +75,10 @@ public class MapManager : SingletonBehavior
         if (ActiveMap != null)
         {
             Destroy(ActiveMap.gameObject);
+            
         }
+        
+        Global.Instance.Lua.ResetGame();
 
         ActiveMap = newMapInstance;
         ActiveMapName = mapName;

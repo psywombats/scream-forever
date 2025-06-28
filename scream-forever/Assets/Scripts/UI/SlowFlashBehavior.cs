@@ -6,6 +6,7 @@ public abstract class SlowFlashBehavior : MonoBehaviour {
 
     public float period = 1.0f;
     public float transitionDuration = 0.1f;
+    public bool autoOn;
 
     public bool Enabled { get; set; }
 
@@ -13,8 +14,9 @@ public abstract class SlowFlashBehavior : MonoBehaviour {
     private float elapsed;
     private bool off;
 
-    public void Start() 
+    public void Start()
     {
+        if (autoOn) TurnOn();
         originalAlpha = GetAlpha();
         off = true;
         SetAlpha(0f);

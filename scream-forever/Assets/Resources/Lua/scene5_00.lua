@@ -1,3 +1,4 @@
+setSpeed(20)
 enter('bianca')
 enter('cyn')
 enter('alistair')

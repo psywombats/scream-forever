@@ -21,6 +21,7 @@ exitNVL()
 driveWait(100)
 
 choose("........", "........")
+wait(1)
 enterNVL()
 speak('BIANCA', "Hang on, Liam. You’re bleeding.")
 speak('ALISTAIR', "Where?")

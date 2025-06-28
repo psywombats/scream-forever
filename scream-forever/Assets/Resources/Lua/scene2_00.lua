@@ -1,3 +1,4 @@
+setSwitch('gps_on', true)
 setSpeed(15)
 enter('cyn')
 enter('bianca')

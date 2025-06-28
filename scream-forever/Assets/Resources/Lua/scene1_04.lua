@@ -11,12 +11,15 @@ wait(3)
 
 enterNVL()
 speak('LIAM', "...")
+exitNVL()
 if choose("Okay, I might be worried. I haven’t seen him in a long time.", "(Stay silent.)") then
+	enterNVL()
 	speak('LIAM', "I don’t know why he flew out to the city all the way from Fuseville to DC, just to catch a ride with us to the middle of nowhere.")
 	speak('BIANCA', "Liam, it's a retreat. It's not nowhere.")
 	speak('BIANCA', "It's a place where you can feel safe and calm.")
+	exitNVL()
 end
-exitNVL()
+
 
 wait(3)
 

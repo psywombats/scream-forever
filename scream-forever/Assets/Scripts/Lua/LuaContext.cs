@@ -20,11 +20,18 @@ public class LuaContext
 
     private Stack<LuaScript> activeScripts = new Stack<LuaScript>();
     private bool forceKilled;
+    private int resetCount;
 
     public virtual void Initialize()
     {
         LoadDefines(DefinesPath);
         AssignGlobals();
+    }
+
+    public void ResetGame()
+    {
+        activeScripts.Clear();
+        resetCount += 1;
     }
 
     // make sure the luaobject has been registered via [MoonSharpUserData]
@@ -70,9 +77,11 @@ public class LuaContext
             // leave the old instance infinitely suspended
             return;
         }
+
+        var resets = resetCount;
         Global.Instance.StartCoroutine(CoUtils.RunWithCallback(routine, () =>
         {
-            if (activeScripts.Count > 0 && !forceKilled)
+            if (activeScripts.Count > 0 && !forceKilled && resets == resetCount)
             {
                 ResumeAwaitedScript();
             }
