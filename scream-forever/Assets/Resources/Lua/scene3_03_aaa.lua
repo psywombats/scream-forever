@@ -1,5 +1,5 @@
 speak('BIANCA', "A local copy center? What \"local copy center?\"")
-choose("You know, the one near our house.", "I don't know")
+choose("You know, the one near our house.", "I don't know.")
 exitNVL()
 
 driveWait(250)

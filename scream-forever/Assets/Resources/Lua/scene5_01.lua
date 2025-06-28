@@ -15,7 +15,7 @@ exitNVL()
 driveWait(15)
 
 enterNVL()
-speak('ALISTAIR', "Could we stop at the nearest station, monsieur driver? This thing ain’t gonna smoke itself.")
+speak('ALISTAIR', "Could we stop at the nearest station, monsieur driver? This thing's not gonna smoke itself.")
 speak('LIAM', "Maybe you should just avoid smoking for a bit. It'd be better for you.")
 speak('ALISTAIR', "Alright.")
 exitNVL()
@@ -25,8 +25,13 @@ driveWait(12)
 enterNVL()
 speak('ALISTAIR', "A bit preachy.")
 speak('BIANCA', "We do need to fill up. There’s not enough fuel. It’s running on empty.")
-speak('LIAM', "I remember. I saw the blinking light, just as you did.")
-speak('BIANCA', "Yeah. You did.")
+speak('LIAM', "...")
+
+if choose("(React.)", "(Stay silent.)") then
+	speak('LIAM', "I remember. I saw the blinking light, just as you did.")
+	speak('BIANCA', "Yeah. You did.")
+end
+
 exitNVL()
 
 driveWait(12)

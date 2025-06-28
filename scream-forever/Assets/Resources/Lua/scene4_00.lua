@@ -22,12 +22,12 @@ wait(1)
 
 enterNVL()
 speak('BIANCA', "Liam says you used to slay the club. You were the life of the party!")
-if choose("Slay the club?", "He always did") then
+if choose("\"Slay the club\"? Is that the term for it?", "Alistair was the biggest attention grabber.") then
 	speak('BIANCA', "Yeah, like... I don’t know, bring the party. Heighten the excitement.")
 	speak('ALISTAIR', "Don’t worry, I knew what you meant, Bianca. Common slang.")
 	speak('ALISTAIR', "We both had... a certain way about ourselves. Wouldn’t say we \"slayed\" anything though.")
 else
-	speak('LIAM', "Alistair was the biggest attention grabber. He’d always try to find a way to spotlight himself.")
+	speak('LIAM', "He’d always try to find a way to spotlight himself.")
 	speak('ALISTAIR', "Well, yeah. But neither of us really were that successful at it, were we?")
 	speak('ALISTAIR', "Largely because I was the Brit with the funny accent, and Liam was the guy who refused to chatter one bit.")
 end
@@ -54,7 +54,7 @@ speak('ALISTAIR', "And what do you do for fun, Cyn?")
 speak('CYN', "Oh, nothing. I like puzzles.")
 speak('ALISTAIR', "Hmm. What kind of puzzles?")
 speak('BIANCA', "You like puzzles?")
-speak('CYN', "Oh yeah, Bianca. You should try one with me -- it’s been something that’s been hitting me recently.")
+speak('CYN', "Oh yeah, Bianca. You should try one with me. It’s been something that’s been hitting me recently.")
 speak('CYN', "There’s this awesome puzzle that’s like a super long river and it goes around and it’s only, like, one tile wide but it goes in all these loops and it’s fantastic.")
 speak('BIANCA', "I think I saw something like that online.")
 speak('CYN', "Yeah, I got it off some person’s online puzzle store. I want to buy more. They’re very fun!")
@@ -70,7 +70,7 @@ exitNVL()
 driveWait(200)
 
 enterNVL()
-speak('BIANCA', "I think there’s something very ...spiritual... about putting together puzzles.")
+speak('BIANCA', "I think there’s something very... spiritual... about putting together puzzles.")
 speak('CYN', "That’s right! The idea of putting two and two together. I think that can be, like, logically spiritual. Maybe.")
 speak('BIANCA', "Well, if it’s hard to explain, then it’s spiritual, right?")
 speak('ALISTAIR', "That sounds like an excuse for ignorance.")
@@ -80,13 +80,20 @@ speak('BIANCA', "Well, I don’t think many people can claim to take care of tha
 speak('ALISTAIR', "You’re talking about it as if it’s a personal garden that you take care of. It doesn’t belong to you.")
 speak('BIANCA', "Our minds are personal gardens connected by paths. So we take care of them, connect them, and enjoy their patterns.")
 speak('BIANCA', "They need nutrients, exercise and water to survive... so that’s why it’s paramount to take care of the mind, body and soul.")
+exitNVL()
+driveWait(20)
+enterNVL()
 speak('ALISTAIR', "No, I don’t think I will...")
 speak('CYN', "Oh, when we get to the camp, we should get some puzzles and just have a great big puzzle-off!")
 speak('ALISTAIR', "Sure. Sounds like fun.")
-speak('LIAM', "Can't tell if you're joking.")
-speak('ALISTAIR', "Maybe you don’t know me, then. I like a good puzzle.")
-speak('LIAM', "No you don't.")
-speak('ALISTAIR', "Oh. Whoops! I don’t, then. My mistake. All’s cleared up, then.")
+
+if choose("Can't tell if you're joking.", "(Stay silent.)") then
+	speak('ALISTAIR', "Maybe you don’t know me, then. I like a good puzzle.")
+	if choose("No, you don't.", "(Stay silent.)") then
+		speak('ALISTAIR', "Oh. Whoops! I don’t, then. My mistake. All’s cleared up, then.")
+	end
+end
+
 exitNVL()
 
 driveWait(200)

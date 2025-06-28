@@ -13,10 +13,9 @@ speak('ALISTAIR', "Oh, right, because you two are living together.")
 speak('BIANCA', "Yes.")
 speak('ALISTAIR', "Co-habitation. You’ve found a nice spot for yourself, haven’t you, Liam?")
 
-if choose("It’s not bad", "How about you?") then
-	speak('LIAM', "Yeah, it's not bad.")	
+if choose("Yeah, it's not bad.", "How about yourself? How’s your digs?") then
+	--hi
 else
-	speak('LIAM', "How about yourself? How’s your digs?")
 	speak('ALISTAIR', "Ahh, don’t worry about me, lad, I’m just handling myself quite nicely. Quite nicely, indeed.")
 end
 
@@ -69,11 +68,9 @@ speak('BIANCA', "Where did you get this from?")
 speak('ALISTAIR', "Liam sent it to me over message. Then soon he followed it up with a bloody call out of nowhere asking me if I wanted to reconnect. A call?")
 speak('ALISTAIR', "Honestly, it was surprising, considering he’d never contacted me until now... even given our seasoned history in high school.")
 
-if choose("Sorry", "You never contacted me") then
-	speak('LIAM', "I don’t know. I’m sorry, dude, what can I say?")
+if choose("I’m sorry, dude, what can I say?", "It's not like you ever contacted me, either.") then
 	speak('ALISTAIR', "Yup. Sorry’s a good start.")
 else
-	speak('LIAM', "It's not like you ever contacted me, either.")
 	speak('ALISTAIR', "You’re right, I didn’t. But I didn’t leave, did I?")
 end
 exitNVL()
