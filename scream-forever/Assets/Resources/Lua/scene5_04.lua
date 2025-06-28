@@ -1,6 +1,5 @@
 playBGM('none')
-video('short')
+video()
 
 setSwitch('needs_gas', false)
 teleport('Midnight', true)
-play('scene6_00')

@@ -1,7 +1,7 @@
 setSpeed(15)
 enter('cyn')
 enter('bianca')
-playBGM('viral')
+playBGM('biancas_viral_song')
 fade('normal')
 
 driveWait(150)

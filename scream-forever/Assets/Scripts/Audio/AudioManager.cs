@@ -29,6 +29,8 @@ public class AudioManager : SingletonBehavior
 
     public string CurrentBGMKey { get; private set; }
 
+    private StudioEventEmitter currentBgmInstance;
+
     public void Start()
     {
         CurrentBGMKey = NoBGMKey;
@@ -37,6 +39,7 @@ public class AudioManager : SingletonBehavior
 
     public void PlayBGM(string key)
     {
+        BaseVolume = 1.0f;
         if (Global.Instance.Data.GetSwitch("disable_bgm"))
         {
             return;
@@ -56,6 +59,11 @@ public class AudioManager : SingletonBehavior
                     emitter.emitter.Stop();
                 }
             }
+            if (currentBgmInstance != null)
+            {
+                currentBgmInstance.Stop();
+            }
+            
             if (key.StartsWith(NoBGMKey))
             {
                 return;
@@ -64,7 +72,11 @@ public class AudioManager : SingletonBehavior
             SetVolume();
             CurrentBGMKey = key;
 
-            if (Global.Instance.Avatar == null || !Global.Instance.Avatar.radios.TryPlay(key))
+            if (Global.Instance.Avatar != null)
+            {
+                currentBgmInstance = Global.Instance.Avatar.radios.TryPlay(key);
+            }
+            if (currentBgmInstance == null) 
             {
                 bgmEvent = RuntimeManager.CreateInstance($"event:/BGM/{key}");
                 bgmEvent.start();

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{13b907cc-ecd4-47d0-b7b1-b00a7f85cd7f}">
 		<property name="name">
-			<value>viral</value>
+			<value>biancas_viral_song</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>

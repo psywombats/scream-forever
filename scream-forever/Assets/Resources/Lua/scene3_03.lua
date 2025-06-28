@@ -12,7 +12,7 @@ if choose("I think I printed them off.", "A man on the street gave them to me.")
 		speak('ALISTAIR', "Well, it’s kind of vague. You don’t know whether you printed them off?")
 		speak('BIANCA', "Liam, we don’t have a printer. Where did you print them?")
 		if choose("I printed them at the local copy center.", "I don't know") then
-			play('scene03_03_aaa')
+			play('scene3_03_aaa')
 		else
 			speak('BIANCA', "You don’t know how you printed the pamphlets.")
 			speak('BIANCA', "Do they just materialize from thin air? Where did they come from?")

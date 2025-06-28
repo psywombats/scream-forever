@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerSwitch: spawn_house
   disableChild: {fileID: 3181524862117420891}
+  playerX: 0
 --- !u!1 &2646074752505948079
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,8 +188,8 @@ MonoBehaviour:
   eventLayer: {fileID: 546094177470350986}
   skybox: {fileID: 2100000, guid: dd186f3b7e419164caeb3672debef786, type: 2}
   sun: {fileID: 3629044492334413163}
-  playerPrefab: {fileID: 746421776499848181}
-  firstScript: 
+  avatar: {fileID: 746421776499848181}
+  firstScript: scene2_00
   terrain: {fileID: 6571771597449861465}
   road: {fileID: 5475715920314869073}
   fogger: {fileID: 3617231017838336928}

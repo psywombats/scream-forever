@@ -320,8 +320,8 @@ MonoBehaviour:
   eventLayer: {fileID: 3651748935132996863}
   skybox: {fileID: 2100000, guid: 97637a2a763b7f24b8da4e139e4144ca, type: 2}
   sun: {fileID: 7544815670311642225}
-  playerPrefab: {fileID: 6925670184451444310}
-  firstScript: 
+  avatar: {fileID: 6925670184451444310}
+  firstScript: scene7_00
   terrain: {fileID: 847440076466837418}
   road: {fileID: 7595244337970250463}
   fogger: {fileID: 8913526278007959758}
@@ -737,6 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
   attenuationObject: {fileID: 0}
 --- !u!114 &706633737173270030
 MonoBehaviour:

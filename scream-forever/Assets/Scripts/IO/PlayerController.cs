@@ -93,8 +93,6 @@ public class PlayerController : MonoBehaviour, IInputListener
     
     public float SpeedRatio => Speed / maxSpeed;
     public float TotalTraversed { get; private set; }
-    
-    public int CrashCount { get; set; }
 
     public float DistanceFromRoad
     {

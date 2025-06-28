@@ -55,8 +55,8 @@ MonoBehaviour:
   eventLayer: {fileID: 7770488460022645532}
   skybox: {fileID: 2100000, guid: 97637a2a763b7f24b8da4e139e4144ca, type: 2}
   sun: {fileID: 1518648612464874115}
-  playerPrefab: {fileID: 7435974070894931135}
-  firstScript: 
+  avatar: {fileID: 7435974070894931135}
+  firstScript: scene6_00
   terrain: {fileID: 8020830640744423652}
   road: {fileID: 3569799309224577893}
   fogger: {fileID: 2711830072475381068}
@@ -696,6 +696,7 @@ MonoBehaviour:
   - {fileID: 1883219834653704507}
   interval: 24
   avatar: {fileID: 7435974070894931135}
+  rumbleEmitter: {fileID: 5271269040898869835}
 --- !u!1 &6172003291530222625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,6 +1330,16 @@ PrefabInstance:
       propertyPath: passengerArea
       value: 
       objectReference: {fileID: 7950759642076012439}
+    - target: {fileID: 5715195206346310987, guid: a129a19ed5275f14d881490f9c16bc4a,
+        type: 3}
+      propertyPath: fog
+      value: 
+      objectReference: {fileID: 979114292459833856}
+    - target: {fileID: 5715195206346310987, guid: a129a19ed5275f14d881490f9c16bc4a,
+        type: 3}
+      propertyPath: lights.Array.data[0]
+      value: 
+      objectReference: {fileID: 1518648612464874115}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1430,6 +1441,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a178fe2ca80e33b439d46286ef90afe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5271269040898869835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3918453471954285838, guid: a129a19ed5275f14d881490f9c16bc4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 9171136368295919429}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6145497529893569959 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3030740712647391970, guid: a129a19ed5275f14d881490f9c16bc4a,

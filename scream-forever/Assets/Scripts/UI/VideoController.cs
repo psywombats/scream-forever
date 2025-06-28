@@ -21,6 +21,7 @@ public class VideoController : MonoBehaviour
         
         Global.Instance.Data.SetSwitch("kill_lights", true);
         Global.Instance.Avatar.GetComponent<Rigidbody>().useGravity = false;
+        Global.Instance.Avatar.GetComponent<CrashMonitor>().enabled = false;
         
         var boundsX = Global.Instance.Avatar.rotationXBounds;
         var boundsY = Global.Instance.Avatar.rotationYBounds;

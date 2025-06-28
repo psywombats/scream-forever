@@ -234,8 +234,7 @@ public class InputManager : SingletonBehavior
             }
             return eatsOthers;
         });
-        var crashes = Global.Instance.Avatar.CrashCount;
-        while (!done && crashes == Global.Instance.Avatar.CrashCount)
+        while (!done && !Global.Instance.Avatar.IsCrashing)
         {
             yield return null;
         }

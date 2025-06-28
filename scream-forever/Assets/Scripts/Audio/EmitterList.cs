@@ -14,17 +14,17 @@ public class EmitterList : MonoBehaviour
 
     [SerializeField] public List<TaggedEmitter> emitters;
 
-    public bool TryPlay(string tag)
+    public StudioEventEmitter TryPlay(string tag)
     {
         foreach (var emitter in emitters)
         {
             if (emitter.tag == tag)
             {
                 emitter.emitter.Play();
-                return true;
+                return emitter.emitter;
             }
         }
 
-        return false;
+        return null;
     }
 }

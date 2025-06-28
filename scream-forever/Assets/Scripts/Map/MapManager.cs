@@ -59,10 +59,6 @@ public class MapManager : SingletonBehavior
         {
             yield return CoUtils.RunTween(MapOverlayUI.Instance.fader.DOFade(0f, .5f));
         }
-        if (avatarExists)
-        {
-            Avatar.UnpauseInput();
-        }
     }
 
     private void RawTeleport(string mapName)
@@ -99,12 +95,6 @@ public class MapManager : SingletonBehavior
 
     private void AddInitialAvatar()
     {
-        if (Avatar == null)
-        {
-            var av = Instantiate(ActiveMap.playerPrefab.gameObject);
-            av.gameObject.SetActive(true);
-            Avatar = av.GetComponent<PlayerController>();
-        }
-        Avatar.transform.SetParent(ActiveMap.eventLayer.transform, false);
+        Avatar = ActiveMap.avatar;
     }
 }

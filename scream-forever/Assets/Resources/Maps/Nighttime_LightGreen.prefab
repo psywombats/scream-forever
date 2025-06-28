@@ -722,8 +722,8 @@ MonoBehaviour:
   eventLayer: {fileID: 1104983850322497632}
   skybox: {fileID: 2100000, guid: 97637a2a763b7f24b8da4e139e4144ca, type: 2}
   sun: {fileID: 231645274618705664}
-  playerPrefab: {fileID: 6744910732823116681}
-  firstScript: 
+  avatar: {fileID: 6744910732823116681}
+  firstScript: scene4_00
   terrain: {fileID: 972187037150083921}
   road: {fileID: 1108376675171200121}
   fogger: {fileID: 6321896716167894147}

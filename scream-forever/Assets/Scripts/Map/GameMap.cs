@@ -8,7 +8,7 @@ public class GameMap : MonoBehaviour
     [SerializeField] public GameObject eventLayer;
     [SerializeField] public Material skybox;
     [SerializeField] public Light sun;
-    [SerializeField] public PlayerController playerPrefab;
+    [SerializeField] public PlayerController avatar;
     [SerializeField] public string firstScript;
     [Space]
     [Header("References")]

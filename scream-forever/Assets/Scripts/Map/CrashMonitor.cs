@@ -38,7 +38,6 @@ public class CrashMonitor : MonoBehaviour
 
     private void StartCrash()
     {
-        Global.Instance.Avatar.CrashCount += 1;
         if (Global.Instance.Lua.IsRunning())
         {
             Global.Instance.Lua.ForceTerminate();
@@ -57,10 +56,7 @@ public class CrashMonitor : MonoBehaviour
 
     public void StopCrash()
     {
-        Global.Instance.Avatar.IsCrashing = false;
-        Global.Instance.Avatar.IsSpeeding = false;
         MapOverlayUI.Instance.screenViewGlitch.enabled = false;
-        Global.Instance.Avatar.UnpauseInput();
         foreach (var component in crashBehaviors)
         {
             component.enabled = false;
@@ -75,7 +71,6 @@ public class CrashMonitor : MonoBehaviour
         yield return CoUtils.Wait(1f);
         yield return CoUtils.RunTween(MapOverlayUI.Instance.fader.DOFade(1f, 1.5f));
         StopCrash();
-        Destroy(Global.Instance.Avatar.gameObject);
         yield return CoUtils.Wait(1f);
         yield return Global.Instance.Maps.TeleportRoutine(Global.Instance.Maps.ActiveMapName);
     }

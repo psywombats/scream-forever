@@ -9,6 +9,7 @@ setSwitch('needs_gas', true)
 
 driveWait(60)
 
+enterNVL()
 speak('ALISTAIR', "Fine. How about you? What have you been up to in the Big City?")
 speak('LIAM', "I'm an accountant.")
 speak('ALISTAIR', "No fun! I was supposed to guess!")
