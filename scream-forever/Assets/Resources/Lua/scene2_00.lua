@@ -1,40 +1,38 @@
 setSpeed(15)
 enter('cyn')
 enter('bianca')
-playBGM('biancas_viral_song')
 fade('normal')
 
 driveWait(150)
 
-enterNVL()
-speak('BIANCA', "Do you like this song?")
-speak('CYN', "This is great! Where'd you find it?")
-speak('BIANCA', "I was just browsing and the algorithm served it to me. I loved it straight away.")
-speak('CYN', "Is it on streaming? Where can I listen?")
-speak('BIANCA', "Let me share it with you now.")
-speak('CYN', "Oh wow. You’re a hipster, Bee.")
+playBGM('biancas_viral_song')
 
-if choose("Tries way too hard", "I can't compare") then
+enterNVL()
+speak('BIANCA', "You like this song, Cyn?")
+speak('CYN', "Oh, this is great! Where'd you find it?")
+speak('BIANCA', "I was just browsing and the algorithm served it to me. And I adored it straight away.")
+speak('CYN', "That's awesome. Is it on streaming? Where can I listen? Ooh, gimme, gimme!")
+speak('BIANCA', "Sure thing! I'll share it with you now.")
+speak('CYN', "Oh wow. You’re such a hipster, Bee! Ahead of the curve, one might say.")
+
+if choose("Oh, she's a total hipster. She tries oh so hard to be, too!", "She really is. I can’t compare!") then
 	setSwitch('mockedBianca', true)
-	speak('LIAM', "Total hipster - tries way too hard!")
-	speak('BIANCA', "I do. I really do. But not too hard.")
+	speak('BIANCA', "I do, I really do. But not too hard!")
 	speak('CYN', "It shows. You always do a really good job of finding exciting songs. You’re so good at it.")
 	speak('BIANCA', "Thanks, Cyn! I put a lot of work into my craft.")
-	speak('CYN', "And how about you -- what’s your music taste, Liam?")
+	speak('CYN', "And how about you? What’s your music taste, Liam?")
 else
-	speak('BIANCA', "Oh, come on -- don’t be so modest.")
-	speak('CYN', "Yeah, I bet you have a really great way of finding songs too, Liam.")
-	speak('CYN', "I bet you just find the best of them, and have the best taste.")
+	speak('BIANCA', "Oh, come on, don’t be too modest.")
+	speak('CYN', "Yeah, I bet you have a really great way of finding songs too, Liam!")
+	speak('CYN', "I bet you just find the best of them, and have the best taste!")
 	speak('BIANCA', "Of course he does. He has great taste, I’m just kidding.")
 	speak('BIANCA', "You listen to good songs, don’t you, Liam?")
 end
 
-if choose("Dire Straits", "Britney Spears") then
-	speak('LIAM', "Do you like Dire Straits?")
+if choose("Do you like Dire Straits?", "Do you like Britney Spears?") then
 	speak('CYN', "Yeah, they’re not bad. My dad listens to them. They’ve got great musical chops!")
 else
 	setSwitch('likesBritney', true)
-	speak('LIAM', "Do you like Britney Spears?")
 	speak('CYN', "Oh! My mom loved Britney. She used to be obsessed. That was a long time ago. When she used to listen to music.")
 end
 speak('CYN', "I listen to more modern music, generally. Not really, like- the... older stuff. Just new.")

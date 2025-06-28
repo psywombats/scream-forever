@@ -1,3 +1,4 @@
+fadeOutBGM(3)
 wait(5)
 
 enterNVL()
@@ -17,11 +18,10 @@ exitNVL()
 driveWait(200)
 
 enterNVL()
-speak('LIAM', "I know.")
+choose("I know.", "(Stay silent.)")
 exitNVL()
 
-wait(0.5)
+wait(0.1)
 
-fadeOutBGM(3)
-fade('black', 3)
+fade('black', 0.2)
 teleport('Nighttime_LightGreen', true)

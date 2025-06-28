@@ -1,6 +1,5 @@
 enterNVL()
-speak('BIANCA', "Liam. Why did you give us all different pamphlets?")
-speak('ALISTAIR', "Yeah, who gave you these pamphlets, Liam?")
+speak('ALISTAIR', "So... who gave you the pamphlets, Liam?")
 
 if choose("I think I printed them off.", "A man on the street gave them to me.") then
 	speak('ALISTAIR', "You think? Or you know?")
@@ -31,12 +30,10 @@ else
 		speak('LIAM', "I don’t know. I was walking on a street somewhere.")
 		speak('ALISTAIR', "Yes, we gathered you were walking on a street. And the destination was, indeed, \"somewhere\".")
 		speak('BIANCA', "I’ve seen you. You never take flyers from strangers. You always just ignore them.")
-		if choose("They always want money, anyway", "Should I be accepting them?") then
-			speak("LIAM", "They’re always just trying to get your money, anyway.")
+		if choose("They’re always just trying to get your money, anyway.", "Is there a warmer way I should be accepting flyers from strangers?") then
 			speak("ALISTAIR", "That’s true.")
-			speak("BIANCA", "You took 4 flyers from this man -- 4 different flyers with 4 different designs -- aiming to invite us all to 4 different things?")
+			speak("BIANCA", "You took 4 flyers from this man - 4 different flyers with 4 different designs - aiming to invite us all to 4 different things?")
 		else
-			speak('LIAM', "Is there a warmer way I should be accepting flyers from strangers?")
 			speak('BIANCA', "No, but you barely look at them. You pretty much actively ignore people on the street. It’s not a bad thing, it’s just a fact!")
 			exitNVL()
 			
@@ -47,7 +44,7 @@ else
 			speak('BIANCA', "...aiming to invite us all to three different things than you?")
 		end
 		
-		choose("I thought you might be interested", "I emailed Alistair the fourth.")
+		choose("I thought you might be interested in what they provide.", "I only took 3 flyers. I emailed Alistair the 4th.")
 		
 		speak('BIANCA', "So... you scanned the flyer and sent Alistair a copy?")
 		speak('LIAM', "I can't recall.")

@@ -1,20 +1,24 @@
+enterNVL()
 if getSwitch("broughtInLaundry") then
-	speak("BIANCA", "By any chance, did you also make sure that the oven was off?")
+	speak("BIANCA", "By chance, did you make sure the oven was off?")
 else
-	speak("BIANCA", "Gah! Now I’m worried that the oven’s on as well.")
+	speak("BIANCA", "Now I’m worried that the oven’s on too.")
 end
 
-if choose("Check your photos", "I didn't turn it off") then
-	speak("LIAM", "Check your photos. You took photos of it, remember?")
-	speak("BIANCA", "I did. You’re right.")
+if choose("Check your photos. You took photos of it, remember?", "I didn't turn it off. It should be off, though.") then
+	speak("BIANCA", "I did! You’re right. Lemme check.")
 	exitNVL()
 	wait(2)
 	enterNVL()
-	speak("BIANCA", "There it is Oven off. Good. Phew.")
-	speak("BIANCA", "Glad that's settled.")
+	speak("BIANCA", "Ah, there it is. Oven off. Good. Phew.")
+	speak("BIANCA", "Glad that's done and dusted.")
+	exitNVL()
+	wait(3)
+	enterNVL()
+	speak("BIANCA", "Although part of me still thinks it's on, for some reason.")
 else
-	speak("LIAM", "I didn't turn it off. It should be off, though.")
-	speak("BIANCA", "Yeah, it should be off. I think I remember turning it off.")
+	speak("BIANCA", "Yeah, it should be off.")
+	speak("BIANCA", "I think I remember turning it off.")
 	exitNVL()
 	wait(1.0)
 	enterNVL()
@@ -24,5 +28,5 @@ end
 
 exitNVL()
 
-driveWait(60)
 play('scene1_03')
+

@@ -24,11 +24,9 @@ speak('ALISTAIR', "This car’s vintage. Looks like it’s running on crude oil 
 speak('LIAM', "Alistair. How are you?")
 speak('ALISTAIR', "Rather pristine, actually. Got some full-time work. It’s treating me well. Keeping me busy. And you?")
 
-if choose("Could be better", "Really good") then
-	speak('LIAM', "Well, I could be better.")
+if choose("Well, I could be better.", "I'm really good, actually.") then
 	speak('ALISTAIR', "Ah, surely it’s not that terrifying. You look okay. No five o’clock shadow present.")
 else
-	speak('LIAM', "I'm really good, actually.")
 	speak('ALISTAIR', "I’m sure you are. Big successful man!")
 end
 
@@ -64,6 +62,6 @@ speak('ALISTAIR', "Hang on, this thing moves? A marvel of the industrial era! Th
 --speak('CYN', "Heehee.")
 exitNVL()
 
-fadeOutBGM()
+fadeOutBGM(3)
 fade('black')
 teleport('Nighttime', true)

@@ -34,14 +34,13 @@ speak('LIAM', "None of you are outdoors people?")
 speak('ALISTAIR', "Not this kind of outdoors.")
 speak('CYN', "I wouldn’t mind going for a walk in the bush.")
 speak('BIANCA', "Liam, you’re not an outdoors person either. One time we tried going on that hike and you couldn’t stand it.")
-speak('BIANCA', "You were just fidgeting around the entire time as if you didn’t want to be there.")
+speak('BIANCA', "You were just fidgeting around the whole time.")
 
-if choose("I like the outdoors", "Guess it's not my thing") then
-	speak('LIAM', "No, I like the outdoors.")
+if choose("No, I like the outdoors.", "Fine, it’s not exactly my thing.") then
 	speak('BIANCA', "No, you don't.")
 else
-	speak('LIAM', "Fine, it’s not exactly my thing. But I only went because you wanted to go.")
-	speak('BIANCA', "There we go. The truth comes out. You only went because I wanted to go.")
+	speak('LIAM', "But I only went because you wanted to go.")
+	speak('BIANCA', "Well, there we go. You didn't want to go.")
 	if choose("That’s what I said.", "Yes, you’re right, Bianca.") then
 		speak('BIANCA', "Right.")
 	else
